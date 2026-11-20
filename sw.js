@@ -1,4 +1,4 @@
-const CACHE='princess-kingdom-v5-layout-category';
+const CACHE='princess-kingdom-v10-fixed-script-layout';
 const FILES=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png'];
 self.addEventListener('install',event=>{
  event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(FILES)));

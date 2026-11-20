@@ -19,3 +19,6 @@ Modificări V2:
 - Butonul Am reușit rămâne verde și marchează provocarea finalizată.
 
 Notă: testarea vizuală finală trebuie făcută pe dispozitivul țintă după publicare.
+
+
+V3 fix: corrected JavaScript initialization order (DOM helper defined before first use), restoring click handlers and full-page background. Active category highlighting now follows the actual challenge category, including challenges selected from Tot regatul.
