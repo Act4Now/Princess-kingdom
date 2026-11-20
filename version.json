@@ -1,13 +1,15 @@
 {
-  "version": "27",
+  "version": "28",
   "name": "Princess Kingdom",
   "release_date": "2026-11-20",
-  "release_name": "Version identifier synchronization",
-  "previous_version": "26",
+  "release_name": "Challenge uniqueness and completion lock",
+  "previous_version": "27",
   "changes": [
-    "Corrected the application-version metadata from 24 to 27.",
-    "Made the footer read its version from the application-version meta tag, removing the stale hard-coded V25 value.",
-    "Synchronized version.json, version.txt, Service Worker cache name, update-reload session key, README, and changelog to V27.",
-    "Preserved V26 button alignment, progress bar, offline-first startup, update checks, game progress, and all 600 challenges."
+    "Audited the three challenge categories: 200 entries each and 600 unique IDs.",
+    "Replaced repeated Questions prompts and answers so all 200 question prompts and answers are distinct.",
+    "Excluded completed challenge IDs from every future draw until Joc nou resets progress.",
+    "Kept shuffle-cycle repeats limited to unfinished challenges only.",
+    "Added clear completed-category and completed-kingdom states; selecting another category continues with its unfinished challenges.",
+    "Synchronized footer metadata, version files, Service Worker cache, and update session key to V28."
   ]
 }

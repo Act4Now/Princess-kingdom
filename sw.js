@@ -1,5 +1,5 @@
-/* Princess Kingdom V27 — synchronized version identifiers, offline-first launch. */
-const CACHE_NAME = 'princess-kingdom-v27-version-sync';
+/* Princess Kingdom V28 — unique challenge bank and completed-challenge exclusion. */
+const CACHE_NAME = 'princess-kingdom-v28-challenge-completion';
 const CACHE_PREFIX = 'princess-kingdom-';
 const APP_FILES = [
   './', './index.html', './manifest.webmanifest', './version.json', './version.txt',

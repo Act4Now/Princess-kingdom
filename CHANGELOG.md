@@ -45,3 +45,11 @@
 - `index.html` application-version metadata is now `27`; the footer reads this metadata instead of a stale hard-coded JavaScript value.
 - Synchronized `version.json`, `version.txt`, Service Worker cache name, and update-reload session key to V27.
 - Preserved all V26 layout and game functionality.
+
+
+## V28 — 2026-11-20
+- Audited challenge inventory: 200 Desen, 200 Mimă, 200 Întrebări; all 600 IDs are unique.
+- Replaced repeated Questions prompts and repeated answers; all 200 question prompts and answers are now distinct.
+- Completed challenge IDs are excluded from future draws until Joc nou resets the game.
+- Random shuffle cycles repeat only among unfinished challenges; completed categories show a completion state.
+- Synchronized version metadata, footer, Service Worker cache, and update-reload key to V28.

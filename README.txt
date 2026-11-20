@@ -1,4 +1,4 @@
-PRINCESS KINGDOM — PWA V27
+PRINCESS KINGDOM — PWA V28
 
 Fișiere:
 - index.html — aplicația completă și cele 600 de provocări
@@ -83,9 +83,14 @@ V26 — Pornire offline-first și identitate nouă pentru ecranul de lansare
 - Fundalul inferior cu dungi neclare a fost înlocuit cu flori și pavaj roz curat.
 
 
-V27 — Sincronizarea identificatorilor versiunii
+V28 — Sincronizarea identificatorilor versiunii
 - Sursa pentru versiunea afișată în footer este meta[name="application-version"] din index.html.
-- version.json și version.txt sunt sincronizate la V27 pentru controlul distribuției.
-- Service Worker cache: princess-kingdom-v27-version-sync.
-- Cheia de sesiune pentru reîncărcarea după actualizare este pk-v27-update-reloaded.
+- version.json și version.txt sunt sincronizate la V28 pentru controlul distribuției.
+- Service Worker cache: princess-kingdom-v28-challenge-completion.
+- Cheia de sesiune pentru reîncărcarea după actualizare este pk-v28-update-reloaded.
 - Păstrează funcționalitățile V26 și progresul local.
+
+V28 — Verificarea provocărilor și excluderea celor completate
+- 200 de provocări distincte în fiecare categorie.
+- Provocările completate nu mai revin până la apăsarea butonului Joc nou.
+- Progresul se păstrează local.
