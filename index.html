@@ -114,6 +114,20 @@ font-size:clamp(10px,2.7vw,14px);font-weight:800;white-space:nowrap}
 #sound-toggle{position:fixed;z-index:50;right:max(12px,env(safe-area-inset-right));top:max(12px,env(safe-area-inset-top));width:42px;height:42px;border:1px solid rgba(255,255,255,.9);border-radius:50%;background:rgba(255,247,255,.88);color:#741987;font-size:21px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(85,28,100,.18);cursor:pointer;touch-action:manipulation}
 #sound-toggle:focus-visible{outline:3px solid #7a2192;outline-offset:3px}
 @media(max-width:390px){#sound-toggle{width:36px;height:36px;font-size:18px}}
+
+/* Single adaptive primary action, aligned across both former button positions */
+#adaptive-action{left:9%;top:80.4%;width:82%;height:7.7%;border:2px solid #e5b85f;border-radius:999px;
+background:linear-gradient(180deg,#fff8e9,#f8e4f7);color:#713b79;font-weight:800;
+font-size:clamp(13px,3vw,19px);box-shadow:0 3px 0 rgba(132,66,137,.22);cursor:pointer;
+display:flex;align-items:center;justify-content:center;gap:8px;padding:0 10px}
+#adaptive-action:disabled{opacity:.6}
+#reset-game{left:62%;width:30%;border-radius:999px;border:2px solid #e5b85f;background:linear-gradient(180deg,#fff8e9,#f8e4f7);color:#713b79}
+#category-progress{grid-template-columns:1fr;gap:7px}
+.category-card{display:flex;flex-direction:column;gap:4px;padding:7px 12px;border-radius:13px;background:linear-gradient(180deg,#fffaff,#f9eafa);box-shadow:0 1px 4px rgba(109,47,119,.10)}
+.category-top{display:flex;justify-content:space-between;align-items:center}
+.hit.category-dim{opacity:.38;filter:grayscale(.8)}
+.hit.category-active{opacity:1;filter:none}
+#adult-message{border-radius:18px;cursor:pointer}
 </style>
 </head>
 <body>
@@ -133,8 +147,9 @@ src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAIBAQIBAQICAgICAgIC
 <button class="hit" id="draw" aria-label="Desenează"></button>
 <button class="hit" id="mime" aria-label="Mimează"></button>
 <button class="hit" id="questions" aria-label="Întrebări"></button>
-<button class="hit" id="success" aria-label="Am reușit! Următoarea"></button>
-<button class="hit" id="next" aria-label="Altă provocare"></button>
+<button class="hit adaptive-action" id="adaptive-action" aria-label="Provocare nouă">✨ Provocare nouă</button>
+<button class="hit" id="success" aria-label="Am reușit! Următoarea" hidden></button>
+<button class="hit" id="next" aria-label="Altă provocare" hidden></button>
 <button class="hit" id="adult" aria-label="Ajutor pentru adult"></button>
 <button id="reset-game" type="button" aria-label="Începe un joc nou">↻ Joc nou</button>
 <div id="adult-message" role="status" aria-live="polite" title="Atinge pentru a închide"></div>
@@ -159,49 +174,51 @@ const BANK=[{"id":"d0","cat":"Desen","emoji":"👸","label":"prințesă","task":
 const TOTAL=600;
 const CAT={all:null,draw:'Desen',mime:'Mimă',questions:'Întrebare'};
 const $=id=>document.getElementById(id);
-/* Muzică originală procedurală: motiv blând de clopoței, fără fișiere externe.
-   Pornește numai după prima atingere (regulă autoplay mobil); volum ambiental 4.5%. */
+/* Muzică MFCC inclusă local; volum subtil și pornire după gestul utilizatorului. */
 const Soundscape=(()=>{
- let ctx=null,master=null,music=null,sfx=null,timer=null,enabled=true,started=false,index=0;
- const melody=[523.25,659.25,783.99,659.25,587.33,698.46,880,698.46,659.25,783.99,987.77,783.99];
- function init(){
-  if(ctx)return true;
-  const Audio=window.AudioContext||window.webkitAudioContext;if(!Audio)return false;
-  ctx=new Audio();master=ctx.createGain();master.gain.value=.72;master.connect(ctx.destination);
-  music=ctx.createGain();music.gain.value=.045;music.connect(master);
-  sfx=ctx.createGain();sfx.gain.value=.12;sfx.connect(master);return true;
- }
- function note(freq,at,duration,vol,dest,wave='sine'){
-  const osc=ctx.createOscillator(),gain=ctx.createGain();osc.type=wave;osc.frequency.setValueAtTime(freq,at);
-  gain.gain.setValueAtTime(.0001,at);gain.gain.exponentialRampToValueAtTime(Math.max(.0002,vol),at+.10);
-  gain.gain.exponentialRampToValueAtTime(.0001,at+duration);osc.connect(gain);gain.connect(dest);osc.start(at);osc.stop(at+duration+.03);
- }
- function playPhrase(){
-  if(!ctx||!enabled||document.hidden)return;
-  const now=ctx.currentTime,base=melody[index%melody.length];
-  note(base,now,1.55,.10,music);note(base/2,now,2.1,.025,music,'triangle');
-  if(index%4===0){const chord=[261.63,293.66,329.63][Math.floor(index/4)%3];note(chord,now,3,.018,music)}
-  index++;timer=setTimeout(playPhrase,1750);
- }
+ const audio=new Audio('./fairy-tale.mp3');
+ audio.loop=true;
+ audio.preload='auto';
+ audio.volume=0.08;
+ let enabled=true,started=false;
  async function start(){
-  if(!enabled||!init())return;
-  try{if(ctx.state==='suspended')await ctx.resume()}catch(e){return}
-  if(!started){started=true;playPhrase()}
+   if(!enabled)return;
+   try{await audio.play();started=true;}catch(e){}
  }
- function stop(){started=false;clearTimeout(timer);timer=null}
+ function stop(){audio.pause();started=false;}
  function toggle(){
-  enabled=!enabled;if(enabled)start();else stop();
-  const button=document.getElementById('sound-toggle');if(button){button.textContent=enabled?'♫':'♪';button.setAttribute('aria-pressed',String(enabled));button.setAttribute('aria-label',enabled?'Oprește muzica':'Pornește muzica');button.title=enabled?'Muzică pornită':'Muzică oprită'}
+   enabled=!enabled;
+   if(enabled)start();else stop();
+   const b=document.getElementById('sound-toggle');
+   if(b){b.textContent=enabled?'♫':'♪';b.setAttribute('aria-pressed',String(enabled));b.setAttribute('aria-label',enabled?'Oprește muzica':'Pornește muzica');}
  }
- function click(){if(!enabled||!init())return;if(ctx.state==='suspended')ctx.resume().catch(()=>{});const t=ctx.currentTime;note(880,t,.16,.12,sfx);note(1174.66,t+.045,.18,.08,sfx)}
- document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();else if(enabled&&ctx)start()});
- return{start,toggle,click};
+ function click(){
+   if(!enabled)return;
+   try{
+    const AC=window.AudioContext||window.webkitAudioContext;
+    if(!window.__pkSfxCtx)window.__pkSfxCtx=new AC();
+    const ctx=window.__pkSfxCtx;
+    if(ctx.state==='suspended')ctx.resume();
+    const now=ctx.currentTime;
+    [880,1174.66].forEach((f,i)=>{
+      const o=ctx.createOscillator(),g=ctx.createGain();
+      o.type='sine';o.frequency.value=f;g.gain.setValueAtTime(.0001,now+i*.045);
+      g.gain.exponentialRampToValueAtTime(i?.035:.05,now+i*.045+.02);
+      g.gain.exponentialRampToValueAtTime(.0001,now+i*.045+.16);
+      o.connect(g);g.connect(ctx.destination);o.start(now+i*.045);o.stop(now+i*.045+.18);
+    });
+   }catch(e){}
+ }
+ document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();else if(enabled&&started)start();});
+ return{start,stop,toggle,click};
 })();
 const soundButton=document.getElementById('sound-toggle');
 soundButton.addEventListener('click',e=>{e.stopPropagation();Soundscape.toggle()});
-document.addEventListener('pointerdown',e=>{if(e.target.closest('#all,#draw,#mime,#questions,#next,#success,#adult,#reset-game')){Soundscape.start();Soundscape.click()}},{passive:true});
+document.addEventListener('pointerdown',e=>{
+ if(e.target.closest('#all,#draw,#mime,#questions,#adaptive-action,#adult,#reset-game')){Soundscape.start();Soundscape.click()}
+},{passive:true});
 
-let mode='all',active=null,seen=new Set(),done=new Set(),helpOpen=false;
+let mode='all',active=null,seen=new Set(),done=new Set(),helpOpen=false,celebrating=false;
 const STORAGE='princess_kingdom_v9';
 function loadState(){
  try{
@@ -243,9 +260,31 @@ function closeHelp(){
  $('adult-message').style.display='none';
  $('adult-message').textContent='';
 }
+function updateCategoryHighlight(){
+ const map={draw:'draw',mime:'mime',questions:'questions',all:'all'};
+ ['all','draw','mime','questions'].forEach(id=>{
+  const b=$(id);b.classList.remove('category-active','category-dim');
+  if(active){b.classList.add(id===map[mode]?'category-active':'category-dim');}
+ });
+}
+function updateAction(){
+ const b=$('adaptive-action');
+ if(celebrating){b.textContent='✨ Provocare nouă';b.setAttribute('aria-label','Provocare nouă');}
+ else if(active){b.textContent='👑 Am reușit';b.setAttribute('aria-label','Am reușit');}
+ else {b.textContent='✨ Provocare nouă';b.setAttribute('aria-label','Provocare nouă');}
+}
 function renderChallenge(c){
  active=c;
+ updateCategoryHighlight();
+ updateAction();
  closeHelp();
+ if(celebrating){
+  $('heading').textContent='Felicitări!';
+  $('emoji').textContent='🎉👑✨';
+  $('label').textContent='Bravo! Ai reușit!';
+  $('instruction').textContent='Prințesa este mândră de tine!';
+  return;
+ }
  if(!c){
   $('heading').textContent='Provocarea ta';
   $('emoji').textContent='✨';
@@ -277,6 +316,7 @@ function nextChallenge(){
  renderChallenge(chosen);
 }
 function chooseCategory(which){
+ celebrating=false;
  mode=which;
  nextChallenge();
 }
@@ -284,13 +324,15 @@ $('all').addEventListener('click',()=>chooseCategory('all'));
 $('draw').addEventListener('click',()=>chooseCategory('draw'));
 $('mime').addEventListener('click',()=>chooseCategory('mime'));
 $('questions').addEventListener('click',()=>chooseCategory('questions'));
-$('next').addEventListener('click',()=>{if(active)nextChallenge();else chooseCategory('all');});
-$('success').addEventListener('click',()=>{
- if(!active){chooseCategory('all');return;}
+$('adaptive-action').addEventListener('click',()=>{
+ if(celebrating){celebrating=false;nextChallenge();return;}
+ if(!active){nextChallenge();return;}
  done.add(active.id);
  saveState();
  updateProgress();
- nextChallenge();
+ active=null;
+ celebrating=true;
+ renderChallenge(null);
 });
 $('adult').addEventListener('click',()=>{
  if(helpOpen){closeHelp();return;}
@@ -308,6 +350,7 @@ $('adult-message').addEventListener('click',closeHelp);
 $('reset-game').addEventListener('click',()=>{
  done.clear();
  seen.clear();
+ celebrating=false;
  mode='all';
  active=null;
  try{localStorage.removeItem(STORAGE);}catch(e){}
