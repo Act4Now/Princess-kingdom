@@ -36,10 +36,10 @@ body{
 .hit:focus-visible{outline:3px solid #7a2192;outline-offset:2px;border-radius:22px}
 
 /* Category hit targets and dimming masks exactly follow the four illustrated buttons. */
-#all,#mask-all{left:7.8%;top:22.4%;width:41.6%;height:9.4%}
-#draw,#mask-draw{left:50.7%;top:22.4%;width:41.5%;height:9.4%}
-#mime,#mask-mime{left:7.8%;top:32.1%;width:41.6%;height:9.3%}
-#questions,#mask-questions{left:50.7%;top:32.1%;width:41.5%;height:9.3%}
+#all,#mask-all{left:15.8%;top:22.4%;width:33.9%;height:9.4%}
+#draw,#mask-draw{left:50.1%;top:22.4%;width:33.9%;height:9.4%}
+#mime,#mask-mime{left:15.8%;top:32.1%;width:33.9%;height:9.3%}
+#questions,#mask-questions{left:50.1%;top:32.1%;width:33.9%;height:9.3%}
 .category-mask{
   position:absolute;z-index:8;border-radius:22px;background:rgba(75,75,85,.58);
   pointer-events:none;transition:opacity .18s ease;
@@ -94,9 +94,10 @@ body{
 #reset-game{
   position:absolute;z-index:11;left:50%;top:89.6%;width:43%;height:7.5%;
   border:0;border-left:2px solid rgba(166,93,151,.55);border-radius:0;
-  background:transparent;color:#713b79;font-weight:800;
-  font-size:clamp(12px,2.8vw,19px);line-height:1.05;text-decoration:underline;
-  text-underline-offset:3px;padding:0;display:flex;align-items:center;justify-content:center;
+  background:transparent;color:#713b79;font-family:Georgia,serif;font-weight:800;
+  font-size:clamp(14px,2.8vw,19px);line-height:1;text-decoration:underline;
+  text-decoration-thickness:1.5px;text-underline-offset:3px;
+  padding:0;display:flex;align-items:center;justify-content:center;text-align:center;
 }
 #adult-message{
   display:none;position:absolute;z-index:31;left:7%;top:89.6%;width:86%;height:7.5%;
