@@ -1,0 +1,15 @@
+{
+  "version": "24",
+  "name": "Princess Kingdom",
+  "release_date": "2026-11-20",
+  "release_name": "Background polish, framed footer and update notice",
+  "previous_version": "23",
+  "changes": [
+    "Eliminated horizontal light/yellow artifacts from the lower part of the embedded artwork.",
+    "Replaced vertically stretched lower background with a naturally scaled repeating garden/paving extension.",
+    "Restored a distinct gold frame around the footer while keeping the garden background visible behind it.",
+    "Added version.json, version.txt and CHANGELOG.md for explicit version control.",
+    "Added a branded update notice shown while an installed PWA downloads a new version.",
+    "Kept automatic Service Worker updates and offline fallback; localStorage progress is preserved."
+  ]
+}

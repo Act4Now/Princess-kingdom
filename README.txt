@@ -64,3 +64,12 @@ Modificări V23 — categorii disponibile fără provocare + actualizare automat
 - La selectarea unei categorii și generarea provocării, evidențierea se aplică automat categoriei provocării.
 - Păstrat mecanismul V23 de actualizare automată: updateViaCache:none, verificare la pornire/revenire în prim-plan/orar, network-first pentru app shell, ștergerea cache-urilor vechi și păstrarea progresului din localStorage.
 - Footer-ul identifică versiunea V23.
+
+
+VERSIUNE V24 — 2026-11-20
+- version.json: metadate structurate ale versiunii curente.
+- version.txt: identificator simplu, ușor de verificat.
+- CHANGELOG.md: istoricul modificărilor.
+- garden-extension.jpg: continuare grafică fără întindere verticală.
+- Footer-ul citește versiunea din version.json când fișierul este disponibil.
+- La actualizarea unei aplicații instalate apare mesajul „Regatul se pregătește!”.

@@ -1,12 +1,9 @@
-/* Princess Kingdom V23 — automatic updates + reliable offline fallback. */
-const CACHE_NAME = 'princess-kingdom-v23-footer-background';
+/* Princess Kingdom V24 — automatic updates, version metadata and sharp garden extension. */
+const CACHE_NAME = 'princess-kingdom-v24-versioned-update-ui';
 const CACHE_PREFIX = 'princess-kingdom-';
 const APP_FILES = [
-  './',
-  './index.html',
-  './manifest.webmanifest',
-  './icon-192.png',
-  './icon-512.png'
+  './', './index.html', './manifest.webmanifest', './version.json', './version.txt',
+  './garden-extension.jpg', './icon-192.png', './icon-512.png'
 ];
 
 self.addEventListener('install', event => {
@@ -30,35 +27,28 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', event => {
   const request = event.request;
   if (request.method !== 'GET') return;
-
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return;
 
+  const path = url.pathname;
   const isAppShell = request.mode === 'navigate' ||
-    url.pathname.endsWith('/index.html') ||
-    url.pathname.endsWith('/manifest.webmanifest') ||
-    url.pathname.endsWith('/');
+    path.endsWith('/index.html') || path.endsWith('/manifest.webmanifest') ||
+    path.endsWith('/version.json') || path.endsWith('/version.txt') || path.endsWith('/');
 
   if (isAppShell) {
-    // Network-first, bypassing the browser HTTP cache for the app shell.
     event.respondWith((async () => {
       const cache = await caches.open(CACHE_NAME);
       try {
-        const fresh = await fetch(request, { cache: 'no-store' });
-        if (fresh && fresh.ok) {
-          await cache.put(request, fresh.clone());
-        }
+        const fresh = await fetch(request, {cache:'no-store'});
+        if (fresh && fresh.ok) await cache.put(request, fresh.clone());
         return fresh;
       } catch (error) {
-        return (await caches.match(request)) ||
-          (await caches.match('./index.html')) ||
-          Response.error();
+        return (await cache.match(request)) || (await cache.match('./index.html')) || Response.error();
       }
     })());
     return;
   }
 
-  // Cache-first for icons and other static resources; update the cache in the background.
   event.respondWith((async () => {
     const cache = await caches.open(CACHE_NAME);
     const cached = await cache.match(request);
@@ -67,8 +57,6 @@ self.addEventListener('fetch', event => {
       const response = await fetch(request);
       if (response && response.ok) await cache.put(request, response.clone());
       return response;
-    } catch (error) {
-      return Response.error();
-    }
+    } catch (error) { return Response.error(); }
   })());
 });
