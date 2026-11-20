@@ -264,7 +264,7 @@ document.addEventListener('pointerdown',e=>{
  if(e.target.closest('#all,#draw,#mime,#questions,#adaptive-action,#adult,#reset-game')){Soundscape.start();Soundscape.click()}
 },{passive:true});
 
-let mode='all',active=null,seen=new Set(),done=new Set(),helpOpen=false,celebrating=false;
+let mode='all',selectedCategory='all',active=null,seen=new Set(),done=new Set(),helpOpen=false,celebrating=false;
 const STORAGE='princess_kingdom_v9';
 function loadState(){
  try{
@@ -307,9 +307,9 @@ function closeHelp(){
  $('adult-message').textContent='';
 }
 function updateCategoryHighlight(){
- // The selected category follows the chosen mode, not the presence of an active challenge.
- // This keeps the selection visible after a challenge is completed.
- const categoryButton=({all:'all',draw:'draw',mime:'mime',questions:'questions'}[mode]||'all');
+ // The highlighted category follows the active challenge, independently of the pool filter.
+ // This keeps the matching category selected even when the challenge was drawn from "Tot regatul".
+ const categoryButton=selectedCategory;
  ['all','draw','mime','questions'].forEach(id=>{
   const b=$(id);
   const selected=id===categoryButton;
@@ -328,6 +328,9 @@ function updateAction(){
 }
 function renderChallenge(c){
  active=c;
+ if(c){
+  selectedCategory=({Desen:'draw',Mimă:'mime',Întrebare:'questions'}[c.cat]||'all');
+ }
  updateCategoryHighlight();
  updateAction();
  closeHelp();
@@ -421,6 +424,7 @@ $('reset-game').addEventListener('click',()=>{
  seen.clear();
  celebrating=false;
  mode='all';
+ selectedCategory='all';
  active=null;
  try{localStorage.removeItem(STORAGE);}catch(e){}
  saveState();
