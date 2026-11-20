@@ -1,5 +1,5 @@
-const CACHE='princess-kingdom-v3-full-audio';
-const FILES=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png','./fairy-tale.mp3'];
+const CACHE='princess-kingdom-v5-layout-category';
+const FILES=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png'];
 self.addEventListener('install',event=>{
  event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(FILES)));
  self.skipWaiting();
