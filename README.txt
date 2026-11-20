@@ -1,0 +1,27 @@
+PRINCESS KINGDOM – PWA V2
+
+Conținut:
+- index.html: aplicația completă; include grafica și muzica încorporate
+- manifest.webmanifest: setările aplicației instalabile
+- sw.js: cache offline; versiune nouă pentru a înlocui cache-ul anterior
+- icon-192.png și icon-512.png: pictogramele aplicației
+
+PUBLICARE ÎN GITHUB
+1. Deschide repository-ul Princess-kingdom.
+2. Încarcă fișierele din acest folder în rădăcina repository-ului.
+3. Înlocuiește fișierele existente cu cele noi și fă Commit changes.
+4. Așteaptă publicarea GitHub Pages, apoi redeschide aplicația.
+
+Modificări V2:
+- Ajutor pentru adult și Joc nou în același oval, cu separator și text subliniat pentru Joc nou.
+- Fundalul castelului se extinde și în spatele progresului pe categorii.
+- Categoria activă este încadrată cu portocaliu; celelalte trei sunt estompate în gri.
+- Butonul Am reușit rămâne verde și marchează provocarea finalizată.
+
+Notă: testarea vizuală finală trebuie făcută pe dispozitivul țintă după publicare.
+
+
+V3 fix: corrected JavaScript initialization order (DOM helper defined before first use), restoring click handlers and full-page background. Active category highlighting now follows the actual challenge category, including challenges selected from Tot regatul.
+
+
+CLEAN V4: removed obsolete legacy success/next hit targets; reset control is now the right half of the existing adult-help oval (no extra pill); the castle artwork is used as the continuous page background behind category progress; category dimming is strengthened and active category gets a clear orange frame. Responsive layout tuned for tablet and phone.
