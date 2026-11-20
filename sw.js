@@ -1,5 +1,5 @@
-/* Princess Kingdom V22 — automatic updates + reliable offline fallback. */
-const CACHE_NAME = 'princess-kingdom-v22-auto-updates';
+/* Princess Kingdom V23 — automatic updates + reliable offline fallback. */
+const CACHE_NAME = 'princess-kingdom-v23-footer-background';
 const CACHE_PREFIX = 'princess-kingdom-';
 const APP_FILES = [
   './',

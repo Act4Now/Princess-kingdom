@@ -1,4 +1,4 @@
-PRINCESS KINGDOM — PWA V20
+PRINCESS KINGDOM — PWA V23
 
 Fișiere:
 - index.html — aplicația completă și cele 600 de provocări
@@ -6,7 +6,7 @@ Fișiere:
 - sw.js — cache offline
 - icon-192.png / icon-512.png — pictograme
 
-Modificări V18:
+Modificări V23:
 1. Structură separată pentru secțiunile dinamice:
    - Scena ilustrată (#game) rămâne o suprafață fixă, cu raportul original 1152:2120.
    - Butoanele categoriilor, jurnalul, provocarea, butonul principal, Ajutor pentru adult și Joc nou rămân ancorate la coordonatele ilustrației.
@@ -26,7 +26,7 @@ Modificări V18:
    - Ilustrația, aspectul butoanelor și logica de selectare automată a categoriei.
    - Toate cele 600 de provocări: 200 Desen, 200 Mimă și 200 Întrebări.
 
-Verificări V18:
+Verificări V23:
 - Sintaxă JavaScript: fără erori.
 - Parsare CSS: fără erori.
 - ID-uri HTML duplicate: niciunul.
@@ -34,20 +34,20 @@ Verificări V18:
 - În toate cele 5 dimensiuni: elementele fixe au rămas în aceleași coordonate când ajutorul a fost deschis; ajutorul a apărut înaintea raportului; fără erori JavaScript și fără secvențe literale \\n.
 
 
-Versiune: V20
-Footer de identificare: „Creat cu magie pentru a fi jucat în familie” + marcaj V19.
+Versiune: V23
+Footer de identificare: „Creat cu magie pentru a fi jucat în familie” + marcaj V23.
 
 
-Modificări V20:
+Modificări V23:
 - Footer redus la o singură linie, cu înălțime compactă.
 - Fundalul footer-ului este transparent, fără separator sau umbră, pentru a se îmbina cu fundalul roz al paginii.
 - Spațiul inferior suplimentar al secțiunilor dinamice a fost eliminat, astfel încât footer-ul să urmeze direct raportul pe categorii.
-- Marcajul de versiune din colțul dreapta-jos este V20.
+- Marcajul de versiune din colțul dreapta-jos este V23.
 - Cache offline actualizat la princess-kingdom-v20-compact-footer.
 
 
-Modificări V21 — actualizări automate:
-- Footer-ul identifică versiunea V21.
+Modificări V23 — actualizări automate:
+- Footer-ul identifică versiunea V23.
 - Înregistrarea Service Worker folosește updateViaCache: 'none'.
 - Aplicația verifică actualizările la pornire, la revenirea în prim-plan și periodic (o dată pe oră).
 - Service Worker-ul nou activează imediat versiunea pregătită și elimină cache-urile vechi princess-kingdom-*.
@@ -58,9 +58,9 @@ Modificări V21 — actualizări automate:
 - Dacă dispozitivul este offline, jocul folosește ultima versiune salvată local; versiunea nouă necesită conexiune.
 
 
-Modificări V22 — categorii disponibile fără provocare + actualizare automată:
+Modificări V23 — categorii disponibile fără provocare + actualizare automată:
 - Când nu există provocare activă (la pornire și în ecranul de felicitări), toate cele patru butoane de categorie sunt afișate color, fără efectul grayscale și fără conturul portocaliu de selecție.
 - Efectele de categorie activă (contur portocaliu pentru categoria provocării și grayscale pentru celelalte) apar numai cât timp există o provocare activă.
 - La selectarea unei categorii și generarea provocării, evidențierea se aplică automat categoriei provocării.
-- Păstrat mecanismul V21 de actualizare automată: updateViaCache:none, verificare la pornire/revenire în prim-plan/orar, network-first pentru app shell, ștergerea cache-urilor vechi și păstrarea progresului din localStorage.
-- Footer-ul identifică versiunea V22.
+- Păstrat mecanismul V23 de actualizare automată: updateViaCache:none, verificare la pornire/revenire în prim-plan/orar, network-first pentru app shell, ștergerea cache-urilor vechi și păstrarea progresului din localStorage.
+- Footer-ul identifică versiunea V23.
