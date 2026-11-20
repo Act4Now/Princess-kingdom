@@ -42,3 +42,5 @@ Actualizare:
 Notă:
 - Progresul se păstrează local pe dispozitiv.
 - Service Worker funcționează pe HTTPS sau localhost, nu prin file:// ori content://.
+
+V17: Ajutorul pentru adult este acum afișat în interiorul jocului, imediat sub butonul de ajutor și înaintea raportului pe categorii. Raportul este împins dinamic în jos cât timp ajutorul este deschis și revine la poziția inițială la închidere. Textul folosește rânduri reale și oferă provocarea/întrebarea împreună cu răspunsul sau un prompt scurt, nu instrucțiuni despre cum să ghideze adultul copilul.

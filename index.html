@@ -99,16 +99,15 @@ body{
   padding:0;display:block;cursor:pointer;touch-action:manipulation;
 }
 #adult-message{
-  display:none;position:relative;z-index:25;
-  width:min(92vw,660px);flex:0 0 auto;margin:12px auto 4px;padding:14px 18px;
-  align-items:center;justify-content:center;text-align:center;
-  background:linear-gradient(180deg,rgba(255,250,239,.97),rgba(255,232,244,.96));
+  display:none;position:absolute;z-index:26;left:7%;top:70.8%;width:86%;height:auto;
+  margin:0;padding:12px 16px;align-items:center;justify-content:center;text-align:center;
+  background:linear-gradient(180deg,rgba(255,250,239,.98),rgba(255,232,244,.98));
   color:#713b79;font-family:Georgia,serif;font-weight:700;
-  font-size:clamp(14px,3.1vw,19px);line-height:1.35;
+  font-size:clamp(14px,3.1vw,19px);line-height:1.3;
   border:3px solid #e5b85f;border-radius:22px;
   box-shadow:0 3px 0 rgba(132,66,137,.16),inset 0 0 0 2px rgba(255,255,255,.7);
-  cursor:pointer;
-white-space:pre-line;}
+  white-space:pre-line;overflow-wrap:anywhere;
+}
 
 /* Category progress: framed parchment panel matching the gold-trimmed game artwork. */
 #category-progress{
@@ -182,6 +181,7 @@ src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAQDAwQDAwQEAwQFBAQF
 <button class="hit adaptive-action" id="adaptive-action" type="button" aria-label="Provocare nouă">✨ Provocare nouă</button>
 <button class="hit" id="adult" aria-label="Ajutor pentru adult"></button>
 <button id="reset-game" type="button" aria-label="Începe un joc nou"></button>
+<section id="adult-message" role="status" aria-live="polite" aria-label="Ajutor pentru adult" title="Atinge pentru a închide"></section>
 <footer id="category-progress" aria-label="Progres pe categorii">
   <div class="category-card">
     <div class="category-top"><span>🎨 Desen</span><span class="category-count" id="draw-count">0/200</span></div>
@@ -197,7 +197,6 @@ src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAQDAwQDAwQEAwQFBAQF
   </div>
 </footer>
 </main>
-<section id="adult-message" role="status" aria-live="polite" aria-label="Ajutor pentru părinți" title="Atinge pentru a închide"></section>
 
 <script>
 'use strict';
@@ -213,8 +212,30 @@ function updateViewportMetrics(){
  root.dataset.orientation=width>=height?'landscape':'portrait';
 }
 updateViewportMetrics();
-window.addEventListener('resize',updateViewportMetrics,{passive:true});
-window.addEventListener('orientationchange',updateViewportMetrics,{passive:true});
+window.addEventListener('resize',()=>{updateViewportMetrics();layoutGameSections();},{passive:true});
+window.addEventListener('orientationchange',()=>{updateViewportMetrics();layoutGameSections();},{passive:true});
+function layoutGameSections(){
+ const game=$('game'),message=$('adult-message'),report=$('category-progress');
+ if(!game||!message||!report)return;
+ const width=game.clientWidth;
+ const baseHeight=width*2120/1152;
+ const reportHeight=baseHeight*.245;
+ if(helpOpen){
+  message.style.display='flex';
+  message.style.top=(baseHeight*.708)+'px';
+  const messageHeight=message.offsetHeight;
+  const reportTop=baseHeight*.708+messageHeight+Math.max(12,width*.018);
+  report.style.top=reportTop+'px';
+  report.style.height=reportHeight+'px';
+  game.style.height=(reportTop+reportHeight)+'px';
+ }else{
+  message.style.display='none';
+  message.style.top='';
+  report.style.top=(baseHeight*.755)+'px';
+  report.style.height=reportHeight+'px';
+  game.style.height=baseHeight+'px';
+ }
+}
 const artSource=$('art').getAttribute('src');
 document.body.style.backgroundImage=`url("${artSource}")`;
 $('art').setAttribute('aria-hidden','true');
@@ -409,15 +430,19 @@ $('adaptive-action').addEventListener('click',event=>{
 });
 $('adult').addEventListener('click',()=>{
  if(helpOpen){closeHelp();return;}
- let message='Alege una dintre cele patru categorii pentru a începe.';
+ let message='Alege o categorie și începe o nouă provocare.';
  if(active){
-  if(active.cat==='Desen')message='GHID PENTRU PĂRINȚI\\nÎncurajează copilul să deseneze: '+(active.task||active.label)+'. Lasă-l să creeze în ritmul lui.';
-  else if(active.cat==='Mimă')message='GHID PENTRU PĂRINȚI\\nÎncurajează copilul să mimeze fără cuvinte: '+(active.task||active.label)+'. Ceilalți pot ghici!';
-  else message='ÎNTREBARE PENTRU COPIL\\n'+active.task+'\\n\\nRĂSPUNS ORIENTATIV\\n'+(active.answer||'Acceptă răspunsul copilului și discutați împreună.');
+  if(active.cat==='Desen'){
+   message='PROVOCARE: '+(active.task||active.label||'Desenează!')+'\nÎNTREABĂ: „Ce ai desenat?”';
+  }else if(active.cat==='Mimă'){
+   message='PROVOCARE: '+(active.task||active.label||'Mimează!')+'\nRĂSPUNS: '+(active.label||'Personajul sau acțiunea ilustrată.');
+  }else{
+   message='ÎNTREBARE: '+(active.task||'')+'\nRĂSPUNS: '+(active.answer||'Acceptă un răspuns potrivit.');
+  }
  }
  $('adult-message').textContent=message;
- $('adult-message').style.display='flex';
  helpOpen=true;
+ layoutGameSections();
 });
 $('adult-message').addEventListener('click',closeHelp);
 $('reset-game').addEventListener('click',()=>{
