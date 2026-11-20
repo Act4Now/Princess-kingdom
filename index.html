@@ -99,28 +99,46 @@ body{
   padding:0;display:block;cursor:pointer;touch-action:manipulation;
 }
 #adult-message{
-  display:none;position:absolute;z-index:31;left:7%;top:89.6%;width:86%;height:7.5%;
-  align-items:center;justify-content:center;text-align:center;padding:1.2% 4%;
-  background:rgba(255,243,230,.98);color:#713b79;font-weight:700;
-  font-size:clamp(12px,2.9vw,19px);line-height:1.14;
-  border:2px solid #e5b85f;border-radius:999px;overflow:hidden;cursor:pointer;
-}
+  display:none;position:relative;z-index:25;
+  width:min(92vw,660px);flex:0 0 auto;margin:12px auto 4px;padding:14px 18px;
+  align-items:center;justify-content:center;text-align:center;
+  background:linear-gradient(180deg,rgba(255,250,239,.97),rgba(255,232,244,.96));
+  color:#713b79;font-family:Georgia,serif;font-weight:700;
+  font-size:clamp(14px,3.1vw,19px);line-height:1.35;
+  border:3px solid #e5b85f;border-radius:22px;
+  box-shadow:0 3px 0 rgba(132,66,137,.16),inset 0 0 0 2px rgba(255,255,255,.7);
+  cursor:pointer;
+white-space:pre-line;}
 
-/* Progress cards have no separate panels or background: only labels and essential bars. */
+/* Category progress: framed parchment panel matching the gold-trimmed game artwork. */
 #category-progress{
-  width:min(100vw,720px);flex:0 0 auto;margin:0 auto;
-  padding:12px 4% max(16px,env(safe-area-inset-bottom));
-  display:grid;grid-template-columns:1fr;gap:8px;background:transparent;color:#6f286f;
+  width:min(94vw,680px);flex:0 0 auto;margin:14px auto 18px;padding:14px 16px 16px;
+  display:grid;grid-template-columns:1fr;gap:10px;color:#6f286f;
+  background:linear-gradient(180deg,rgba(255,248,238,.94),rgba(255,225,241,.94));
+  border:3px solid #e6b75a;border-radius:24px;
+  box-shadow:0 4px 0 rgba(132,66,137,.18),inset 0 0 0 2px rgba(255,255,255,.72);
 }
-.category-card{min-width:0;padding:5px 10px 7px;border:0;border-radius:0;background:transparent;box-shadow:none}
+.category-card{
+  min-width:0;padding:7px 10px 9px;border:1px solid rgba(210,157,190,.55);
+  border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,.72),rgba(255,241,249,.72));
+  box-shadow:inset 0 1px 2px rgba(255,255,255,.85);
+}
 .category-top{
   display:flex;justify-content:space-between;align-items:center;gap:6px;
-  font-size:clamp(12px,2.8vw,16px);font-weight:800;white-space:nowrap;
-  text-shadow:0 1px 3px rgba(255,255,255,.95),0 0 5px rgba(255,255,255,.9);
+  font-size:clamp(13px,2.9vw,17px);font-weight:800;white-space:nowrap;
+  color:#713b79;text-shadow:0 1px 2px rgba(255,255,255,.9);
 }
 .category-count{font-variant-numeric:tabular-nums}
-.category-track{height:8px;margin-top:6px;border-radius:99px;background:rgba(234,213,235,.9);overflow:hidden}
-.category-fill{height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#9418a5,#c34fb7);transition:width .2s ease}
+.category-track{
+  height:9px;margin-top:7px;border:1px solid rgba(179,112,179,.42);
+  border-radius:99px;background:rgba(225,190,225,.78);overflow:hidden;
+  box-shadow:inset 0 1px 2px rgba(105,35,120,.12);
+}
+.category-fill{
+  height:100%;width:0;border-radius:99px;
+  background:linear-gradient(90deg,#9418a5,#d66bbd,#f2b2d2);
+  box-shadow:inset 0 1px 1px rgba(255,255,255,.45);transition:width .2s ease;
+}
 
 /* Fixed audio control. */
 #sound-toggle{
@@ -138,9 +156,9 @@ body{
   #instruction{font-size:clamp(11px,2.8vw,13px)}
   #adult-message{font-size:clamp(10px,2.9vw,12px)}
   #sound-toggle{width:36px;height:36px;font-size:18px}
-  #category-progress{gap:6px;padding-left:3%;padding-right:3%}
+  #category-progress{gap:7px;padding:10px 10px 12px;border-radius:18px}
 }
-@media(min-width:721px){#game,#category-progress{width:min(100vw,720px)}}
+@media(min-width:721px){#game{width:min(100vw,720px)}}
 @media(prefers-reduced-motion:reduce){#progress-fill,.category-fill,.hit.category-dim{transition:none}}
 </style>
 </head>
@@ -164,8 +182,8 @@ src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAQDAwQDAwQEAwQFBAQF
 <button class="hit adaptive-action" id="adaptive-action" type="button" aria-label="Provocare nouă">✨ Provocare nouă</button>
 <button class="hit" id="adult" aria-label="Ajutor pentru adult"></button>
 <button id="reset-game" type="button" aria-label="Începe un joc nou"></button>
-<div id="adult-message" role="status" aria-live="polite" title="Atinge pentru a închide"></div>
 </main>
+<section id="adult-message" role="status" aria-live="polite" aria-label="Ajutor pentru părinți" title="Atinge pentru a închide"></section>
 <footer id="category-progress" aria-label="Progres pe categorii">
   <div class="category-card">
     <div class="category-top"><span>🎨 Desen</span><span class="category-count" id="draw-count">0/200</span></div>
@@ -289,17 +307,15 @@ function closeHelp(){
  $('adult-message').textContent='';
 }
 function updateCategoryHighlight(){
- const categoryButton=active
-  ? ({'Desen':'draw','Mimă':'mime','Întrebare':'questions'}[active.cat]||null)
-  : null;
+ // The selected category follows the chosen mode, not the presence of an active challenge.
+ // This keeps the selection visible after a challenge is completed.
+ const categoryButton=({all:'all',draw:'draw',mime:'mime',questions:'questions'}[mode]||'all');
  ['all','draw','mime','questions'].forEach(id=>{
   const b=$(id);
-  b.classList.remove('category-active','category-dim');
-  if(active && categoryButton){
-   const selected=id===categoryButton;
-   b.classList.toggle('category-active',selected);
-   b.classList.toggle('category-dim',!selected);
-  }
+  const selected=id===categoryButton;
+  b.classList.toggle('category-active',selected);
+  b.classList.toggle('category-dim',!selected);
+  b.setAttribute('aria-pressed',selected?'true':'false');
  });
 }
 function updateAction(){
@@ -315,6 +331,8 @@ function renderChallenge(c){
  updateCategoryHighlight();
  updateAction();
  closeHelp();
+ $('label').style.display='';
+ $('instruction').style.display='';
  if(celebrating){
   $('heading').textContent='Felicitări!';
   $('emoji').textContent='🎉👑✨';
@@ -332,8 +350,12 @@ function renderChallenge(c){
  $('heading').textContent='Provocarea ta';
  $('emoji').textContent=c.emoji||'✨';
  if(c.cat==='Întrebare'){
-  $('label').textContent=c.task;
-  $('instruction').textContent='Răspunde!';
+  // The question and answer are shown only in the parent-help section.
+  // The child-facing challenge area contains the visual clue only.
+  $('label').textContent='';
+  $('instruction').textContent='';
+  $('label').style.display='none';
+  $('instruction').style.display='none';
  }else{
   $('label').textContent=c.label||c.task;
   $('instruction').textContent=c.cat==='Desen'?'Desenează!':'Mimează fără să vorbești!';
@@ -385,9 +407,9 @@ $('adult').addEventListener('click',()=>{
  if(helpOpen){closeHelp();return;}
  let message='Alege una dintre cele patru categorii pentru a începe.';
  if(active){
-  if(active.cat==='Desen')message='Încurajează copilul să deseneze: '+(active.task||active.label)+'. Lasă-l să creeze în ritmul lui.';
-  else if(active.cat==='Mimă')message='Încurajează copilul să mimeze fără cuvinte: '+(active.task||active.label)+'. Ceilalți pot ghici!';
-  else message='Citește întrebarea cu voce tare și lasă copilul să răspundă în ritmul lui. Răspuns orientativ: '+(active.answer||'Acceptă răspunsul copilului și discutați împreună.');
+  if(active.cat==='Desen')message='GHID PENTRU PĂRINȚI\\nÎncurajează copilul să deseneze: '+(active.task||active.label)+'. Lasă-l să creeze în ritmul lui.';
+  else if(active.cat==='Mimă')message='GHID PENTRU PĂRINȚI\\nÎncurajează copilul să mimeze fără cuvinte: '+(active.task||active.label)+'. Ceilalți pot ghici!';
+  else message='ÎNTREBARE PENTRU COPIL\\n'+active.task+'\\n\\nRĂSPUNS ORIENTATIV\\n'+(active.answer||'Acceptă răspunsul copilului și discutați împreună.');
  }
  $('adult-message').textContent=message;
  $('adult-message').style.display='flex';

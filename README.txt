@@ -1,28 +1,44 @@
-PRINCESS KINGDOM — PWA
+PRINCESS KINGDOM — PWA V14
 
-Pachetul conține:
-- index.html — aplicația și cele 600 de provocări
+Fișiere:
+- index.html — aplicația completă și cele 600 de provocări
 - manifest.webmanifest — configurarea PWA
 - sw.js — cache offline
-- icon-192.png și icon-512.png — pictograme
-- README.txt — instrucțiuni
+- icon-192.png / icon-512.png — pictograme
 
-Modificări incluse:
-- Fundal unic, continuu, cu castel, grădină, trandafiri și pavaj extins până sub progresul categoriilor.
-- Modelul cu romburi din zona inferioară a fost înlocuit cu pavajul continuu.
-- Ovalul „Ajutor pentru adult” + „Joc nou” folosește designul aprobat: aceeași placă crem, contur auriu, font serif mov, pictogramă și separator central.
-- Textul și pictograma „Joc nou” sunt integrate în ilustrație; butonul HTML rămâne zonă interactivă invizibilă pentru accesibilitate și funcționalitate.
-- Butoanele de categorii inactive folosesc grayscale direct pe buton; categoria activă rămâne colorată și evidențiată.
-- Butonul principal adaptiv păstrează stările „Provocare nouă” și „Am reușit”.
-- Progresul pe categorii rămâne transparent, fără carduri decorative suplimentare.
-- Layout adaptiv la viewport; derularea verticală este permisă când e necesară.
-- Cache Service Worker actualizat la v13.
+Modificări V14:
+1. Ajutor pentru părinți:
+   - Mesajul nu mai apare peste butoanele jocului.
+   - Se afișează într-o secțiune separată, sub butoanele „Ajutor pentru adult” și „Joc nou”.
+   - Secțiunea împinge progresul mai jos în pagină și se închide la atingere.
 
-Instalare:
-1. Încarcă toate fișierele în același director pe un hosting HTTPS (de exemplu GitHub Pages).
-2. Deschide pagina în browser.
-3. Pentru actualizare pe un dispozitiv cu o versiune instalată, închide aplicația complet și redeschide-o după ce hostingul a publicat fișierele noi.
+2. Progres pe categorii:
+   - Panou comun cu fundal crem-roz, chenar auriu și colțuri rotunjite.
+   - Fiecare categorie are propriul rând încadrat și bară de progres în stilul jocului.
+
+3. Selectarea categoriilor:
+   - „Tot regatul” este selectat inițial; celelalte categorii sunt afișate în grayscale.
+   - Când se selectează Desen, Mimă sau Întrebări, butonul ales rămâne colorat și conturat portocaliu; celelalte devin grayscale.
+   - Selecția rămâne vizibilă și după finalizarea unei provocări.
+   - La apăsarea altei categorii, jocul generează o provocare din categoria aleasă.
+   - „Joc nou” resetează progresul și revine la „Tot regatul”.
+
+4. Categoria Întrebări:
+   - În provocare se afișează doar indiciul vizual (emoji-ul din banca de provocări).
+   - Textul întrebării și răspunsul orientativ apar în secțiunea „Ajutor pentru adult”, pentru a fi citite de părinte.
+   - În banca actuală, fiecare provocare de tip Întrebare are câmpurile emoji, task și answer; nu are un fișier imagine separat.
+
+5. Păstrate:
+   - Fundalul unic extins cu pavaj și trandafiri.
+   - Butonul principal adaptiv.
+   - Designul aprobat pentru butoanele „Ajutor pentru adult” și „Joc nou”.
+   - 600 de provocări și salvarea progresului local.
+
+Actualizare:
+- Încarcă toate cele șase fișiere în același director pe hosting HTTPS.
+- Cache Service Worker: v14-parent-help-progress.
+- Pentru testare, închide complet aplicația instalată și redeschide-o după publicare.
 
 Notă:
-- Progresul jocului este salvat local în browser/dispozitiv.
-- Service Worker necesită HTTPS sau localhost; nu funcționează la deschiderea directă ca file:// ori content://.
+- Progresul se păstrează local pe dispozitiv.
+- Service Worker funcționează pe HTTPS sau localhost, nu prin file:// ori content://.
