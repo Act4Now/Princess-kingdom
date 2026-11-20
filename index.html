@@ -96,7 +96,7 @@ body{
 #dynamic-sections{
   position:relative;z-index:2;width:min(100vw,720px);max-width:100%;
   margin:0 auto;display:flex;flex-direction:column;align-items:center;
-  gap:0;padding:0 0 24px;
+  gap:0;padding:0;
 }
 #adult{left:7%;top:64.8%;width:43%;height:5.4%;border-radius:999px}
 #reset-game{
@@ -156,19 +156,18 @@ body{
 }
 #sound-toggle:focus-visible{outline:3px solid #7a2192;outline-offset:3px}
 
-/* Versioned signature footer: stays in normal document flow after all game sections. */
+/* Compact signature footer: visually merges with the page background. */
 #kingdom-footer{
   position:relative;z-index:2;width:min(100vw,720px);max-width:100%;
-  margin:0 auto;padding:18px 18px max(16px,env(safe-area-inset-bottom));
-  min-height:76px;display:flex;align-items:center;justify-content:center;
-  background:linear-gradient(180deg,rgba(255,235,249,.96),rgba(248,220,244,.98));
-  border-top:2px solid rgba(232,179,76,.75);
+  min-height:38px;margin:0 auto;padding:7px 42px 7px 12px;
+  display:flex;align-items:center;justify-content:center;
+  background:transparent;border:0;box-shadow:none;
   color:#713b79;font-family:Georgia,serif;font-weight:700;
-  text-align:center;font-size:clamp(13px,3.2vw,17px);
-  box-shadow:0 -3px 12px rgba(111,22,136,.08);
+  text-align:center;font-size:clamp(11px,2.8vw,14px);
+  line-height:1.15;white-space:nowrap;
 }
 #kingdom-footer .footer-version{
-  position:absolute;right:12px;bottom:max(7px,env(safe-area-inset-bottom));
+  position:absolute;right:10px;bottom:7px;
   color:#8a668d;font:700 10px/1 Arial,sans-serif;
   letter-spacing:.04em;opacity:.9;
 }
@@ -226,7 +225,7 @@ src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAQDAwQDAwQEAwQFBAQF
 </div>
 <footer id="kingdom-footer" aria-label="Mesaj de final și versiunea jocului">
   <span>Creat cu magie pentru a fi jucat în familie</span>
-  <span class="footer-version">V19</span>
+  <span class="footer-version">V20</span>
 </footer>
 
 <script>

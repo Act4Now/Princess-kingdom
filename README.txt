@@ -1,4 +1,4 @@
-PRINCESS KINGDOM — PWA V18
+PRINCESS KINGDOM — PWA V20
 
 Fișiere:
 - index.html — aplicația completă și cele 600 de provocări
@@ -34,5 +34,13 @@ Verificări V18:
 - În toate cele 5 dimensiuni: elementele fixe au rămas în aceleași coordonate când ajutorul a fost deschis; ajutorul a apărut înaintea raportului; fără erori JavaScript și fără secvențe literale \\n.
 
 
-Versiune: V19
+Versiune: V20
 Footer de identificare: „Creat cu magie pentru a fi jucat în familie” + marcaj V19.
+
+
+Modificări V20:
+- Footer redus la o singură linie, cu înălțime compactă.
+- Fundalul footer-ului este transparent, fără separator sau umbră, pentru a se îmbina cu fundalul roz al paginii.
+- Spațiul inferior suplimentar al secțiunilor dinamice a fost eliminat, astfel încât footer-ul să urmeze direct raportul pe categorii.
+- Marcajul de versiune din colțul dreapta-jos este V20.
+- Cache offline actualizat la princess-kingdom-v20-compact-footer.
