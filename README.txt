@@ -1,4 +1,4 @@
-PRINCESS KINGDOM — PWA V14
+PRINCESS KINGDOM — PWA V18
 
 Fișiere:
 - index.html — aplicația completă și cele 600 de provocări
@@ -6,41 +6,33 @@ Fișiere:
 - sw.js — cache offline
 - icon-192.png / icon-512.png — pictograme
 
-Modificări V14:
-1. Ajutor pentru părinți:
-   - Mesajul nu mai apare peste butoanele jocului.
-   - Se afișează într-o secțiune separată, sub butoanele „Ajutor pentru adult” și „Joc nou”.
-   - Secțiunea împinge progresul mai jos în pagină și se închide la atingere.
+Modificări V18:
+1. Structură separată pentru secțiunile dinamice:
+   - Scena ilustrată (#game) rămâne o suprafață fixă, cu raportul original 1152:2120.
+   - Butoanele categoriilor, jurnalul, provocarea, butonul principal, Ajutor pentru adult și Joc nou rămân ancorate la coordonatele ilustrației.
+   - Ajutorul pentru adult și raportul pe categorii sunt elemente-soră, în afara scenei ilustrate.
 
-2. Progres pe categorii:
-   - Panou comun cu fundal crem-roz, chenar auriu și colțuri rotunjite.
-   - Fiecare categorie are propriul rând încadrat și bară de progres în stilul jocului.
+2. Flux adaptiv:
+   - Ajutorul apare imediat sub butonul „Ajutor pentru adult”.
+   - Raportul pe categorii este în flux normal și se deplasează numai cu înălțimea necesară.
+   - La închiderea ajutorului, raportul revine la distanța inițială.
+   - Nicio poziție a butoanelor sau a elementelor fixe din scenă nu este recalculată în funcție de deschiderea ajutorului.
 
-3. Selectarea categoriilor:
-   - „Tot regatul” este selectat inițial; celelalte categorii sunt afișate în grayscale.
-   - Când se selectează Desen, Mimă sau Întrebări, butonul ales rămâne colorat și conturat portocaliu; celelalte devin grayscale.
-   - Selecția rămâne vizibilă și după finalizarea unei provocări.
-   - La apăsarea altei categorii, jocul generează o provocare din categoria aleasă.
-   - „Joc nou” resetează progresul și revine la „Tot regatul”.
+3. Textul ajutorului:
+   - Afișează provocarea, întrebarea sau răspunsul orientativ, în funcție de categorie.
+   - Secvențele literale \\n sunt normalizate la rânduri noi.
 
-4. Categoria Întrebări:
-   - În provocare se afișează doar indiciul vizual (emoji-ul din banca de provocări).
-   - Textul întrebării și răspunsul orientativ apar în secțiunea „Ajutor pentru adult”, pentru a fi citite de părinte.
-   - În banca actuală, fiecare provocare de tip Întrebare are câmpurile emoji, task și answer; nu are un fișier imagine separat.
+4. Păstrat:
+   - Ilustrația, aspectul butoanelor și logica de selectare automată a categoriei.
+   - Toate cele 600 de provocări: 200 Desen, 200 Mimă și 200 Întrebări.
 
-5. Păstrate:
-   - Fundalul unic extins cu pavaj și trandafiri.
-   - Butonul principal adaptiv.
-   - Designul aprobat pentru butoanele „Ajutor pentru adult” și „Joc nou”.
-   - 600 de provocări și salvarea progresului local.
+Verificări V18:
+- Sintaxă JavaScript: fără erori.
+- Parsare CSS: fără erori.
+- ID-uri HTML duplicate: niciunul.
+- Teste Chromium la 360x800, 390x844, 430x932, 720x1280 și 844x390.
+- În toate cele 5 dimensiuni: elementele fixe au rămas în aceleași coordonate când ajutorul a fost deschis; ajutorul a apărut înaintea raportului; fără erori JavaScript și fără secvențe literale \\n.
 
-Actualizare:
-- Încarcă toate cele șase fișiere în același director pe hosting HTTPS.
-- Cache Service Worker: v14-parent-help-progress.
-- Pentru testare, închide complet aplicația instalată și redeschide-o după publicare.
 
-Notă:
-- Progresul se păstrează local pe dispozitiv.
-- Service Worker funcționează pe HTTPS sau localhost, nu prin file:// ori content://.
-
-V17: Ajutorul pentru adult este acum afișat în interiorul jocului, imediat sub butonul de ajutor și înaintea raportului pe categorii. Raportul este împins dinamic în jos cât timp ajutorul este deschis și revine la poziția inițială la închidere. Textul folosește rânduri reale și oferă provocarea/întrebarea împreună cu răspunsul sau un prompt scurt, nu instrucțiuni despre cum să ghideze adultul copilul.
+Versiune: V19
+Footer de identificare: „Creat cu magie pentru a fi jucat în familie” + marcaj V19.

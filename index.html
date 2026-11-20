@@ -90,7 +90,14 @@ body{
 #adaptive-action.is-success{background:linear-gradient(180deg,#baf2c5,#63cf82);border-color:#269b4c;color:#145b2b;box-shadow:0 3px 0 rgba(25,112,55,.28)}
 #adaptive-action.is-success:active{background:linear-gradient(180deg,#9be7ad,#4fbd70);transform:translateY(1px)}
 
-/* Adult help and Joc nou share the same illustrated oval. */
+/* Dynamic lower sections are siblings of the fixed artwork stage.
+   Only these two sections participate in document flow; category hit-targets
+   and all artwork-aligned controls remain anchored to #game. */
+#dynamic-sections{
+  position:relative;z-index:2;width:min(100vw,720px);max-width:100%;
+  margin:0 auto;display:flex;flex-direction:column;align-items:center;
+  gap:0;padding:0 0 24px;
+}
 #adult{left:7%;top:64.8%;width:43%;height:5.4%;border-radius:999px}
 #reset-game{
   position:absolute;z-index:11;left:50%;top:64.8%;width:43%;height:5.4%;
@@ -99,8 +106,8 @@ body{
   padding:0;display:block;cursor:pointer;touch-action:manipulation;
 }
 #adult-message{
-  display:none;position:absolute;z-index:26;left:7%;top:70.8%;width:86%;height:auto;
-  margin:0;padding:12px 16px;align-items:center;justify-content:center;text-align:center;
+  display:none;position:relative;left:auto;top:auto;width:86%;height:auto;
+  margin:0 auto;padding:12px 16px;align-items:center;justify-content:center;text-align:center;
   background:linear-gradient(180deg,rgba(255,250,239,.98),rgba(255,232,244,.98));
   color:#713b79;font-family:Georgia,serif;font-weight:700;
   font-size:clamp(14px,3.1vw,19px);line-height:1.3;
@@ -108,15 +115,16 @@ body{
   box-shadow:0 3px 0 rgba(132,66,137,.16),inset 0 0 0 2px rgba(255,255,255,.7);
   white-space:pre-line;overflow-wrap:anywhere;
 }
-
-/* Category progress: framed parchment panel matching the gold-trimmed game artwork. */
 #category-progress{
-  position:absolute;left:3%;top:75.5%;width:94%;height:24.5%;flex:0 0 auto;margin:0;padding:12px 14px 14px;
+  position:relative;left:auto;top:auto;width:94%;height:auto;flex:0 0 auto;
+  margin:0;padding:12px 14px 14px;
   display:grid;grid-template-columns:1fr;gap:10px;color:#6f286f;
   background:linear-gradient(180deg,rgba(255,248,238,.94),rgba(255,225,241,.94));
   border:3px solid #e6b75a;border-radius:24px;
   box-shadow:0 4px 0 rgba(132,66,137,.18),inset 0 0 0 2px rgba(255,255,255,.72);
 }
+#category-progress.help-closed{margin-top:var(--report-gap,32px)}
+#category-progress.help-open{margin-top:12px}
 .category-card{
   min-width:0;padding:7px 10px 9px;border:1px solid rgba(210,157,190,.55);
   border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,.72),rgba(255,241,249,.72));
@@ -139,7 +147,6 @@ body{
   box-shadow:inset 0 1px 1px rgba(255,255,255,.45);transition:width .2s ease;
 }
 
-/* Fixed audio control. */
 #sound-toggle{
   position:fixed;z-index:50;right:max(12px,env(safe-area-inset-right));top:max(12px,env(safe-area-inset-top));
   width:42px;height:42px;border:1px solid rgba(255,255,255,.9);border-radius:50%;
@@ -148,6 +155,24 @@ body{
   box-shadow:0 2px 8px rgba(85,28,100,.18);cursor:pointer;touch-action:manipulation;
 }
 #sound-toggle:focus-visible{outline:3px solid #7a2192;outline-offset:3px}
+
+/* Versioned signature footer: stays in normal document flow after all game sections. */
+#kingdom-footer{
+  position:relative;z-index:2;width:min(100vw,720px);max-width:100%;
+  margin:0 auto;padding:18px 18px max(16px,env(safe-area-inset-bottom));
+  min-height:76px;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(180deg,rgba(255,235,249,.96),rgba(248,220,244,.98));
+  border-top:2px solid rgba(232,179,76,.75);
+  color:#713b79;font-family:Georgia,serif;font-weight:700;
+  text-align:center;font-size:clamp(13px,3.2vw,17px);
+  box-shadow:0 -3px 12px rgba(111,22,136,.08);
+}
+#kingdom-footer .footer-version{
+  position:absolute;right:12px;bottom:max(7px,env(safe-area-inset-bottom));
+  color:#8a668d;font:700 10px/1 Arial,sans-serif;
+  letter-spacing:.04em;opacity:.9;
+}
+
 @media(max-width:390px){
   #heading{font-size:clamp(17px,4.5vw,20px)}
   #emoji{font-size:clamp(44px,10.5vw,58px)}
@@ -181,6 +206,8 @@ src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAQDAwQDAwQEAwQFBAQF
 <button class="hit adaptive-action" id="adaptive-action" type="button" aria-label="Provocare nouă">✨ Provocare nouă</button>
 <button class="hit" id="adult" aria-label="Ajutor pentru adult"></button>
 <button id="reset-game" type="button" aria-label="Începe un joc nou"></button>
+</main>
+<div id="dynamic-sections" aria-label="Ajutor și progres">
 <section id="adult-message" role="status" aria-live="polite" aria-label="Ajutor pentru adult" title="Atinge pentru a închide"></section>
 <footer id="category-progress" aria-label="Progres pe categorii">
   <div class="category-card">
@@ -196,7 +223,11 @@ src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAQDAwQDAwQEAwQFBAQF
     <div class="category-track"><div class="category-fill" id="questions-fill"></div></div>
   </div>
 </footer>
-</main>
+</div>
+<footer id="kingdom-footer" aria-label="Mesaj de final și versiunea jocului">
+  <span>Creat cu magie pentru a fi jucat în familie</span>
+  <span class="footer-version">V19</span>
+</footer>
 
 <script>
 'use strict';
@@ -215,27 +246,19 @@ updateViewportMetrics();
 window.addEventListener('resize',()=>{updateViewportMetrics();layoutGameSections();},{passive:true});
 window.addEventListener('orientationchange',()=>{updateViewportMetrics();layoutGameSections();},{passive:true});
 function layoutGameSections(){
- const game=$('game'),message=$('adult-message'),report=$('category-progress');
- if(!game||!message||!report)return;
+ const game=$('game'),sections=$('dynamic-sections'),message=$('adult-message'),report=$('category-progress');
+ if(!game||!sections||!message||!report)return;
  const width=game.clientWidth;
  const baseHeight=width*2120/1152;
- const reportHeight=baseHeight*.245;
- if(helpOpen){
-  message.style.display='flex';
-  message.style.top=(baseHeight*.708)+'px';
-  const messageHeight=message.offsetHeight;
-  const reportTop=baseHeight*.708+messageHeight+Math.max(12,width*.018);
-  report.style.top=reportTop+'px';
-  report.style.height=reportHeight+'px';
-  game.style.height=(reportTop+reportHeight)+'px';
- }else{
-  message.style.display='none';
-  message.style.top='';
-  report.style.top=(baseHeight*.755)+'px';
-  report.style.height=reportHeight+'px';
-  game.style.height=baseHeight+'px';
- }
+ // Start the dynamic flow directly below the illustrated adult/reset control row.
+ // The artwork stage itself never changes height or moves its anchored controls.
+ sections.style.marginTop=(-baseHeight*.292)+'px';
+ sections.style.setProperty('--report-gap',(baseHeight*.047)+'px');
+ message.style.display=helpOpen?'flex':'none';
+ report.classList.toggle('help-open',helpOpen);
+ report.classList.toggle('help-closed',!helpOpen);
 }
+
 const artSource=$('art').getAttribute('src');
 document.body.style.backgroundImage=`url("${artSource}")`;
 $('art').setAttribute('aria-hidden','true');
@@ -327,6 +350,7 @@ function closeHelp(){
  helpOpen=false;
  $('adult-message').style.display='none';
  $('adult-message').textContent='';
+ layoutGameSections();
 }
 function updateCategoryHighlight(){
  // The highlighted category follows the active challenge, independently of the pool filter.
@@ -430,7 +454,7 @@ $('adaptive-action').addEventListener('click',event=>{
 });
 $('adult').addEventListener('click',()=>{
  if(helpOpen){closeHelp();return;}
- let message='Alege o categorie și începe o nouă provocare.';
+ let message='Nu există încă o provocare activă.';
  if(active){
   if(active.cat==='Desen'){
    message='PROVOCARE: '+(active.task||active.label||'Desenează!')+'\nÎNTREABĂ: „Ce ai desenat?”';
@@ -440,7 +464,7 @@ $('adult').addEventListener('click',()=>{
    message='ÎNTREBARE: '+(active.task||'')+'\nRĂSPUNS: '+(active.answer||'Acceptă un răspuns potrivit.');
   }
  }
- $('adult-message').textContent=message;
+ $('adult-message').textContent=message.replace(/\\n/g,'\n');
  helpOpen=true;
  layoutGameSections();
 });
@@ -461,6 +485,7 @@ $('reset-game').addEventListener('click',()=>{
 loadState();
 updateProgress();
 renderChallenge(null);
+layoutGameSections();
 // PWA offline support on secure origins; skipped for local file/content previews.
 if('serviceWorker' in navigator && /^https?:$/.test(location.protocol)){
  navigator.serviceWorker.register('./sw.js').catch(()=>{});

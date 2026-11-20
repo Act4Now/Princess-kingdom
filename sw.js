@@ -1,4 +1,4 @@
-const CACHE='princess-kingdom-v17-adult-help-flow';
+const CACHE='princess-kingdom-v19-version-footer';
 const FILES=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png'];
 self.addEventListener('install',event=>{
  event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(FILES)));
