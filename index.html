@@ -35,17 +35,18 @@ body{
 }
 .hit:focus-visible{outline:3px solid #7a2192;outline-offset:2px;border-radius:22px}
 
-/* Category hit targets and dimming masks exactly follow the four illustrated buttons. */
-#all,#mask-all{left:15.8%;top:22.4%;width:33.9%;height:9.4%}
-#draw,#mask-draw{left:50.1%;top:22.4%;width:33.9%;height:9.4%}
-#mime,#mask-mime{left:15.8%;top:32.1%;width:33.9%;height:9.3%}
-#questions,#mask-questions{left:50.1%;top:32.1%;width:33.9%;height:9.3%}
-.category-mask{
-  position:absolute;z-index:8;border-radius:22px;background:rgba(75,75,85,.58);
-  pointer-events:none;transition:opacity .18s ease;
+/* Category buttons: grayscale is applied directly to the artwork beneath each hit target.
+   No separate overlay boxes are used. */
+#all{left:15.8%;top:22.4%;width:33.9%;height:9.4%}
+#draw{left:50.1%;top:22.4%;width:33.9%;height:9.4%}
+#mime{left:15.8%;top:32.1%;width:33.9%;height:9.3%}
+#questions{left:50.1%;top:32.1%;width:33.9%;height:9.3%}
+.hit.category-dim{
+  border-radius:22px;
+  -webkit-backdrop-filter:grayscale(1) brightness(.72);
+  backdrop-filter:grayscale(1) brightness(.72);
+  transition:backdrop-filter .18s ease,-webkit-backdrop-filter .18s ease;
 }
-.category-mask.off{display:none!important}
-.hit.category-dim{opacity:.4;filter:grayscale(.85)}
 .hit.category-active{
   opacity:1;filter:none;outline:4px solid #ff9700;outline-offset:1px;
   border-radius:23px;z-index:20;
@@ -94,10 +95,10 @@ body{
 #reset-game{
   position:absolute;z-index:11;left:50%;top:89.6%;width:43%;height:7.5%;
   border:0;border-left:2px solid rgba(166,93,151,.55);border-radius:0;
-  background:transparent;color:#713b79;font-family:Georgia,serif;font-weight:800;
-  font-size:clamp(14px,2.8vw,19px);line-height:1;text-decoration:underline;
-  text-decoration-thickness:1.5px;text-underline-offset:3px;
-  padding:0;display:flex;align-items:center;justify-content:center;text-align:center;
+  background:transparent;color:#713b79;font-family:Georgia,serif;font-weight:700;
+  font-size:clamp(15px,3.8vw,27px);line-height:1.05;text-decoration:none;
+  letter-spacing:0;
+  padding:0 2%;display:flex;align-items:center;justify-content:center;text-align:center;
 }
 #adult-message{
   display:none;position:absolute;z-index:31;left:7%;top:89.6%;width:86%;height:7.5%;
@@ -142,7 +143,7 @@ body{
   #category-progress{gap:6px;padding-left:3%;padding-right:3%}
 }
 @media(min-width:721px){#game,#category-progress{width:min(100vw,720px)}}
-@media(prefers-reduced-motion:reduce){#progress-fill,.category-fill,.category-mask{transition:none}}
+@media(prefers-reduced-motion:reduce){#progress-fill,.category-fill,.hit.category-dim{transition:none}}
 </style>
 </head>
 <body>
@@ -158,10 +159,6 @@ src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAQDAwMDAgQDAwMEBAQF
 <div id="label">Alege o categorie!</div>
 <div id="instruction">Atinge unul dintre cele patru butoane ale castelului.</div>
 </section>
-<div class="category-mask off" id="mask-all"></div>
-<div class="category-mask off" id="mask-draw"></div>
-<div class="category-mask off" id="mask-mime"></div>
-<div class="category-mask off" id="mask-questions"></div>
 <button class="hit" id="all" aria-label="Tot regatul"></button>
 <button class="hit" id="draw" aria-label="Desenează"></button>
 <button class="hit" id="mime" aria-label="Mimează"></button>
@@ -300,14 +297,10 @@ function updateCategoryHighlight(){
  ['all','draw','mime','questions'].forEach(id=>{
   const b=$(id);
   b.classList.remove('category-active','category-dim');
-  const mask=$('mask-'+id);
   if(active && categoryButton){
    const selected=id===categoryButton;
    b.classList.toggle('category-active',selected);
    b.classList.toggle('category-dim',!selected);
-   mask.classList.toggle('off',selected);
-  }else{
-   mask.classList.add('off');
   }
  });
 }
