@@ -225,7 +225,7 @@ src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAQDAwQDAwQEAwQFBAQF
 </div>
 <footer id="kingdom-footer" aria-label="Mesaj de final și versiunea jocului">
   <span>Creat cu magie pentru a fi jucat în familie</span>
-  <span class="footer-version">V20</span>
+  <span class="footer-version">V22</span>
 </footer>
 
 <script>
@@ -308,7 +308,7 @@ document.addEventListener('pointerdown',e=>{
  if(e.target.closest('#all,#draw,#mime,#questions,#adaptive-action,#adult,#reset-game')){Soundscape.start();Soundscape.click()}
 },{passive:true});
 
-let mode='all',selectedCategory='all',active=null,seen=new Set(),done=new Set(),helpOpen=false,celebrating=false;
+let mode='all',active=null,seen=new Set(),done=new Set(),helpOpen=false,celebrating=false;
 const STORAGE='princess_kingdom_v9';
 function loadState(){
  try{
@@ -352,14 +352,18 @@ function closeHelp(){
  layoutGameSections();
 }
 function updateCategoryHighlight(){
- // The highlighted category follows the active challenge, independently of the pool filter.
- // This keeps the matching category selected even when the challenge was drawn from "Tot regatul".
- const categoryButton=selectedCategory;
+ // Fără provocare activă (la pornire sau după felicitări), toate categoriile
+ // rămân colorate și disponibile. Evidențierea/dimarea apare numai în timpul
+ // unei provocări active și indică exact categoria acelei provocări.
+ const activeCategory=active
+  ? ({Desen:'draw',Mimă:'mime',Întrebare:'questions'}[active.cat]||null)
+  : null;
  ['all','draw','mime','questions'].forEach(id=>{
   const b=$(id);
-  const selected=id===categoryButton;
+  const hasActiveChallenge=Boolean(activeCategory);
+  const selected=hasActiveChallenge && id===activeCategory;
   b.classList.toggle('category-active',selected);
-  b.classList.toggle('category-dim',!selected);
+  b.classList.toggle('category-dim',hasActiveChallenge && !selected);
   b.setAttribute('aria-pressed',selected?'true':'false');
  });
 }
@@ -374,7 +378,6 @@ function updateAction(){
 function renderChallenge(c){
  active=c;
  if(c){
-  selectedCategory=({Desen:'draw',Mimă:'mime',Întrebare:'questions'}[c.cat]||'all');
  }
  updateCategoryHighlight();
  updateAction();
@@ -473,7 +476,6 @@ $('reset-game').addEventListener('click',()=>{
  seen.clear();
  celebrating=false;
  mode='all';
- selectedCategory='all';
  active=null;
  try{localStorage.removeItem(STORAGE);}catch(e){}
  saveState();
@@ -485,9 +487,27 @@ loadState();
 updateProgress();
 renderChallenge(null);
 layoutGameSections();
-// PWA offline support on secure origins; skipped for local file/content previews.
+// PWA update management: always check the worker without the browser HTTP cache.
 if('serviceWorker' in navigator && /^https?:$/.test(location.protocol)){
- navigator.serviceWorker.register('./sw.js').catch(()=>{});
+ const hadController=!!navigator.serviceWorker.controller;
+ let reloadingForUpdate=false;
+ navigator.serviceWorker.addEventListener('controllerchange',()=>{
+  // Do not reload on first installation; reload only when an existing app is updated.
+  if(hadController && !reloadingForUpdate){
+   reloadingForUpdate=true;
+   location.reload();
+  }
+ });
+ navigator.serviceWorker.register('./sw.js',{updateViaCache:'none'}).then(registration=>{
+  const checkForUpdate=()=>registration.update().catch(()=>{});
+  checkForUpdate();
+  window.addEventListener('pageshow',checkForUpdate);
+  document.addEventListener('visibilitychange',()=>{
+   if(document.visibilityState==='visible') checkForUpdate();
+  });
+  // A long-open game also checks periodically, without interrupting play.
+  window.setInterval(checkForUpdate,60*60*1000);
+ }).catch(error=>console.warn('Actualizarea offline nu a putut fi verificată:',error));
 }
 // Fail loudly during development if the content inventory is incomplete.
 if(BANK.length!==600 || new Set(BANK.map(c=>c.id)).size!==600) console.error('Inventarul trebuie să conțină 600 de ID-uri unice.');

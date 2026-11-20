@@ -44,3 +44,23 @@ Modificări V20:
 - Spațiul inferior suplimentar al secțiunilor dinamice a fost eliminat, astfel încât footer-ul să urmeze direct raportul pe categorii.
 - Marcajul de versiune din colțul dreapta-jos este V20.
 - Cache offline actualizat la princess-kingdom-v20-compact-footer.
+
+
+Modificări V21 — actualizări automate:
+- Footer-ul identifică versiunea V21.
+- Înregistrarea Service Worker folosește updateViaCache: 'none'.
+- Aplicația verifică actualizările la pornire, la revenirea în prim-plan și periodic (o dată pe oră).
+- Service Worker-ul nou activează imediat versiunea pregătită și elimină cache-urile vechi princess-kingdom-*.
+- Pagina principală și manifestul folosesc strategie network-first cu cache: 'no-store', astfel încât browserul să nu servească versiuni HTML vechi din HTTP cache.
+- Resursele statice folosesc cache-first pentru performanță și funcționare offline.
+- La actualizarea unei aplicații deja controlate de un Service Worker vechi, pagina se reîncarcă o singură dată după preluarea controlului de către versiunea nouă.
+- Datele de progres din localStorage nu sunt șterse de actualizare.
+- Dacă dispozitivul este offline, jocul folosește ultima versiune salvată local; versiunea nouă necesită conexiune.
+
+
+Modificări V22 — categorii disponibile fără provocare + actualizare automată:
+- Când nu există provocare activă (la pornire și în ecranul de felicitări), toate cele patru butoane de categorie sunt afișate color, fără efectul grayscale și fără conturul portocaliu de selecție.
+- Efectele de categorie activă (contur portocaliu pentru categoria provocării și grayscale pentru celelalte) apar numai cât timp există o provocare activă.
+- La selectarea unei categorii și generarea provocării, evidențierea se aplică automat categoriei provocării.
+- Păstrat mecanismul V21 de actualizare automată: updateViaCache:none, verificare la pornire/revenire în prim-plan/orar, network-first pentru app shell, ștergerea cache-urilor vechi și păstrarea progresului din localStorage.
+- Footer-ul identifică versiunea V22.
