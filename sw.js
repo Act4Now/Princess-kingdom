@@ -1,5 +1,5 @@
-/* Princess Kingdom V28 — unique challenge bank and completed-challenge exclusion. */
-const CACHE_NAME = 'princess-kingdom-v28-challenge-completion';
+/* Princess Kingdom V29 — kingdom-wide Provocare nouă selection. */
+const CACHE_NAME = 'princess-kingdom-v29-kingdom-wide-next';
 const CACHE_PREFIX = 'princess-kingdom-';
 const APP_FILES = [
   './', './index.html', './manifest.webmanifest', './version.json', './version.txt',

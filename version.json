@@ -1,15 +1,13 @@
 {
-  "version": "28",
+  "version": "29",
   "name": "Princess Kingdom",
   "release_date": "2026-11-20",
-  "release_name": "Challenge uniqueness and completion lock",
-  "previous_version": "27",
+  "release_name": "Kingdom-wide Provocare nouă",
+  "previous_version": "28",
   "changes": [
-    "Audited the three challenge categories: 200 entries each and 600 unique IDs.",
-    "Replaced repeated Questions prompts and answers so all 200 question prompts and answers are distinct.",
-    "Excluded completed challenge IDs from every future draw until Joc nou resets progress.",
-    "Kept shuffle-cycle repeats limited to unfinished challenges only.",
-    "Added clear completed-category and completed-kingdom states; selecting another category continues with its unfinished challenges.",
-    "Synchronized footer metadata, version files, Service Worker cache, and update session key to V28."
+    "The main adaptive Provocare nouă action now selects randomly from all unfinished challenges across all three categories, regardless of the previously selected category.",
+    "The category buttons remain unchanged and continue to select challenges only from their own category.",
+    "Completed challenges remain excluded until Joc nou resets progress.",
+    "Synchronized footer metadata, version files, Service Worker cache, and update session key to V29."
   ]
 }

@@ -53,3 +53,10 @@
 - Completed challenge IDs are excluded from future draws until Joc nou resets the game.
 - Random shuffle cycles repeat only among unfinished challenges; completed categories show a completion state.
 - Synchronized version metadata, footer, Service Worker cache, and update-reload key to V28.
+
+
+## V29 — 2026-11-20
+- The main „Provocare nouă” action now draws randomly from all unfinished challenges across all three categories, even after a category was selected.
+- The category buttons remain category-specific; their selection behavior is unchanged.
+- Completed challenges remain excluded until „Joc nou” resets the progress.
+- Synchronized footer, metadata, version files, Service Worker cache, and update session key to V29.
