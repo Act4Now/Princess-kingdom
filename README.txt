@@ -1,4 +1,4 @@
-PRINCESS KINGDOM — PWA V23
+PRINCESS KINGDOM — PWA V25
 
 Fișiere:
 - index.html — aplicația completă și cele 600 de provocări
@@ -73,3 +73,11 @@ VERSIUNE V24 — 2026-11-20
 - garden-extension.jpg: continuare grafică fără întindere verticală.
 - Footer-ul citește versiunea din version.json când fișierul este disponibil.
 - La actualizarea unei aplicații instalate apare mesajul „Regatul se pregătește!”.
+
+
+V25 — Pornire offline-first și identitate nouă pentru ecranul de lansare
+- Pagina instalată este servită direct din cache; nu așteaptă rețeaua la pornire.
+- Verificarea actualizărilor rulează discret în fundal și este omisă când dispozitivul este offline.
+- Footer-ul afișează V25 fără să aștepte descărcarea version.json.
+- Pictogramele PWA au fost redesenate cu emblema Princess Kingdom și mesajul „Creat cu magie pentru a fi jucat în familie”.
+- Fundalul inferior cu dungi neclare a fost înlocuit cu flori și pavaj roz curat.

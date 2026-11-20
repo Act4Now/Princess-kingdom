@@ -21,3 +21,13 @@
 
 ## V20 — 2026-11-20
 - Compact footer.
+
+## V25 — 2026-11-20
+
+- Changed Service Worker app-shell strategy to cache-first so installed game opens from the local cache without waiting for network.
+- Moved Service Worker update checks to a quiet background task after the page becomes interactive; checks are skipped while offline.
+- Removed the startup network request for version.json; the footer version is embedded in the app shell and remains available offline.
+- Redesigned 192px and 512px PWA icons with the Princess Kingdom castle emblem and the family-play motto for the installed-app launch screen.
+- Replaced the blurred horizontal lower-artwork bands with a floral garden and clean pink cobblestone continuation.
+- Updated the installed-app update notice with the new logo and family-play motto.
+- Preserved the 600 challenge bank and local game progress.

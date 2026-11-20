@@ -1,4 +1,3 @@
 Princess Kingdom
-Version: 24
+Version: V25
 Release date: 2026-11-20
-Previous version: 23
