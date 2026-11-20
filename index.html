@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#f8e6f6">
-<meta name="application-version" content="24">
+<meta name="application-version" content="27">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -555,7 +555,7 @@ updateProgress();
 renderChallenge(null);
 layoutGameSections();
 // Version label is embedded so the installed game never waits for version.json.
-const APP_VERSION = '25';
+const APP_VERSION = document.querySelector('meta[name="application-version"]')?.content || '27';
 const versionLabel = document.getElementById('footer-version');
 if (versionLabel) versionLabel.textContent = 'V' + APP_VERSION;
 
@@ -573,8 +573,8 @@ if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
   }, duration);
  };
  try {
-  if (sessionStorage.getItem('pk-v25-update-reloaded') === '1') {
-   sessionStorage.removeItem('pk-v25-update-reloaded');
+  if (sessionStorage.getItem('pk-v27-update-reloaded') === '1') {
+   sessionStorage.removeItem('pk-v27-update-reloaded');
    showNotice(900);
   }
  } catch (e) {}
@@ -584,7 +584,7 @@ if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
   if (hadController && !reloadScheduled) {
    reloadScheduled = true;
    showNotice();
-   try { sessionStorage.setItem('pk-v25-update-reloaded','1'); } catch (e) {}
+   try { sessionStorage.setItem('pk-v27-update-reloaded','1'); } catch (e) {}
    window.setTimeout(() => location.reload(), 450);
   }
  });

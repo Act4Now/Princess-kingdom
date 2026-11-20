@@ -1,4 +1,4 @@
-PRINCESS KINGDOM — PWA V26
+PRINCESS KINGDOM — PWA V27
 
 Fișiere:
 - index.html — aplicația completă și cele 600 de provocări
@@ -81,3 +81,11 @@ V26 — Pornire offline-first și identitate nouă pentru ecranul de lansare
 - Footer-ul afișează V26 fără să aștepte descărcarea version.json.
 - Pictogramele PWA au fost redesenate cu emblema Princess Kingdom și mesajul „Creat cu magie pentru a fi jucat în familie”.
 - Fundalul inferior cu dungi neclare a fost înlocuit cu flori și pavaj roz curat.
+
+
+V27 — Sincronizarea identificatorilor versiunii
+- Sursa pentru versiunea afișată în footer este meta[name="application-version"] din index.html.
+- version.json și version.txt sunt sincronizate la V27 pentru controlul distribuției.
+- Service Worker cache: princess-kingdom-v27-version-sync.
+- Cheia de sesiune pentru reîncărcarea după actualizare este pk-v27-update-reloaded.
+- Păstrează funcționalitățile V26 și progresul local.

@@ -38,3 +38,10 @@
 - Kept the selected orange frame inside the category button bounds.
 - Shortened and centered the journal progress bar beneath its label and counter.
 - Preserved all game behavior and offline-first update handling.
+
+
+## V27 — 2026-11-20
+- Fixed inconsistent version identifiers found in V26.
+- `index.html` application-version metadata is now `27`; the footer reads this metadata instead of a stale hard-coded JavaScript value.
+- Synchronized `version.json`, `version.txt`, Service Worker cache name, and update-reload session key to V27.
+- Preserved all V26 layout and game functionality.

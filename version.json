@@ -1,13 +1,13 @@
 {
-  "version": "26",
+  "version": "27",
   "name": "Princess Kingdom",
   "release_date": "2026-11-20",
-  "release_name": "Category button alignment and shorter journal progress bar",
-  "previous_version": "25",
+  "release_name": "Version identifier synchronization",
+  "previous_version": "26",
   "changes": [
-    "Adjusted category dimming and selected-state overlays to use elliptical corner radii that follow the artwork buttons more closely.",
-    "Moved the selected orange frame inside the category hit area so it no longer extends beyond the illustrated button.",
-    "Shortened and centered the journal progress bar beneath the journal label and total counter.",
-    "Preserved category button behavior, challenge selection, offline-first startup, update checks, progress data, and the 600-challenge bank."
+    "Corrected the application-version metadata from 24 to 27.",
+    "Made the footer read its version from the application-version meta tag, removing the stale hard-coded V25 value.",
+    "Synchronized version.json, version.txt, Service Worker cache name, update-reload session key, README, and changelog to V27.",
+    "Preserved V26 button alignment, progress bar, offline-first startup, update checks, game progress, and all 600 challenges."
   ]
 }

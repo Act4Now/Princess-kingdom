@@ -1,5 +1,5 @@
-/* Princess Kingdom V26 — offline-first launch, background update checks. */
-const CACHE_NAME = 'princess-kingdom-v26-button-alignment';
+/* Princess Kingdom V27 — synchronized version identifiers, offline-first launch. */
+const CACHE_NAME = 'princess-kingdom-v27-version-sync';
 const CACHE_PREFIX = 'princess-kingdom-';
 const APP_FILES = [
   './', './index.html', './manifest.webmanifest', './version.json', './version.txt',
