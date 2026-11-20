@@ -22,3 +22,6 @@ Notă: testarea vizuală finală trebuie făcută pe dispozitivul țintă după 
 
 
 V3 fix: corrected JavaScript initialization order (DOM helper defined before first use), restoring click handlers and full-page background. Active category highlighting now follows the actual challenge category, including challenges selected from Tot regatul.
+
+
+CLEAN V4: removed obsolete legacy success/next hit targets; reset control is now the right half of the existing adult-help oval (no extra pill); the castle artwork is used as the continuous page background behind category progress; category dimming is strengthened and active category gets a clear orange frame. Responsive layout tuned for tablet and phone.

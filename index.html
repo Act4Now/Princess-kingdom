@@ -142,6 +142,57 @@ display:flex;align-items:center;justify-content:center;gap:8px;padding:0 10px}
 .hit.category-dim{opacity:.38;filter:grayscale(.8)}
 .hit.category-active{opacity:1;filter:none}
 #adult-message{border-radius:18px;cursor:pointer}
+
+/* CLEAN LAYOUT V4: one action only, shared background, responsive tablet layout */
+.hit[hidden]{display:none!important}
+#reset-game{
+ left:60%;top:89.6%;width:33%;height:7.5%;
+ border:0;border-left:2px solid rgba(166,93,151,.48);
+ border-radius:0;background:transparent!important;box-shadow:none!important;
+ color:#713b79;font-weight:800;font-size:clamp(12px,2.8vw,19px);
+ line-height:1.05;text-decoration:underline;text-underline-offset:3px;
+ padding:0;display:flex;align-items:center;justify-content:center;
+}
+#adult{left:7%;top:89.6%;width:53%;height:7.5%}
+#adaptive-action{
+ left:9%;top:80.4%;width:82%;height:7.7%;
+ border-radius:999px;z-index:30;
+}
+.category-mask{
+ background:rgba(75,75,85,.62)!important;
+ transition:opacity .18s ease;
+}
+.category-mask.off{display:none!important}
+.hit.category-active{
+ outline:4px solid #ff9700!important;
+ outline-offset:1px;border-radius:23px;z-index:20;
+ box-shadow:0 0 0 2px rgba(255,255,255,.72),0 0 14px rgba(255,145,0,.65);
+}
+#category-progress{
+ width:min(100%,720px);margin:0 auto;
+ background:transparent!important;
+ padding-top:12px;
+}
+.category-card{
+ background:rgba(255,249,255,.84)!important;
+ backdrop-filter:blur(2px);
+}
+body{
+ background-repeat:no-repeat!important;
+ background-position:center top!important;
+ background-size:100% 100%!important;
+ background-attachment:scroll!important;
+}
+#game{width:min(100vw,720px,75dvh);max-width:100%;margin:0 auto}
+@media(min-width:721px){
+ #game{border-radius:0}
+ #category-progress{padding-left:22px;padding-right:22px}
+}
+@media(max-width:520px){
+ #game{width:100vw}
+ #category-progress{width:100%;padding-left:12px;padding-right:12px}
+}
+
 </style>
 </head>
 <body>
@@ -166,8 +217,6 @@ src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAIBAQIBAQICAgICAgIC
 <button class="hit" id="mime" aria-label="Mimează"></button>
 <button class="hit" id="questions" aria-label="Întrebări"></button>
 <button class="hit adaptive-action" id="adaptive-action" type="button" aria-label="Provocare nouă">✨ Provocare nouă</button>
-<button class="hit" id="success" aria-label="Am reușit! Următoarea" hidden></button>
-<button class="hit" id="next" aria-label="Altă provocare" hidden></button>
 <button class="hit" id="adult" aria-label="Ajutor pentru adult"></button>
 <button id="reset-game" type="button" aria-label="Începe un joc nou">↻ Joc nou</button>
 <div id="adult-message" role="status" aria-live="polite" title="Atinge pentru a închide"></div>
