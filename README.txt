@@ -1,4 +1,4 @@
-PRINCESS KINGDOM — PWA V25
+PRINCESS KINGDOM — PWA V26
 
 Fișiere:
 - index.html — aplicația completă și cele 600 de provocări
@@ -75,9 +75,9 @@ VERSIUNE V24 — 2026-11-20
 - La actualizarea unei aplicații instalate apare mesajul „Regatul se pregătește!”.
 
 
-V25 — Pornire offline-first și identitate nouă pentru ecranul de lansare
+V26 — Pornire offline-first și identitate nouă pentru ecranul de lansare
 - Pagina instalată este servită direct din cache; nu așteaptă rețeaua la pornire.
 - Verificarea actualizărilor rulează discret în fundal și este omisă când dispozitivul este offline.
-- Footer-ul afișează V25 fără să aștepte descărcarea version.json.
+- Footer-ul afișează V26 fără să aștepte descărcarea version.json.
 - Pictogramele PWA au fost redesenate cu emblema Princess Kingdom și mesajul „Creat cu magie pentru a fi jucat în familie”.
 - Fundalul inferior cu dungi neclare a fost înlocuit cu flori și pavaj roz curat.

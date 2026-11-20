@@ -31,3 +31,10 @@
 - Replaced the blurred horizontal lower-artwork bands with a floral garden and clean pink cobblestone continuation.
 - Updated the installed-app update notice with the new logo and family-play motto.
 - Preserved the 600 challenge bank and local game progress.
+
+
+## V26 — 2026-11-20
+- Refined category button overlay corner geometry to match the illustrated buttons.
+- Kept the selected orange frame inside the category button bounds.
+- Shortened and centered the journal progress bar beneath its label and counter.
+- Preserved all game behavior and offline-first update handling.

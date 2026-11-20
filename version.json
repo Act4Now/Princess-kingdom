@@ -1,16 +1,13 @@
 {
-  "version": "25",
+  "version": "26",
   "name": "Princess Kingdom",
   "release_date": "2026-11-20",
-  "release_name": "Offline-first launch, redesigned splash identity and clean garden background",
-  "previous_version": "24",
+  "release_name": "Category button alignment and shorter journal progress bar",
+  "previous_version": "25",
   "changes": [
-    "Changed Service Worker app-shell strategy to cache-first so installed game opens from the local cache without waiting for network.",
-    "Moved Service Worker update checks to a quiet background task after the page becomes interactive; checks are skipped while offline.",
-    "Removed the startup network request for version.json; the footer version is embedded in the app shell and remains available offline.",
-    "Redesigned 192px and 512px PWA icons with the Princess Kingdom castle emblem and the family-play motto for the installed-app launch screen.",
-    "Replaced the blurred horizontal lower-artwork bands with a floral garden and clean pink cobblestone continuation.",
-    "Updated the installed-app update notice with the new logo and family-play motto.",
-    "Preserved the 600 challenge bank and local game progress."
+    "Adjusted category dimming and selected-state overlays to use elliptical corner radii that follow the artwork buttons more closely.",
+    "Moved the selected orange frame inside the category hit area so it no longer extends beyond the illustrated button.",
+    "Shortened and centered the journal progress bar beneath the journal label and total counter.",
+    "Preserved category button behavior, challenge selection, offline-first startup, update checks, progress data, and the 600-challenge bank."
   ]
 }
