@@ -1,5 +1,12 @@
 # Princess Kingdom — Changelog
 
+## V37 — 2026-11-21
+- Added a compact, localized reset-statistics control beside on-device statistics.
+- Reset requires confirmation and clears cumulative device statistics only; current game progress, completed challenges, and active challenge remain unchanged.
+- Statistics display shows cumulative completed challenges only, without a remaining-count figure.
+- Preserved the V36 layout, artwork, bilingual interface, drawing board, challenge bank, and offline assets.
+
+
 ## V36 — 2026-11-21
 - Layout rebuilt: one continuous illustrated background (scene.jpg) with category buttons and journal anchored to the artwork and everything below the frame in normal flow. No hit-areas are positioned over blurred or leftover artwork any more.
 - Category labels painted in the artwork were removed from the image and are now HTML text, so RO/EN labels sit exactly on the original buttons; the original crown/palette/masks/question-mark icons are kept.

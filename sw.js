@@ -1,5 +1,5 @@
 /* Princess Kingdom V36 — offline-first app shell. */
-const CACHE_NAME = 'princess-kingdom-v36-clean-layout';
+const CACHE_NAME = 'princess-kingdom-v37-local-stats-reset';
 const CACHE_PREFIX = 'princess-kingdom-';
 const APP_FILES = ['./','./index.html','./manifest.webmanifest','./version.json','./version.txt','./scene.jpg','./music.mp3','./icon-192.png','./icon-512.png'];
 self.addEventListener('install', event => {

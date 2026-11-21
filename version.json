@@ -1,13 +1,13 @@
 {
-  "version": "36",
+  "version": "37",
   "name": "Princess Kingdom",
   "release_date": "2026-11-21",
-  "release_name": "Clean layout, continuous artwork, fixes and lighter loading",
-  "previous_version": "35",
+  "release_name": "Local statistics reset",
+  "previous_version": "36",
   "changes": [
-    "Rebuilt the layout: a single continuous background and a normal-flow lower section, so controls can no longer overlap or drift from the artwork.",
-    "Fixed a startup JavaScript error that stopped the script before the service worker and drawing board were initialised.",
-    "Moved the artwork and music out of index.html (3.8 MB to about 170 KB) and precache them for offline use.",
-    "Added a confirmation tap before Joc nou erases progress; the current challenge now survives a reload."
+    "Added a localized reset-statistics control beside the on-device statistics.",
+    "Reset requires confirmation and clears cumulative device statistics only; current game progress and challenge state remain unchanged.",
+    "Statistics display shows cumulative completed challenges only, without a remaining-count figure.",
+    "Preserved the V36 layout, artwork, bilingual interface, drawing board, 600 challenges, and offline assets."
   ]
 }
