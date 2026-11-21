@@ -1,7 +1,7 @@
-/* Princess Kingdom V48 — offline-first app shell. */
-const CACHE_NAME = 'princess-kingdom-v48-release';
+/* Princess Kingdom V49 — offline-first app shell. */
+const CACHE_NAME = 'princess-kingdom-v49-release';
 const CACHE_PREFIX = 'princess-kingdom-';
-const APP_FILES = ['./','./index.html','./manifest.webmanifest','./version.json','./version.txt','./scene.jpg?v=48','./music.mp3?v=48','./icon-192.png','./icon-512.png','./icon-maskable-512.png','./princess-cinderella.webp','./princess-belle.webp','./princess-ariel.webp','./princess-rapunzel.webp','./princess-jasmine.webp','./princess-snow-white.webp','./princess-aurora.webp','./princess-elsa.webp','./princess-merida.webp','./princess-mulan.webp','./princess-tiana.webp','./princess-moana.webp','./princess-pocahontas.webp','./princess-anna.webp','./princess-flower-tale.webp'];
+const APP_FILES = ["./","./index.html","./manifest.webmanifest","./version.json","./version.txt","./scene.jpg?v=49","./music.mp3?v=49","./icon-192.png","./icon-512.png","./icon-maskable-512.png","./princess-anna.webp","./princess-ariel.webp","./princess-aurora.webp","./princess-belle.webp","./princess-cinderella.webp","./princess-eilonwy.webp","./princess-elena-of-avalor.webp","./princess-elsa.webp","./princess-flower-tale.webp","./princess-giselle.webp","./princess-jasmine.webp","./princess-kida.webp","./princess-megara.webp","./princess-merida.webp","./princess-moana.webp","./princess-mulan.webp","./princess-pocahontas.webp","./princess-rapunzel-from-the-tale.webp","./princess-rapunzel.webp","./princess-raya.svg","./princess-snow-white.webp","./princess-sofia.webp","./princess-the-brave-princess.webp","./princess-the-butterfly-princess.webp","./princess-the-crystal-princess.webp","./princess-the-dancing-princess.webp","./princess-the-dream-princess.webp","./princess-the-enchanted-castle-princess.webp","./princess-the-forest-princess.webp","./princess-the-frog-princess.webp","./princess-the-ice-princess.webp","./princess-the-moon-princess.webp","./princess-the-pearl-princess.webp","./princess-the-princess-and-the-pea.webp","./princess-the-princess-and-the-unicorn.webp","./princess-the-princess-of-hearts.webp","./princess-the-rainbow-princess.webp","./princess-the-rose-princess.webp","./princess-the-sea-princess.webp","./princess-the-secret-garden-princess.webp","./princess-the-singing-princess.webp","./princess-the-snow-princess.webp","./princess-the-star-princess.webp","./princess-the-storybook-princess.webp","./princess-the-sun-princess.webp","./princess-the-swan-princess.webp","./princess-the-tower-princess.webp","./princess-the-traveling-princess.webp","./princess-tiana.webp","./princess-vanellope.webp","./princess-fallback.svg"];
 self.addEventListener('install', event => {
  event.waitUntil((async()=>{
   const cache=await caches.open(CACHE_NAME);
@@ -25,21 +25,18 @@ self.addEventListener('fetch',event=>{
  const shell=request.mode==='navigate';
  event.respondWith((async()=>{
   const cache=await caches.open(CACHE_NAME);
-  // Range requests (audio seeking) are answered from the full cached file.
   const cached=await cache.match(request,{ignoreSearch:true})||(shell?await cache.match('./index.html'):null);
   if(cached){
    const range=request.headers.get('range');
    if(range&&cached.status===200){
-    // Safari requires 206 answers for media; serve the requested slice of the cached file.
     const m=/bytes=(\d*)-(\d*)/.exec(range);
     const blob=await cached.blob();
     const start=m&&m[1]?parseInt(m[1],10):0;
     const end=m&&m[2]?Math.min(parseInt(m[2],10),blob.size-1):blob.size-1;
-    return new Response(blob.slice(start,end+1),{status:206,headers:{'Content-Type':cached.headers.get('Content-Type')||'audio/mpeg','Content-Range':'bytes '+start+'-'+end+'/'+blob.size,'Content-Length':String(end-start+1)}});
+    return new Response(blob.slice(start,end+1),{status:206,headers:{'Content-Type':cached.headers.get('Content-Type')||'audio/mpeg','Content-Range':'bytes '+start+'-'+end+'/'+blob.size,'Content-Length':String(end-start+1),'Accept-Ranges':'bytes'}});
    }
    return cached;
   }
-  try{const response=await fetch(request);if(response&&response.ok&&response.status===200)await cache.put(request,response.clone());return response;}
-  catch(error){return shell?(await cache.match('./index.html'))||Response.error():Response.error();}
+  try{return await fetch(request);}catch(e){if(shell){const fallback=await cache.match('./index.html');if(fallback)return fallback;}throw e;}
  })());
 });

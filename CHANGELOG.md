@@ -1,3 +1,13 @@
+## V49 — 2026-11-21
+- Added 35 new princess portraits so all 50 Princess Mode subjects have a dedicated image; all 150 Princess Mode challenge records now store an explicit image path.
+- Replaced partial-name image lookup with exact per-challenge image references, preventing accidental matches such as Giovanna resolving to Anna.
+- Added a local fallback portrait for failed image loads and included all portraits in the offline precache.
+- Enlarged Princess Mode artwork as the visual hero, placed the princess name beneath it, and corrected the clipped heading.
+- Added the Princess Album to the menu. Each princess unlocks after all three of her category challenges are completed; locked entries remain silhouettes.
+- Added automated release tests for challenge counts and IDs, image assets, fallback behavior, separate mode progress, album grouping, and version consistency.
+- Centralized the release version in VERSION and synchronized the HTML metadata, export version, footer, version metadata, and service-worker cache.
+- Added CREDITS.md documenting the provenance and known licensing status of all 50 image assets.
+
 ## V48 — 2026-11-21
 - Fixed the JavaScript initialization-order error that prevented Princess Mode image tags from rendering.
 - Moved the HTML escaping helper before the image-rendering branch.
