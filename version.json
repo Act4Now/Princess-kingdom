@@ -1,13 +1,15 @@
 {
-  "version": "42",
+  "version": "43",
   "name": "Princess Kingdom",
   "release_date": "2026-11-21",
-  "release_name": "Reliable game and statistics reset controls",
-  "previous_version": "41",
+  "release_name": "Princess Mode: 150 fairytale princess challenges",
+  "previous_version": "42",
   "changes": [
-    "Fixed New Game: starts a fresh game after confirmation when progress exists.",
-    "Fixed Reset Statistics: clears cumulative on-device statistics after confirmation without requiring a long press.",
-    "Removed broken references to undefined hold-state variables from both controls.",
-    "Kept all app assets and files directly in the release folder."
+    "Added a menu toggle for Princess Mode with 150 bilingual challenges: 50 Drawing, 50 Charades, and 50 Questions.",
+    "Princess Mode includes Disney princesses and fairytale/storybook princess themes.",
+    "Classic Mode retains all 600 original emoji challenges.",
+    "Classic and Princess modes keep separate challenge progress, seen history, and cumulative statistics on the same device.",
+    "Child-facing challenge cards continue to show only the pictogram, category, and name; detailed tasks and answers remain in Adult Help.",
+    "Updated the offline service-worker cache for V43."
   ]
 }

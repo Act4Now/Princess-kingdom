@@ -13,3 +13,6 @@ Fișiere principale:
 
 Publicare: servește fișierele prin HTTPS. Service worker-ul nu rulează prin file://.
 Progresul și provocarea curentă se salvează local.
+
+
+V43: The menu includes Princess Mode (150 princess-themed challenges, 50 per category) and Classic Mode (the original 600 challenges). Progress and cumulative statistics are stored separately per mode.

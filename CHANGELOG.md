@@ -1,3 +1,11 @@
+## V43 — 2026-11-21
+- Added **Mod Prințesă / Princess Mode** in the kingdom menu.
+- Added 150 bilingual princess-themed challenges: 50 Drawing, 50 Charades, and 50 Questions, with Disney and storybook princess themes.
+- Preserved the original 600 challenges in **Mod Clasic**.
+- Separated challenge completion, seen history, and cumulative statistics by game mode.
+- Kept child-facing challenge cards limited to pictogram, category, and name; full tasks and answers remain in Adult Help.
+- Updated PWA version metadata and offline cache to V43.
+
 ## V42 — 2026-11-21
 - Fixed **Joc nou**: the button now starts a fresh game; if there is completed progress, a confirmation dialog is shown first.
 - Fixed **Resetează statisticile**: the button now resets cumulative statistics after confirmation, without changing current game progress.
