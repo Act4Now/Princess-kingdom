@@ -1,3 +1,10 @@
+## V44 — 2026-11-21
+- Replaced emoji pictograms on Princess Mode challenge cards with original inline SVG storybook-princess portrait illustrations.
+- Added varied illustration palettes and hair silhouettes to distinguish the princess portraits.
+- Preserved the challenge category and princess name on the child-facing card; full instructions and answers remain in Adult Help.
+- Kept the original emoji pictograms in Classic Mode and preserved all 600 classic challenges.
+- Updated PWA version metadata and offline cache to V44.
+
 ## V43 — 2026-11-21
 - Added **Mod Prințesă / Princess Mode** in the kingdom menu.
 - Added 150 bilingual princess-themed challenges: 50 Drawing, 50 Charades, and 50 Questions, with Disney and storybook princess themes.

@@ -1,15 +1,14 @@
 {
-  "version": "43",
+  "version": "44",
   "name": "Princess Kingdom",
   "release_date": "2026-11-21",
-  "release_name": "Princess Mode: 150 fairytale princess challenges",
-  "previous_version": "42",
+  "release_name": "Princess Mode: illustrated storybook princess portraits",
+  "previous_version": "43",
   "changes": [
-    "Added a menu toggle for Princess Mode with 150 bilingual challenges: 50 Drawing, 50 Charades, and 50 Questions.",
-    "Princess Mode includes Disney princesses and fairytale/storybook princess themes.",
-    "Classic Mode retains all 600 original emoji challenges.",
-    "Classic and Princess modes keep separate challenge progress, seen history, and cumulative statistics on the same device.",
-    "Child-facing challenge cards continue to show only the pictogram, category, and name; detailed tasks and answers remain in Adult Help.",
-    "Updated the offline service-worker cache for V43."
+    "Replaced emoji pictograms on Princess Mode challenge cards with original inline SVG storybook-princess portrait illustrations.",
+    "Princess portraits use varied palettes and hair silhouettes while preserving each challenge name and category.",
+    "Classic Mode retains its original emoji pictograms and all 600 challenges.",
+    "Child-facing cards continue to show only the illustration, category, and name; instructions and answers remain in Adult Help.",
+    "Updated the offline service-worker cache for V44."
   ]
 }

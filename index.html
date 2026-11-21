@@ -218,6 +218,9 @@ button:focus-visible{outline:3px solid #7a2192;outline-offset:3px}
 #gallery-preview-caption{font:700 14px Arial,sans-serif;color:var(--ink)}
 @media(max-width:360px){.drawing-footer{gap:7px}.drawing-footer button{min-height:52px;padding:8px 6px;font-size:13px}}
 
+
+#emoji.princess-portrait{font-size:initial;padding:8px;}
+#emoji.princess-portrait svg{display:block;width:min(100%,230px);height:auto;max-height:100%;filter:drop-shadow(0 5px 7px rgba(91,45,91,.18));}
 </style>
 </head>
 <body>
@@ -454,6 +457,73 @@ en:{askAdult:'Ask a grown-up to read the question!',resetAsk:'Sure? Tap again',j
 };
 function challengeCopy(c,field){if(!c)return '';if(language==='en')return c[field+'En']||c[field]||'';return c[field]||'';}
 function updateDrawingToolUI(){const t=I18N[language];$('drawing-pen').textContent=t.pen;$('drawing-eraser').textContent=t.eraser;$('drawing-pen').setAttribute('aria-label',t.pen);$('drawing-eraser').setAttribute('aria-label',t.eraser);$('drawing-pen').setAttribute('aria-pressed',String(drawingTool==='pen'));$('drawing-eraser').setAttribute('aria-pressed',String(drawingTool==='eraser'));$('drawing-tool-status').textContent=t.toolStatus+(drawingTool==='pen'?t.pencil:t.eraseTool);}
+
+// Original storybook-princess portrait illustrations for Princess Mode.
+// These are inline vector representations (not emoji); colors vary deterministically by character.
+function princessPortraitMarkup(person){
+ const name=String(person?.label||person?.labelEn||'Princess');
+ let hash=0;for(let i=0;i<name.length;i++)hash=(hash*31+name.charCodeAt(i))>>>0;
+ const palettes=[
+  ['#f6c7dc','#8b426c','#f4b7a8','#6b3d78'],
+  ['#c8e7f5','#345b91','#f1c2a5','#7a4c37'],
+  ['#f8df9d','#a75b36','#e9ad91','#5b3c2d'],
+  ['#d6c8f5','#684b9b','#efc0a8','#513b69'],
+  ['#c8e8d2','#39765c','#d99e7d','#583b2b'],
+  ['#f6c4b5','#9d4960','#f1c3a2','#3f2d26']
+ ];
+ const lower=name.toLocaleLowerCase('ro');
+ const named=[
+  {keys:['cenuș','cinder'],p:['#dceaff','#6a8fc7','#f2c3a4','#d8b46e']},
+  {keys:['albă-ca-zăpada','snow white'],p:['#e8f0ff','#4d6fba','#f2c3a4','#4b2927']},
+  {keys:['aurora'],p:['#f8d9e8','#c45b91','#f2c3a4','#d8a35e']},
+  {keys:['ariel'],p:['#c9edf1','#268a83','#f2c3a4','#a83e35']},
+  {keys:['belle'],p:['#f8e4a8','#c68a27','#f2c3a4','#70452d']},
+  {keys:['jasmine'],p:['#d3eee7','#238b82','#d9a17f','#332526']},
+  {keys:['pocahontas'],p:['#f2d5a5','#a65a36','#b87958','#29201c']},
+  {keys:['mulan'],p:['#f6d3d7','#9c4259','#f1c2a5','#29201e']},
+  {keys:['tiana'],p:['#d5ead1','#43845b','#9c684f','#29201e']},
+  {keys:['rapunzel'],p:['#e9d9fa','#8b68b0','#f2c3a4','#e4c16b']},
+  {keys:['merida'],p:['#d7e8f6','#5479a6','#f1c3a5','#c75d36']},
+  {keys:['moana'],p:['#f6d5c0','#bd684b','#b97857','#29201e']},
+  {keys:['raya'],p:['#f0d0c8','#a84d43','#bb8060','#29201e']},
+  {keys:['anna'],p:['#e8d9f3','#9c4f72','#f1c3a5','#8a4d35']},
+  {keys:['elsa'],p:['#d7f0fa','#79a9c7','#f2c3a4','#e6d7c1']},
+  {keys:['sofia'],p:['#e6d9fa','#8666aa','#f2c3a4','#704b39']}
+ ];
+ const match=named.find(item=>item.keys.some(key=>lower.includes(key)));
+ const p=match?match.p:palettes[hash%palettes.length];
+ const hairStyle=hash%3;
+ const hair=hairStyle===0
+  ? '<path d="M31 70 Q18 35 45 20 Q75 4 99 29 Q119 53 101 91 L91 113 L37 111 L26 88Z" fill="'+p[3]+'"/>'
+  : hairStyle===1
+  ? '<path d="M29 67 Q20 20 61 17 Q104 14 108 59 L101 111 L83 105 L78 53 Q58 72 37 55 L39 111 L25 101Z" fill="'+p[3]+'"/>'
+  : '<path d="M27 63 Q23 22 62 17 Q101 14 106 57 L115 100 L94 111 L88 54 Q71 77 43 58 L35 109 L18 95Z" fill="'+p[3]+'"/>';
+ const crownX=hash%2===0?'M43 31 L49 17 L59 27 L70 10 L81 27 L91 17 L97 31 Z':'M43 31 L52 13 L64 27 L70 8 L79 27 L91 13 L97 31 Z';
+ return `<svg viewBox="0 0 140 150" role="img" aria-label="Portret ilustrat de prințesă" xmlns="http://www.w3.org/2000/svg">
+ <defs><linearGradient id="g${hash}" x1="0" y1="0" x2="1" y2="1"><stop stop-color="${p[0]}"/><stop offset="1" stop-color="${p[1]}"/></linearGradient></defs>
+ <circle cx="70" cy="75" r="68" fill="url(#g${hash})"/>
+ <path d="M25 145 Q31 104 70 101 Q109 104 115 145Z" fill="${p[1]}"/>
+ ${hair}
+ <path d="M42 58 Q42 34 70 33 Q98 34 98 58 L95 83 Q90 103 70 105 Q50 103 45 83Z" fill="${p[2]}"/>
+ <path d="${crownX}" fill="#f7d66c" stroke="#a97925" stroke-width="2" stroke-linejoin="round"/>
+ <circle cx="70" cy="22" r="3.5" fill="#fff4b0"/>
+ <path d="M56 68 Q61 64 66 68 M75 68 Q80 64 85 68" fill="none" stroke="#593d45" stroke-width="2.5" stroke-linecap="round"/>
+ <path d="M66 86 Q70 90 75 86" fill="none" stroke="#a34e61" stroke-width="2" stroke-linecap="round"/>
+ <path d="M48 111 Q70 126 92 111 L105 145 L35 145Z" fill="${p[0]}" opacity=".95"/>
+ <path d="M62 107 L70 118 L78 107" fill="#fff7e8" opacity=".9"/>
+ <path d="M70 118 L65 145 L75 145Z" fill="${p[1]}" opacity=".55"/>
+ </svg>`;
+}
+function renderChallengePortrait(element, challenge){
+ if(gameStyle==='princess' && challenge){
+  element.innerHTML=princessPortraitMarkup(challenge);
+  element.classList.add('princess-portrait');
+ }else{
+  element.classList.remove('princess-portrait');
+  element.textContent=challenge?.emoji||'✨';
+ }
+}
+
 function refreshChallengeCopy(){
  const t=I18N[language];
  const heading=$('heading'),emoji=$('emoji'),label=$('label'),instruction=$('instruction');
@@ -468,7 +538,7 @@ function refreshChallengeCopy(){
  }
  // Child-facing card: pictogram, category and short name only.
  heading.textContent=challengeCopy(active,'cat');
- emoji.textContent=active.emoji||'✨';
+ renderChallengePortrait(emoji,active);
  label.textContent=active.label?challengeCopy(active,'label'):'';
  label.style.display=active.label?'':'none';
  instruction.textContent='';instruction.style.display='none';
