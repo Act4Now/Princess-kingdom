@@ -1,3 +1,9 @@
+## V41 — 2026-11-21
+- Repaired New Game and Reset Statistics with independent, reliable two-tap confirmations; each action now works without long-press timing.
+- Simplified the child-facing challenge card to show only the pictogram, category, and short name when available.
+- Moved full challenge instructions and question text to Adult Help.
+- Kept the 600 bilingual challenges, drawings, gallery, local progress, and offline PWA behavior.
+
 ## V40 — 2026-11-21
 - Removed direct PNG download from the drawing board; retained Save to gallery and Done with unified styling and a purple Done button.
 - Moved the drawing gallery into the hamburger menu.

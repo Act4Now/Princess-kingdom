@@ -1,13 +1,15 @@
-PRINCESS KINGDOM — PWA V40
+PRINCESS KINGDOM — PWA V41
 
-Fișiere
+Toate fișierele aplicației se află direct în acest folder; arhiva nu conține subfoldere.
+Încarcă fișierele din acest folder în directorul GitHub Pages dorit.
+
+Fișiere principale:
 - index.html — aplicația și cele 600 de provocări (RO/EN)
-- scene.jpg — fundalul ilustrat continuu
-- music.mp3 — muzica de fundal (volum mic, pornește după prima atingere)
-- sw.js — cache offline (scene.jpg, music.mp3 și restul sunt precache-uite)
-- manifest.webmanifest, icon-192.png, icon-512.png — instalare PWA
-- version.json / version.txt / CHANGELOG.md — versiune și istoric
+- scene.jpg, music.mp3 — grafică și muzică
+- sw.js — cache offline
+- manifest.webmanifest și icon-*.png — instalare PWA
+- version.json, version.txt, VERSION — versiune
+- CHANGELOG.md — istoric
 
-Publicare: încarcă toate fișierele în același folder, servit prin HTTPS. Service worker-ul nu rulează de pe file://.
-Progresul și provocarea curentă se salvează local (localStorage), iar actualizarea nu îl șterge.
-Prima deschidere cu internet descarcă tot jocul; apoi funcționează offline.
+Publicare: servește fișierele prin HTTPS. Service worker-ul nu rulează prin file://.
+Progresul și provocarea curentă se salvează local.

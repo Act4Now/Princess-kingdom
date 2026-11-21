@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#f3a6dc">
-<meta name="application-version" content="40">
+<meta name="application-version" content="41">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -284,7 +284,7 @@ button:focus-visible{outline:3px solid #7a2192;outline-offset:3px}
   <button id="install-app" type="button" hidden data-i18n="installApp">Instalează aplicația</button>
   
 </section>
-<footer id="kingdom-footer" aria-label="Mesaj de final și versiunea jocului"><span>Creat cu magie pentru a fi jucat în familie</span><span class="footer-version" id="footer-version" data-version="40">V40</span></footer>
+<footer id="kingdom-footer" aria-label="Mesaj de final și versiunea jocului"><span>Creat cu magie pentru a fi jucat în familie</span><span class="footer-version" id="footer-version" data-version="41">V41</span></footer>
 </div>
 </div>
 <div id="drawing-modal" class="drawing-modal" role="dialog" aria-modal="true" aria-label="Tabla de desen" aria-hidden="true" hidden>
@@ -432,13 +432,33 @@ en:{askAdult:'Ask a grown-up to read the question!',resetAsk:'Sure? Tap again',j
 };
 function challengeCopy(c,field){if(!c)return '';if(language==='en')return c[field+'En']||c[field]||'';return c[field]||'';}
 function updateDrawingToolUI(){const t=I18N[language];$('drawing-pen').textContent=t.pen;$('drawing-eraser').textContent=t.eraser;$('drawing-pen').setAttribute('aria-label',t.pen);$('drawing-eraser').setAttribute('aria-label',t.eraser);$('drawing-pen').setAttribute('aria-pressed',String(drawingTool==='pen'));$('drawing-eraser').setAttribute('aria-pressed',String(drawingTool==='eraser'));$('drawing-tool-status').textContent=t.toolStatus+(drawingTool==='pen'?t.pencil:t.eraseTool);}
-function refreshChallengeCopy(){const t=I18N[language];if(celebrating){$('heading').textContent=t.congrats;$('emoji').textContent='🎉👑✨';$('label').textContent=t.bravo;$('instruction').textContent=t.proud;return;}if(!active){if(poolComplete){$('heading').textContent=mode==='all'?t.kingdomDone:t.categoryDone;$('emoji').textContent='👑✨';$('label').textContent=mode==='all'?t.allDone:t.categoryAllDone;$('instruction').textContent=mode==='all'?t.restartHint:t.chooseHint;}else{$('heading').textContent=t.heading;$('emoji').textContent='✨';$('label').textContent=t.choose;$('instruction').textContent=t.touch;}return;}$('heading').textContent=t.heading;$('emoji').textContent=active.emoji||'✨';if(active.cat==='Întrebare'){$('label').textContent='';$('label').style.display='none';$('instruction').style.display='';$('instruction').textContent=t.askAdult;}else{$('label').style.display='';$('instruction').style.display='';$('label').textContent=challengeCopy(active,'task');$('instruction').textContent=active.cat==='Desen'?t.drawPrompt:t.mimePrompt;}}
+function refreshChallengeCopy(){
+ const t=I18N[language];
+ const heading=$('heading'),emoji=$('emoji'),label=$('label'),instruction=$('instruction');
+ if(celebrating){
+  heading.textContent=t.congrats;emoji.textContent='🎉👑✨';label.textContent=t.bravo;label.style.display='';
+  instruction.textContent=t.proud;instruction.style.display='';return;
+ }
+ if(!active){
+  if(poolComplete){heading.textContent=mode==='all'?t.kingdomDone:t.categoryDone;emoji.textContent='👑✨';label.textContent=mode==='all'?t.allDone:t.categoryAllDone;instruction.textContent=mode==='all'?t.restartHint:t.chooseHint;}
+  else{heading.textContent=t.heading;emoji.textContent='✨';label.textContent=t.choose;instruction.textContent=t.touch;}
+  label.style.display='';instruction.style.display='';return;
+ }
+ // Child-facing card: pictogram, category and short name only.
+ heading.textContent=challengeCopy(active,'cat');
+ emoji.textContent=active.emoji||'✨';
+ label.textContent=active.label?challengeCopy(active,'label'):'';
+ label.style.display=active.label?'':'none';
+ instruction.textContent='';instruction.style.display='none';
+}
 function applyLanguage(){
  const t=I18N[language];document.documentElement.lang=language;
  $('language-toggle').textContent=language.toUpperCase();$('language-toggle').title=t.languageTitle;$('menu-toggle').setAttribute('aria-label',t.openMenu);$('menu-close').setAttribute('aria-label',t.closeMenu);$('menu-title').textContent=t.menuTitle;$('language-toggle').setAttribute('aria-label',language==='ro'?'Schimbă limba în engleză':'Switch language to Romanian');
  $('all').setAttribute('aria-label',t.all+': '+t.allCategories);$('draw').setAttribute('aria-label',t.draw);$('mime').setAttribute('aria-label',t.mime);$('questions').setAttribute('aria-label',t.questions);
  $('adult').setAttribute('aria-label',t.adult);$('adult').querySelector('[data-i18n="adult"]').textContent=t.adult;
  $('reset-game').querySelector('[data-i18n="newGame"]').textContent=t.newGame;$('reset-game').setAttribute('aria-label',t.newGame);
+ if(gameResetArmed){$('reset-game').querySelector('.action-label').textContent=t.resetAsk;$('reset-game').setAttribute('aria-label',t.resetAsk);}
+ if(statsResetArmed)$('reset-stats').textContent=t.resetAsk;
  document.querySelectorAll('[data-i18n]').forEach(el=>{const key=el.dataset.i18n;if(t[key])el.textContent=t[key];});
  $('kingdom-footer').querySelector('span').textContent=t.footer;$('kingdom-footer').setAttribute('aria-label',t.footer);
  $('local-stats').setAttribute('aria-label',t.stats);$('category-progress').setAttribute('aria-label',t.categoryProgress);$('adult-message').setAttribute('aria-label',t.adultHint);$('game').setAttribute('aria-label',t.gameLabel);
@@ -598,10 +618,27 @@ $('adaptive-action').addEventListener('click',event=>{
  renderChallenge(null);
 });
 $('adult').addEventListener('click',()=>{if(helpOpen){closeHelp();return;}helpOpen=true;$('adult').setAttribute('aria-expanded','true');refreshAdultHelp();layoutGameSections();$('adult-message').scrollIntoView({block:'nearest',behavior:'smooth'});});
-let resetTimer=0,gameHoldReady=false,statsHoldReady=false,holdTimer=null;
-function bindParentHold(button,which){const start=()=>{clearTimeout(holdTimer);holdTimer=setTimeout(()=>{if(which==='game')gameHoldReady=true;else statsHoldReady=true;button.classList.add('hold-ready');},2000);};const cancel=()=>{clearTimeout(holdTimer);holdTimer=null;};button.addEventListener('pointerdown',start);['pointerup','pointerleave','pointercancel'].forEach(ev=>button.addEventListener(ev,cancel));}
-bindParentHold($('reset-game'),'game');bindParentHold($('reset-stats'),'stats');
-function clearResetConfirm(){clearTimeout(resetTimer);resetTimer=0;const b=$('reset-game');b.classList.remove('confirm');b.querySelector('.action-label').textContent=I18N[language].newGame;b.setAttribute('aria-label',I18N[language].newGame);}
+let gameResetTimer=0,statsResetTimer=0,gameResetArmed=false,statsResetArmed=false;
+function clearGameResetConfirm(){
+ clearTimeout(gameResetTimer);gameResetTimer=0;gameResetArmed=false;
+ const b=$('reset-game');b.classList.remove('confirm');
+ b.querySelector('.action-label').textContent=I18N[language].newGame;
+ b.setAttribute('aria-label',I18N[language].newGame);
+}
+function clearStatsResetConfirm(){
+ clearTimeout(statsResetTimer);statsResetTimer=0;statsResetArmed=false;
+ $('reset-stats').textContent=I18N[language].resetStats;
+}
+function armGameReset(){
+ gameResetArmed=true;const b=$('reset-game');b.classList.add('confirm');
+ b.querySelector('.action-label').textContent=I18N[language].resetAsk;
+ b.setAttribute('aria-label',I18N[language].resetAsk);
+ clearTimeout(gameResetTimer);gameResetTimer=setTimeout(clearGameResetConfirm,5000);
+}
+function armStatsReset(){
+ statsResetArmed=true;$('reset-stats').textContent=I18N[language].resetAsk;
+ clearTimeout(statsResetTimer);statsResetTimer=setTimeout(clearStatsResetConfirm,5000);
+}
 $('export-progress').addEventListener('click',()=>{closeGameMenu();const payload={app:'Princess Kingdom',format:1,version:38,done:[...done],seen:[...seen],stats,language};const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='princess-kingdom-progress.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);});
 $('import-progress').addEventListener('change',async e=>{closeGameMenu();const file=e.target.files?.[0];if(!file)return;try{const data=JSON.parse(await file.text());const valid=new Set(BANK.map(c=>c.id));if(data.app!=='Princess Kingdom'||data.format!==1||!Array.isArray(data.done)||!Array.isArray(data.seen)||!data.done.every(x=>valid.has(x))||!data.seen.every(x=>valid.has(x)))throw new Error('invalid');if(!confirm(language==='ro'?'Importul va înlocui progresul și statisticile locale. Continui?':'Import will replace local progress and statistics. Continue?'))return;done=new Set(data.done);seen=new Set(data.seen);stats={completedEver:Math.max(0,Number(data.stats?.completedEver)||0),resets:Math.max(0,Number(data.stats?.resets)||0)};saveState();active=null;celebrating=false;poolComplete=false;updateProgress();refreshChallengeCopy();updateAction();}catch(err){alert(I18N[language].importError);}finally{e.target.value='';}});
 $('reset-stats').addEventListener('click',()=>{
