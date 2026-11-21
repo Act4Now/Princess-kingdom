@@ -1,4 +1,11 @@
 ## V38 — 2026-11-21
+
+## V39 — 2026-11-21
+- Added a hamburger menu for language, music volume, progress export/import, statistics reset, and New Game.
+- Moved Read Challenge to a speaker-style control below the music button.
+- Moved Another Challenge into the main action row, replacing New Game.
+- Preserved the V38 artwork, challenge bank, drawing board, local progress, and offline behavior.
+
 - Expanded and separated visible Drawing and Charades prompt inventories; corrected Romanian articles and added child-visible scene prompts.
 - Added browser read-aloud, skip-without-progress, milestone badges, reduced-motion-aware reward effects, persistent music volume, local drawing gallery and emoji stamps.
 - Added local progress export/import with validation and confirmation; parent controls require a 2-second hold.

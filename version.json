@@ -1,16 +1,13 @@
 {
-  "version": "38",
+  "version": "39",
   "name": "Princess Kingdom",
   "release_date": "2026-11-21",
-  "release_name": "Content, accessibility and PWA upgrade",
-  "previous_version": "37",
+  "release_name": "Menu and challenge controls redesign",
+  "previous_version": "38",
   "changes": [
-    "Expanded and separated visible Drawing and Charades prompt inventories; corrected Romanian articles and added child-visible scene prompts.",
-    "Added offline-capable browser read-aloud, skip-without-progress, milestone badges, reward effects respecting reduced motion, and persistent music volume.",
-    "Added local drawing gallery and emoji stamp tool; drawings remain on device.",
-    "Added progress export/import with schema validation and confirmation.",
-    "Added parent hold gesture for New Game and statistics reset.",
-    "Resized PWA icons, added a maskable icon, manifest id and install prompt; added GitHub Pages test/deploy and tagged-release workflows.",
-    "Added canonical VERSION file, version sync script, 404 fallback and automated source checks."
+    "Added a hamburger menu containing language selection, music volume, progress export/import, statistics reset, and New Game.",
+    "Moved Read Challenge to a speaker-style shortcut below the music control.",
+    "Moved Another Challenge into the main action row, replacing New Game there.",
+    "Preserved the V38 visual theme, gameplay data, drawing board, local progress, and offline-first behavior."
   ]
 }
