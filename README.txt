@@ -106,3 +106,5 @@ V31 include selector de limbă pentru interfață (RO/EN), statistici locale fă
 
 V32 — Drawing Board
 A full-screen local drawing board is available during Desen challenges on devices with Canvas and Pointer Events support. Drawings are not uploaded. Use Download PNG to keep a copy on the device. Completing a challenge clears the in-game canvas and draft.
+
+V34: Full Romanian/English interface and challenge-bank translation; HTML category/action labels; localized drawing controls; visible Pencil/Eraser selection state with aria-pressed and live status.

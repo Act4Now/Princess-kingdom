@@ -1,13 +1,14 @@
 {
-  "version": "33",
+  "version": "34",
   "name": "Princess Kingdom",
   "release_date": "2026-11-21",
-  "release_name": "Ajustări de aliniere vizuală",
-  "previous_version": "32",
+  "release_name": "Complete English translation and drawing tool indicator",
+  "previous_version": "33",
   "changes": [
-    "Equalized the four category hit-target heights and refined the active category frame to stay within the button bounds.",
-    "Aligned the kingdom progress track with the journal counter area.",
-    "Expanded the adult-help and new-game hit targets to match the golden progress card width.",
-    "Preserved the V32 drawing board, 600 challenges, bilingual interface, local-only statistics, and offline-first behavior."
+    "Added complete English translations for all 600 challenge prompts, labels, questions and answers while preserving the Romanian source text.",
+    "Replaced artwork-baked Romanian category and action labels with live HTML labels that update immediately with the selected language.",
+    "Added a single localized statistics template and updated document language, progress labels, footer, adult help, celebration and update dialog text.",
+    "Added a clear selected visual state, aria-pressed state, and live selected-tool status for Pencil and Eraser.",
+    "Preserved local-only preferences and progress, the drawing board, and offline-first PWA behavior."
   ]
 }

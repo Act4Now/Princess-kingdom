@@ -93,3 +93,13 @@
 - Drawings and optional draft recovery remain local; no upload or sharing requests are made.
 - Completing a challenge closes the board and clears in-game/draft data; previously downloaded PNGs remain on the device.
 - Synchronized app version metadata and Service Worker cache to V32.
+
+
+## V34 — 2026-11-21
+- Added English translations for all 600 challenges, including drawing prompts, charades prompts, questions and answers.
+- Replaced Romanian labels baked into the category and action artwork with accessible HTML labels that switch immediately between Romanian and English.
+- Localized congratulations, category completion, adult help, drawing-board controls, update notice, progress labels, footer and on-device statistics.
+- Statistics now use a single language-specific template with completed and remaining placeholders.
+- The document `lang` attribute follows the selected language.
+- Pencil and Eraser now have distinct selected styling, mutually exclusive `aria-pressed` states and a live selected-tool label.
+- Preserved local progress, language preference, 600 challenge IDs, drawing-board behavior and offline-first update handling.

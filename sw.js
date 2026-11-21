@@ -1,5 +1,5 @@
-/* Princess Kingdom V33 — combined randomization, responsive, bilingual UI and local stats release. */
-const CACHE_NAME = 'princess-kingdom-v33-alignment-refinement';
+/* Princess Kingdom V34 — combined randomization, responsive, bilingual UI and local stats release. */
+const CACHE_NAME = 'princess-kingdom-v34-full-english-drawing-tools';
 const CACHE_PREFIX = 'princess-kingdom-';
 const APP_FILES = ['./','./index.html','./manifest.webmanifest','./version.json','./version.txt','./garden-extension.jpg','./icon-192.png','./icon-512.png'];
 self.addEventListener('install', event => {
