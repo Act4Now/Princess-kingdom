@@ -1,5 +1,5 @@
-/* Princess Kingdom V29 — kingdom-wide Provocare nouă selection. */
-const CACHE_NAME = 'princess-kingdom-v29-kingdom-wide-next';
+/* Princess Kingdom V30 — kingdom-wide Provocare nouă selection. */
+const CACHE_NAME = 'princess-kingdom-v30-accessibility';
 const CACHE_PREFIX = 'princess-kingdom-';
 const APP_FILES = [
   './', './index.html', './manifest.webmanifest', './version.json', './version.txt',

@@ -1,13 +1,14 @@
 {
-  "version": "29",
+  "version": "30",
   "name": "Princess Kingdom",
-  "release_date": "2026-11-20",
-  "release_name": "Kingdom-wide Provocare nouă",
-  "previous_version": "28",
+  "release_date": "2026-11-21",
+  "release_name": "Accesibilitate",
+  "previous_version": "29",
   "changes": [
-    "The main adaptive Provocare nouă action now selects randomly from all unfinished challenges across all three categories, regardless of the previously selected category.",
-    "The category buttons remain unchanged and continue to select challenges only from their own category.",
-    "Completed challenges remain excluded until Joc nou resets progress.",
-    "Synchronized footer metadata, version files, Service Worker cache, and update session key to V29."
+    "Added clear accessible names and button types to game controls.",
+    "Added visible keyboard focus indicators, including for the visually hidden Joc nou control.",
+    "Added expanded-state and controlled-panel semantics to Ajutor pentru adult.",
+    "Added accessible progressbar semantics and live values for each category.",
+    "Kept the original visual artwork, challenge bank, local progress and offline-first launch behavior."
   ]
 }

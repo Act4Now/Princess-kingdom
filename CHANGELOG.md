@@ -60,3 +60,10 @@
 - The category buttons remain category-specific; their selection behavior is unchanged.
 - Completed challenges remain excluded until „Joc nou” resets the progress.
 - Synchronized footer, metadata, version files, Service Worker cache, and update session key to V29.
+
+## V30 — 2026-11-21
+- Added explicit accessible names and button types to the game controls.
+- Added visible keyboard focus indicators, including for the visually hidden „Joc nou” control.
+- Added expanded-state and controlled-panel semantics to „Ajutor pentru adult”.
+- Added accessible progress bars with current values for each category.
+- Preserved the original artwork, challenge bank, local progress and offline-first launch behavior.
