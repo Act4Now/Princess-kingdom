@@ -1,7 +1,7 @@
 {
   "name": "Princess Kingdom",
   "short_name": "Princess Kingdom",
-  "description": "Joc Activity pentru copii: desenează, mimează și răspunde la întrebări.",
+  "description": "Joc de familie pentru copii: desenează, mimează și răspunde la întrebări.",
   "lang": "ro",
   "start_url": "./",
   "scope": "./",
@@ -21,10 +21,24 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
+    },
+    {
+      "src": "icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ],
   "display_override": [
     "fullscreen",
     "standalone"
+  ],
+  "id": "./",
+  "shortcuts": [
+    {
+      "name": "Provocare nouă",
+      "short_name": "Joacă",
+      "url": "./"
+    }
   ]
 }

@@ -1,7 +1,7 @@
-/* Princess Kingdom V36 — offline-first app shell. */
-const CACHE_NAME = 'princess-kingdom-v37-local-stats-reset';
+/* Princess Kingdom V38 — offline-first app shell. */
+const CACHE_NAME = 'princess-kingdom-v38-release';
 const CACHE_PREFIX = 'princess-kingdom-';
-const APP_FILES = ['./','./index.html','./manifest.webmanifest','./version.json','./version.txt','./scene.jpg','./music.mp3','./icon-192.png','./icon-512.png'];
+const APP_FILES = ['./','./index.html','./manifest.webmanifest','./version.json','./version.txt','./scene.jpg?v=38','./music.mp3?v=38','./icon-192.png','./icon-512.png','./icon-maskable-512.png'];
 self.addEventListener('install', event => {
  event.waitUntil((async()=>{
   const cache=await caches.open(CACHE_NAME);

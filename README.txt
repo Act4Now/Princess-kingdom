@@ -1,4 +1,4 @@
-PRINCESS KINGDOM — PWA V37
+PRINCESS KINGDOM — PWA V38
 
 Fișiere
 - index.html — aplicația și cele 600 de provocări (RO/EN)

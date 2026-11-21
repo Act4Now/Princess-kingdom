@@ -1,3 +1,10 @@
+## V38 — 2026-11-21
+- Expanded and separated visible Drawing and Charades prompt inventories; corrected Romanian articles and added child-visible scene prompts.
+- Added browser read-aloud, skip-without-progress, milestone badges, reduced-motion-aware reward effects, persistent music volume, local drawing gallery and emoji stamps.
+- Added local progress export/import with validation and confirmation; parent controls require a 2-second hold.
+- Resized PWA icons, added maskable icon, manifest id, install prompt, canonical VERSION script, GitHub Pages workflows, tests and 404 fallback.
+- Note: install screenshots are not included because no genuine in-app screenshots were available in the supplied archive.
+
 # Princess Kingdom — Changelog
 
 ## V37 — 2026-11-21

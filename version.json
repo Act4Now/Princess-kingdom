@@ -1,13 +1,16 @@
 {
-  "version": "37",
+  "version": "38",
   "name": "Princess Kingdom",
   "release_date": "2026-11-21",
-  "release_name": "Local statistics reset",
-  "previous_version": "36",
+  "release_name": "Content, accessibility and PWA upgrade",
+  "previous_version": "37",
   "changes": [
-    "Added a localized reset-statistics control beside the on-device statistics.",
-    "Reset requires confirmation and clears cumulative device statistics only; current game progress and challenge state remain unchanged.",
-    "Statistics display shows cumulative completed challenges only, without a remaining-count figure.",
-    "Preserved the V36 layout, artwork, bilingual interface, drawing board, 600 challenges, and offline assets."
+    "Expanded and separated visible Drawing and Charades prompt inventories; corrected Romanian articles and added child-visible scene prompts.",
+    "Added offline-capable browser read-aloud, skip-without-progress, milestone badges, reward effects respecting reduced motion, and persistent music volume.",
+    "Added local drawing gallery and emoji stamp tool; drawings remain on device.",
+    "Added progress export/import with schema validation and confirmation.",
+    "Added parent hold gesture for New Game and statistics reset.",
+    "Resized PWA icons, added a maskable icon, manifest id and install prompt; added GitHub Pages test/deploy and tagged-release workflows.",
+    "Added canonical VERSION file, version sync script, 404 fallback and automated source checks."
   ]
 }
