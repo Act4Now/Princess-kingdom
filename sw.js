@@ -1,7 +1,7 @@
-/* Princess Kingdom V47 — offline-first app shell. */
-const CACHE_NAME = 'princess-kingdom-v47-release';
+/* Princess Kingdom V48 — offline-first app shell. */
+const CACHE_NAME = 'princess-kingdom-v48-release';
 const CACHE_PREFIX = 'princess-kingdom-';
-const APP_FILES = ['./','./index.html','./manifest.webmanifest','./version.json','./version.txt','./scene.jpg?v=47','./music.mp3?v=47','./icon-192.png','./icon-512.png','./icon-maskable-512.png','./princess-cinderella.webp','./princess-belle.webp','./princess-ariel.webp','./princess-rapunzel.webp','./princess-jasmine.webp','./princess-snow-white.webp','./princess-aurora.webp','./princess-elsa.webp','./princess-merida.webp','./princess-mulan.webp','./princess-tiana.webp','./princess-moana.webp','./princess-pocahontas.webp','./princess-anna.webp','./princess-flower-tale.webp'];
+const APP_FILES = ['./','./index.html','./manifest.webmanifest','./version.json','./version.txt','./scene.jpg?v=48','./music.mp3?v=48','./icon-192.png','./icon-512.png','./icon-maskable-512.png','./princess-cinderella.webp','./princess-belle.webp','./princess-ariel.webp','./princess-rapunzel.webp','./princess-jasmine.webp','./princess-snow-white.webp','./princess-aurora.webp','./princess-elsa.webp','./princess-merida.webp','./princess-mulan.webp','./princess-tiana.webp','./princess-moana.webp','./princess-pocahontas.webp','./princess-anna.webp','./princess-flower-tale.webp'];
 self.addEventListener('install', event => {
  event.waitUntil((async()=>{
   const cache=await caches.open(CACHE_NAME);

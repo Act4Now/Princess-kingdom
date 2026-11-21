@@ -1,3 +1,10 @@
+## V48 — 2026-11-21
+- Fixed the JavaScript initialization-order error that prevented Princess Mode image tags from rendering.
+- Moved the HTML escaping helper before the image-rendering branch.
+- Changed image paths to explicit relative paths for GitHub Pages repository subpaths.
+- Preserved all 15 supplied image assets and offline precache entries.
+- Updated footer and PWA cache to V48.
+
 ## V47 — 2026-11-21
 - Added 15 supplied character illustration panels as optimized WebP assets for Princess Mode.
 - Replaced emoji/pictogram rendering with supplied illustrations for 14 named princesses and the flower-princess fairytale entry.

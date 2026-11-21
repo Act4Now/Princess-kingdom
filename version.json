@@ -1,14 +1,14 @@
 {
-  "version": "47",
+  "version": "48",
   "name": "Princess Kingdom",
   "release_date": "2026-11-21",
-  "release_name": "Princess Mode: supplied character illustrations",
-  "previous_version": "46",
+  "release_name": "Princess Mode image rendering fix",
+  "previous_version": "47",
   "changes": [
-    "Added 15 supplied character illustration panels as optimized WebP assets for Princess Mode.",
-    "Replaced emoji/pictogram rendering with the supplied illustrations for 14 named princesses and the flower-princess fairytale entry.",
-    "Other fairytale princess entries retain their individual illustrated SVG portraits.",
-    "Added all 15 image assets to the offline service-worker precache.",
-    "Updated footer version, application-version metadata and PWA cache to V47."
+    "Fixed a JavaScript initialization-order error that prevented supplied princess image tags from being generated.",
+    "Moved the HTML escaping helper before the image-rendering branch.",
+    "Made image paths explicitly relative so they work when GitHub Pages serves the app from a repository subpath.",
+    "Preserved all 15 supplied image assets, offline precache entries, and the 600 classic plus 150 princess challenges.",
+    "Updated footer and PWA cache version to V48."
   ]
 }
