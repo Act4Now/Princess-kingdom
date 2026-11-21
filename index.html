@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#f8e6f6">
-<meta name="application-version" content="30">
+<meta name="application-version" content="33">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -39,10 +39,10 @@ body{
 
 /* Category buttons: grayscale is applied directly to the artwork beneath each hit target.
    No separate overlay boxes are used. */
-#all{left:15.8%;top:16.2%;width:33.9%;height:6.8%}
-#draw{left:50.1%;top:16.2%;width:33.9%;height:6.8%}
-#mime{left:15.8%;top:23.2%;width:33.9%;height:6.7%}
-#questions{left:50.1%;top:23.2%;width:33.9%;height:6.7%}
+#all{left:15.8%;top:16.2%;width:33.9%;height:6.9%}
+#draw{left:50.1%;top:16.2%;width:33.9%;height:6.9%}
+#mime{left:15.8%;top:23.2%;width:33.9%;height:6.9%}
+#questions{left:50.1%;top:23.2%;width:33.9%;height:6.9%}
 .hit.category-dim{
   /* Match the artwork's elliptical rounded corners rather than a fixed pixel radius. */
   border-radius:11% / 22%;
@@ -54,7 +54,7 @@ body{
   opacity:1;filter:none;outline:none;
   border-radius:11% / 22%;z-index:20;
   /* Keep the selection frame inside the exact hit area so it follows the button edge. */
-  box-shadow:inset 0 0 0 4px #ff9700,inset 0 0 0 6px rgba(255,255,255,.72),0 0 12px rgba(255,145,0,.48);
+  box-shadow:inset 0 0 0 3px #ff9700,inset 0 0 0 5px rgba(255,255,255,.78);
 }
 
 /* Journal counter and progress bar remain over the original artwork. */
@@ -65,7 +65,7 @@ body{
 }
 #progress-track{
   /* Shorter track, centered beneath the journal label and total counter. */
-  position:absolute;z-index:4;left:15%;top:33.5%;width:70%;height:1.52%;
+  position:absolute;z-index:4;left:15%;top:33.5%;width:72.5%;height:1.52%;
   border-radius:999px;overflow:hidden;background:rgba(220,170,221,.78);
   box-shadow:inset 0 1px 2px rgba(105,35,120,.16);pointer-events:none;
 }
@@ -103,9 +103,9 @@ body{
   margin:0 auto;display:flex;flex-direction:column;align-items:center;
   gap:0;padding:0;
 }
-#adult{left:7%;top:64.8%;width:43%;height:5.4%;border-radius:999px}
+#adult{left:3%;top:64.8%;width:47%;height:5.4%;border-radius:999px}
 #reset-game{
-  position:absolute;z-index:11;left:50%;top:64.8%;width:43%;height:5.4%;
+  position:absolute;z-index:11;left:50%;top:64.8%;width:47%;height:5.4%;
   border:0;border-radius:0;background:transparent;color:transparent;
   font-size:0;line-height:0;text-indent:-9999px;
   padding:0;display:block;cursor:pointer;touch-action:manipulation;
@@ -242,9 +242,56 @@ button{-webkit-tap-highlight-color:transparent}
 @media(prefers-reduced-motion:reduce){#update-notice .update-spinner{animation:none}}
 
 
+
+/* V31: compact utility controls, touch comfort and narrow-screen resilience. */
+#language-toggle,#connection-status{
+ position:fixed;z-index:60;top:max(12px,env(safe-area-inset-top));
+ min-height:42px;border:1px solid rgba(255,255,255,.95);border-radius:999px;
+ background:rgba(255,247,255,.94);color:#741987;font:700 13px/1 Arial,sans-serif;
+ box-shadow:0 2px 8px rgba(85,28,100,.16);display:flex;align-items:center;justify-content:center;
+ padding:0 12px;touch-action:manipulation
+}
+#language-toggle{left:max(12px,env(safe-area-inset-left));cursor:pointer}
+#connection-status{right:62px;pointer-events:none;min-width:42px}
+#connection-status.offline{color:#8b4b16;background:#fff2d8}
+#local-stats{width:min(94%,680px);margin:10px auto 12px;padding:10px 14px;
+ border:2px solid #e6b75a;border-radius:18px;background:rgba(255,248,238,.94);
+ color:#713b79;text-align:center;font:700 13px/1.35 Arial,sans-serif;}
+#local-stats strong{font-variant-numeric:tabular-nums}
+button:focus-visible{outline:3px solid #7a2192!important;outline-offset:3px!important}
+.hit{touch-action:manipulation}
+@media(max-width:390px){
+ #language-toggle,#connection-status{min-height:38px;font-size:12px;padding:0 9px}
+ #connection-status{right:56px}
+ #local-stats{font-size:12px;padding:9px 10px}
+}
+@media(orientation:landscape) and (max-height:520px){
+ #sound-toggle,#language-toggle,#connection-status{top:max(6px,env(safe-area-inset-top));}
+ #sound-toggle{width:36px;height:36px}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important}}
+
+/* V32 Drawing Board */
+#draw-board-open{position:absolute;z-index:35;left:34%;top:54.8%;width:32%;height:3.1%;border:2px solid #e5b85f;border-radius:999px;background:linear-gradient(180deg,#fff9e9,#f7dff3);color:#713b79;font-weight:800;font-size:clamp(11px,2.7vw,16px);box-shadow:0 2px 0 rgba(132,66,137,.2);touch-action:manipulation}
+#draw-board-open[hidden]{display:none}
+.drawing-modal{position:fixed;inset:0;z-index:2000;background:rgba(42,18,52,.72);display:flex;align-items:center;justify-content:center;padding:env(safe-area-inset-top) 10px env(safe-area-inset-bottom);}
+.drawing-modal[hidden]{display:none}
+.drawing-panel{width:min(100%,980px);height:min(96dvh,900px);display:flex;flex-direction:column;gap:10px;padding:12px;border:3px solid #e5b85f;border-radius:22px;background:linear-gradient(180deg,#fffaf0,#fbe7f5);box-shadow:0 10px 40px rgba(0,0,0,.3);color:#713b79;}
+.drawing-header h2{margin:0;text-align:center;font:700 22px Georgia,serif}.drawing-header p{margin:5px 0 0;text-align:center;font:12px/1.3 Arial,sans-serif}
+.drawing-toolbar{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:7px}
+.drawing-toolbar button,.drawing-footer button{min-height:42px;padding:8px 12px;border:1px solid #d9a6c8;border-radius:13px;background:#fff;color:#713b79;font-weight:700;touch-action:manipulation}
+.drawing-control{display:flex;align-items:center;gap:5px;font:700 12px Arial,sans-serif}.drawing-control input[type=color]{width:38px;height:34px;border:0;background:transparent}.drawing-control input[type=range]{width:90px;max-width:22vw}
+#drawing-canvas{display:block;flex:1 1 auto;min-height:120px;width:100%;height:100%;background:#fff;border:2px solid #e5b85f;border-radius:12px;touch-action:none;cursor:crosshair}
+.drawing-footer{display:flex;justify-content:center;gap:10px}.drawing-footer button{min-width:120px}.drawing-primary{background:#713b79!important;color:white!important;border-color:#713b79!important}.drawing-secondary{background:#fff5df!important}
+.drawing-modal button:focus-visible,.drawing-modal input:focus-visible{outline:3px solid #7a2192;outline-offset:2px}
+@media(max-width:520px){.drawing-panel{height:calc(100dvh - 12px);padding:8px;gap:7px;border-radius:16px}.drawing-header h2{font-size:18px}.drawing-toolbar{gap:5px}.drawing-toolbar button{min-height:40px;padding:7px 9px;font-size:12px}.drawing-control{font-size:11px}.drawing-footer button{min-width:0;flex:1}.drawing-header p{font-size:11px}}
+@media(prefers-reduced-motion:reduce){.drawing-panel *{scroll-behavior:auto}}
+
 </style>
 </head>
 <body>
+<button id="language-toggle" type="button" aria-label="Switch language to English" title="Language">RO</button>
+<div id="connection-status" role="status" aria-live="polite" aria-label="Stare conexiune">Online</div>
 <button id="sound-toggle" type="button" aria-label="Oprește muzica" aria-pressed="true" title="Muzică pornită">♫</button>
 <main id="game" aria-label="Jocul Princess Kingdom">
 <img id="art" alt="Princess Kingdom – castel, grădină și butoane de joc"
@@ -262,9 +309,28 @@ src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgICAgMCAgIDAwMD
 <button class="hit" id="mime" type="button" aria-label="Categoria Mimă" aria-pressed="false"></button>
 <button class="hit" id="questions" type="button" aria-label="Categoria Întrebări" aria-pressed="false"></button>
 <button class="hit adaptive-action" id="adaptive-action" type="button" aria-label="Provocare nouă">✨ Provocare nouă</button>
+<button id="draw-board-open" type="button" aria-label="Deschide tabla de desen" hidden>🎨 Desenează</button>
 <button class="hit" id="adult" type="button" aria-label="Ajutor pentru adult" aria-expanded="false" aria-controls="adult-message"></button>
 <button id="reset-game" type="button" aria-label="Joc nou: resetează progresul și reîncepe toate provocările"><span class="visually-hidden">Joc nou</span></button>
 </main>
+<div id="drawing-modal" class="drawing-modal" role="dialog" aria-modal="true" aria-label="Tabla de desen" aria-hidden="true" hidden>
+ <div class="drawing-panel">
+  <header class="drawing-header"><h2 id="drawing-title">🎨 Tabla de desen</h2><p id="drawing-privacy">Desenul rămâne pe acest dispozitiv. Descarcă-l dacă dorești să îl păstrezi.</p></header>
+  <div class="drawing-toolbar" role="toolbar" aria-label="Instrumente de desen">
+   <label class="drawing-control">Culoare <input id="drawing-color" type="color" value="#6f1688" aria-label="Culoarea creionului"></label>
+   <label class="drawing-control">Grosime <input id="drawing-size" type="range" min="1" max="24" value="4" aria-label="Grosimea liniei"></label>
+   <button type="button" id="drawing-pen" aria-pressed="true">Creion</button>
+   <button type="button" id="drawing-eraser" aria-pressed="false">Radieră</button>
+   <button type="button" id="drawing-undo" aria-label="Anulează ultima linie">↶ Undo</button>
+   <button type="button" id="drawing-clear">Șterge tot</button>
+  </div>
+  <canvas id="drawing-canvas" aria-label="Suprafață de desen. Folosește degetul, mouse-ul sau un stylus."></canvas>
+  <footer class="drawing-footer">
+   <button type="button" id="drawing-download" class="drawing-primary">Descarcă PNG</button>
+   <button type="button" id="drawing-done" class="drawing-secondary">Gata</button>
+  </footer>
+ </div>
+</div>
 <div id="dynamic-sections" aria-label="Ajutor și progres">
 <section id="adult-message" role="status" aria-live="polite" aria-atomic="true" aria-label="Indiciu pentru adult"></section>
 <section id="category-progress" aria-label="Progres pe categorii">
@@ -281,6 +347,7 @@ src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgICAgMCAgIDAwMD
     <div class="category-track" id="questions-track" role="progressbar" aria-label="Progres Întrebări" aria-valuemin="0" aria-valuemax="200" aria-valuenow="0"><div class="category-fill" id="questions-fill"></div></div>
   </div>
 </section>
+<div id="local-stats" role="status" aria-live="polite" aria-label="Statistici locale">Statistici pe acest dispozitiv: <strong id="stats-completed">0</strong> provocări completate · <strong id="stats-remaining">600</strong> rămase</div>
 </div>
 <footer id="kingdom-footer" aria-label="Mesaj de final și versiunea jocului">
   <span>Creat cu magie pentru a fi jucat în familie</span>
@@ -378,8 +445,13 @@ document.addEventListener('pointerdown',e=>{
 
 let mode='all',active=null,seen=new Set(),done=new Set(),helpOpen=false,celebrating=false,poolComplete=false;
 const STORAGE='princess_kingdom_v9';
+const PREFS='princess_kingdom_preferences_v1';
+const STATS='princess_kingdom_stats_v1';
+let language='ro',stats={completedEver:0,resets:0};
 function loadState(){
  try{
+  const pref=JSON.parse(localStorage.getItem(PREFS)||'null'); if(pref&&['ro','en'].includes(pref.language))language=pref.language;
+  const savedStats=JSON.parse(localStorage.getItem(STATS)||'null'); if(savedStats&&typeof savedStats==='object')stats={completedEver:Number(savedStats.completedEver)||0,resets:Number(savedStats.resets)||0};
   const s=JSON.parse(localStorage.getItem(STORAGE)||'null');
   if(s){
    done=new Set(Array.isArray(s.done)?s.done:[]);
@@ -392,8 +464,33 @@ function loadState(){
  }catch(e){done=new Set();seen=new Set();}
 }
 function saveState(){
- try{localStorage.setItem(STORAGE,JSON.stringify({done:[...done],seen:[...seen]}));}catch(e){}
+ try{localStorage.setItem(STORAGE,JSON.stringify({done:[...done],seen:[...seen]}));localStorage.setItem(STATS,JSON.stringify(stats));}catch(e){}
 }
+function secureIndex(max){
+ if(max<=1)return 0;
+ try{const a=new Uint32Array(1);crypto.getRandomValues(a);return Math.floor((a[0]/4294967296)*max)}catch(e){return Math.floor(Math.random()*max)}
+}
+function updateLocalStats(){
+ const completed=done.size;
+ $('stats-completed').textContent=String(stats.completedEver);
+ $('stats-remaining').textContent=String(Math.max(0,TOTAL-completed));
+ $('local-stats').setAttribute('aria-label',language==='en'?`Local statistics on this device: ${stats.completedEver} challenges completed in total, ${Math.max(0,TOTAL-completed)} remain in this game`:`Statistici locale: ${stats.completedEver} provocări completate în total, ${Math.max(0,TOTAL-completed)} rămase în jocul curent`);
+}
+const I18N={ro:{all:'Tot regatul',draw:'Desen',mime:'Mimă',questions:'Întrebări',new:'Provocare nouă',success:'Am reușit',newGame:'Joc nou',choose:'Alege o categorie!',touch:'Atinge unul dintre cele patru butoane ale castelului.',heading:'Provocarea ta',adult:'Ajutor pentru adult',footer:'Creat cu magie pentru a fi jucat în familie',online:'Online',offline:'Offline',stats:'Statistici pe acest dispozitiv'},en:{all:'Whole kingdom',draw:'Drawing',mime:'Charades',questions:'Questions',new:'New challenge',success:'We did it!',newGame:'New game',choose:'Choose a category!',touch:'Tap one of the four castle buttons.',heading:'Your challenge',adult:'Adult help',footer:'Made with magic for family fun',online:'Online',offline:'Offline',stats:'On-device statistics'}};
+function applyLanguage(){
+ const t=I18N[language]; document.documentElement.lang=language;
+ $('language-toggle').textContent=language.toUpperCase(); $('language-toggle').setAttribute('aria-label',language==='ro'?'Schimbă limba în engleză':'Schimbă limba în română');
+ $('all').setAttribute('aria-label',t.all+ (language==='ro'?': provocări din toate categoriile':': challenges from every category'));
+ $('draw').setAttribute('aria-label',t.draw);$('mime').setAttribute('aria-label',t.mime);$('questions').setAttribute('aria-label',t.questions);
+ $('adult').setAttribute('aria-label',t.adult); $('kingdom-footer').querySelector('span').textContent=t.footer;
+ $('local-stats').firstChild.textContent=t.stats+': ';
+ $('connection-status').textContent=navigator.onLine?t.online:t.offline; $('connection-status').classList.toggle('offline',!navigator.onLine);
+ if(!active&&!celebrating&&!poolComplete){$('heading').textContent=t.heading;$('label').textContent=t.choose;$('instruction').textContent=t.touch;}
+ updateAction();updateLocalStats();
+}
+$('language-toggle').addEventListener('click',()=>{language=language==='ro'?'en':'ro';try{localStorage.setItem(PREFS,JSON.stringify({language}));}catch(e){}applyLanguage();});
+function updateConnection(){const b=$('connection-status');b.textContent=navigator.onLine?I18N[language].online:I18N[language].offline;b.classList.toggle('offline',!navigator.onLine);b.setAttribute('aria-label',b.textContent);}
+window.addEventListener('online',updateConnection);window.addEventListener('offline',updateConnection);
 function sanitizeState(){
  const valid=new Set(BANK.map(c=>c.id));
  done=new Set([...done].filter(id=>valid.has(id)));
@@ -404,6 +501,7 @@ function updateProgress(){
  $('counter').textContent=count+' / '+TOTAL;
  $('progress-fill').style.width=(count/TOTAL*100)+'%';
  $('progress-track').setAttribute('aria-valuenow',String(count));
+ updateLocalStats();
  const categoryStats=[
   {key:'Desen',count:'draw-count',fill:'draw-fill'},
   {key:'Mimă',count:'mime-count',fill:'mime-fill'},
@@ -447,13 +545,13 @@ function updateAction(){
  const b=$('adaptive-action');
  const canComplete=Boolean(active)&&!celebrating;
  b.classList.toggle('is-success',canComplete);
- if(celebrating){b.textContent='✨ Provocare nouă';b.setAttribute('aria-label','Provocare nouă');}
- else if(canComplete){b.textContent='👑 Am reușit';b.setAttribute('aria-label','Am reușit');}
+ if(celebrating){b.textContent='✨ '+I18N[language].new;b.setAttribute('aria-label',I18N[language].new);}
+ else if(canComplete){b.textContent='👑 '+I18N[language].success;b.setAttribute('aria-label',I18N[language].success);}
  else if(poolComplete){
-  b.textContent=mode==='all'?'↻ Joc nou':'Alege altă categorie';
-  b.setAttribute('aria-label',mode==='all'?'Începe un joc nou':'Alege altă categorie');
+  b.textContent=mode==='all'?'↻ '+I18N[language].newGame:(language==='en'?'Choose another category':'Alege altă categorie');
+  b.setAttribute('aria-label',mode==='all'?I18N[language].newGame:(language==='en'?'Choose another category':'Alege altă categorie'));
  }
- else {b.textContent='✨ Provocare nouă';b.setAttribute('aria-label','Provocare nouă');}
+ else {b.textContent='✨ '+I18N[language].new;b.setAttribute('aria-label',I18N[language].new);}
 }
 function renderChallenge(c){
  active=c;
@@ -519,7 +617,7 @@ function nextChallenge(){
   for(const c of items)seen.delete(c.id);
   available=items;
  }
- const chosen=available[Math.floor(Math.random()*available.length)];
+ const chosen=available[secureIndex(available.length)];
  poolComplete=false;
  seen.add(chosen.id);
  saveState();
@@ -531,7 +629,7 @@ function chooseCategory(which){
  nextChallenge();
 }
 function resetGame(){
- done.clear();seen.clear();celebrating=false;poolComplete=false;mode='all';active=null;
+ done.clear();seen.clear();stats.resets=(Number(stats.resets)||0)+1;celebrating=false;poolComplete=false;mode='all';active=null;
  try{localStorage.removeItem(STORAGE);}catch(e){}
  saveState();updateProgress();renderChallenge(null);closeHelp();
 }
@@ -563,7 +661,9 @@ $('adaptive-action').addEventListener('click',event=>{
   return;
  }
  const completedId=active.id;
+ onChallengeComplete();
  done.add(completedId);
+ stats.completedEver=(Number(stats.completedEver)||0)+1;
  saveState();
  updateProgress();
  active=null;
@@ -588,13 +688,47 @@ $('adult').addEventListener('click',()=>{
  layoutGameSections();
 });
 $('reset-game').addEventListener('click',resetGame);
+// V32: private, local-only drawing board for Desen challenges.
+const drawingCanvas=$('drawing-canvas');
+const canDraw=!!(drawingCanvas && drawingCanvas.getContext && window.PointerEvent && ('ontouchstart' in window || navigator.maxTouchPoints>0 || window.matchMedia('(pointer:fine)').matches));
+let drawingOpen=false,drawingTool='pen',drawingActive=false,drawingPoints=[],drawingUndo=[],drawingDownloaded=false,drawingFrame=0,lastDrawPoint=null;
+const DRAWING_DRAFT='pk-drawing-draft-v32';
+const drawingCtx=canDraw?drawingCanvas.getContext('2d'):null;
+function drawingHasContent(){return drawingUndo.length>0||!!lastDrawPoint;}
+function drawingSnapshot(){if(!drawingCtx)return;try{drawingUndo.push(drawingCtx.getImageData(0,0,drawingCanvas.width,drawingCanvas.height));if(drawingUndo.length>10)drawingUndo.shift();}catch(e){drawingUndo=[];}}
+function drawingResize(){if(!canDraw)return;const rect=drawingCanvas.getBoundingClientRect();if(!rect.width||!rect.height)return;let image=null;try{if(drawingCanvas.width&&drawingCanvas.height)image=drawingCanvas.toDataURL();}catch(e){}const dpr=Math.min(window.devicePixelRatio||1,3);drawingCanvas.width=Math.round(rect.width*dpr);drawingCanvas.height=Math.round(rect.height*dpr);drawingCtx.setTransform(dpr,0,0,dpr,0,0);drawingCtx.fillStyle='#fff';drawingCtx.fillRect(0,0,rect.width,rect.height);if(image){const img=new Image();img.onload=()=>drawingCtx.drawImage(img,0,0,rect.width,rect.height);img.src=image;}drawingUndo=[];}
+function drawingClear(removeDraft=true){if(!canDraw)return;const r=drawingCanvas.getBoundingClientRect();drawingCtx.save();drawingCtx.setTransform(1,0,0,1,0,0);drawingCtx.fillStyle='#fff';drawingCtx.fillRect(0,0,drawingCanvas.width,drawingCanvas.height);drawingCtx.restore();drawingCtx.setTransform(Math.min(window.devicePixelRatio||1,3),0,0,Math.min(window.devicePixelRatio||1,3),0,0);drawingUndo=[];drawingPoints=[];lastDrawPoint=null;drawingDownloaded=false;if(removeDraft){try{localStorage.removeItem(DRAWING_DRAFT);}catch(e){}}}
+function drawingSaveDraft(){if(!canDraw)return;try{localStorage.setItem(DRAWING_DRAFT,drawingCanvas.toDataURL('image/png'));}catch(e){/* Storage is optional; drawing remains usable in memory. */}}
+function drawingRestoreDraft(){try{const data=localStorage.getItem(DRAWING_DRAFT);if(!data)return;const img=new Image();img.onload=()=>{drawingCtx.fillStyle='#fff';drawingCtx.fillRect(0,0,drawingCanvas.width,drawingCanvas.height);drawingCtx.drawImage(img,0,0,drawingCanvas.clientWidth,drawingCanvas.clientHeight);};img.src=data;}catch(e){}}
+function drawingOpenModal(){if(!canDraw||!active||active.cat!=='Desen')return;drawingOpen=true;drawingDownloaded=false;$('drawing-modal').hidden=false;$('drawing-modal').setAttribute('aria-hidden','false');document.body.style.overflow='hidden';requestAnimationFrame(()=>{drawingResize();drawingRestoreDraft();$('drawing-color').focus();});}
+function drawingClose(discard=true){if(!drawingOpen)return;drawingOpen=false;drawingActive=false;cancelAnimationFrame(drawingFrame);$('drawing-modal').hidden=true;$('drawing-modal').setAttribute('aria-hidden','true');document.body.style.overflow='';if(discard){drawingClear(true);} $('draw-board-open').focus({preventScroll:true});}
+function onChallengeComplete(){if(drawingOpen)drawingClose(true);else drawingClear(true);}
+function drawingPoint(e){const r=drawingCanvas.getBoundingClientRect();return{x:e.clientX-r.left,y:e.clientY-r.top,p:Math.max(.15,Math.min(1,e.pressure||.5))};}
+function drawingRenderStroke(points){if(points.length<2)return;const color=drawingTool==='eraser'?'#ffffff':$('drawing-color').value;const base=Number($('drawing-size').value);drawingCtx.save();drawingCtx.strokeStyle=color;drawingCtx.fillStyle=color;drawingCtx.lineCap='round';drawingCtx.lineJoin='round';if(points.length===2){drawingCtx.beginPath();drawingCtx.moveTo(points[0].x,points[0].y);drawingCtx.lineTo(points[1].x,points[1].y);drawingCtx.lineWidth=base*points[1].p;drawingCtx.stroke();}else{drawingCtx.beginPath();drawingCtx.moveTo(points[0].x,points[0].y);for(let i=1;i<points.length-1;i++){const midX=(points[i].x+points[i+1].x)/2,midY=(points[i].y+points[i+1].y)/2;drawingCtx.quadraticCurveTo(points[i].x,points[i].y,midX,midY);}const last=points[points.length-1];drawingCtx.lineTo(last.x,last.y);drawingCtx.lineWidth=base*last.p;drawingCtx.stroke();}drawingCtx.restore();}
+function drawingFlush(){drawingFrame=0;if(drawingPoints.length>1){drawingRenderStroke(drawingPoints);drawingPoints=[drawingPoints[drawingPoints.length-1]];}}
+drawingCanvas.addEventListener('pointerdown',e=>{if(!drawingOpen)return;e.preventDefault();drawingCanvas.setPointerCapture(e.pointerId);drawingSnapshot();drawingActive=true;drawingPoints=[drawingPoint(e)];lastDrawPoint=drawingPoints[0];const p=drawingPoints[0];drawingCtx.fillStyle=drawingTool==='eraser'?'#fff':$('drawing-color').value;drawingCtx.beginPath();drawingCtx.arc(p.x,p.y,Number($('drawing-size').value)*p.p/2,0,Math.PI*2);drawingCtx.fill();});
+drawingCanvas.addEventListener('pointermove',e=>{if(!drawingActive)return;e.preventDefault();drawingPoints.push(drawingPoint(e));if(!drawingFrame)drawingFrame=requestAnimationFrame(drawingFlush);});
+function drawingEnd(e){if(!drawingActive)return;if(e&&drawingPoints.length)drawingPoints.push(drawingPoint(e));if(drawingFrame){cancelAnimationFrame(drawingFrame);drawingFrame=0;}drawingFlush();drawingActive=false;drawingPoints=[];lastDrawPoint=null;drawingSaveDraft();}
+drawingCanvas.addEventListener('pointerup',drawingEnd);drawingCanvas.addEventListener('pointercancel',drawingEnd);drawingCanvas.addEventListener('lostpointercapture',()=>{if(drawingActive)drawingEnd();});
+$('drawing-pen').addEventListener('click',()=>{drawingTool='pen';$('drawing-pen').setAttribute('aria-pressed','true');$('drawing-eraser').setAttribute('aria-pressed','false');});$('drawing-eraser').addEventListener('click',()=>{drawingTool='eraser';$('drawing-pen').setAttribute('aria-pressed','false');$('drawing-eraser').setAttribute('aria-pressed','true');});
+$('drawing-undo').addEventListener('click',()=>{if(!drawingUndo.length)return;const snap=drawingUndo.pop();drawingCtx.putImageData(snap,0,0);drawingSaveDraft();});$('drawing-clear').addEventListener('click',()=>drawingClear(true));
+$('drawing-download').addEventListener('click',()=>{if(!canDraw)return;const a=document.createElement('a');a.download='princess-kingdom-drawing-'+new Date().toISOString().replace(/[:.]/g,'-')+'.png';a.href=drawingCanvas.toDataURL('image/png');a.click();drawingDownloaded=true;try{localStorage.removeItem(DRAWING_DRAFT);}catch(e){}});
+$('drawing-done').addEventListener('click',()=>drawingClose(true));
+$('drawing-modal').addEventListener('keydown',e=>{if(e.key==='Escape'){e.preventDefault();if(drawingHasContent()&&!drawingDownloaded&&!window.confirm(language==='en'?'Discard this unsaved drawing?':'Renunți la desenul nesalvat?'))return;drawingClose(true);return;}if(e.key==='Enter'&&e.target.tagName!=='BUTTON'&&e.target.type!=='color'&&e.target.type!=='range'){e.preventDefault();$('drawing-done').click();return;}if(e.key==='Tab'){const items=[...$('drawing-modal').querySelectorAll('button:not(:disabled),input:not(:disabled)')];if(!items.length)return;const first=items[0],last=items[items.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}}});
+window.addEventListener('resize',()=>{if(drawingOpen)requestAnimationFrame(drawingResize);},{passive:true});
+if(canDraw){$('draw-board-open').hidden=false;$('draw-board-open').addEventListener('click',drawingOpenModal);} 
+function updateDrawingButton(){const b=$('draw-board-open');if(!b)return;b.hidden=!(canDraw&&active&&active.cat==='Desen');}
+const originalRenderChallenge=renderChallenge;
+renderChallenge=function(c){if(drawingOpen)drawingClose(true);originalRenderChallenge(c);updateDrawingButton();};
+
 loadState();
 sanitizeState();
+applyLanguage();
 updateProgress();
 if(getPool().length===0)showPoolComplete();else renderChallenge(null);
 layoutGameSections();
 // Version label is embedded so the installed game never waits for version.json.
-const APP_VERSION = document.querySelector('meta[name="application-version"]')?.content || '30';
+const APP_VERSION = document.querySelector('meta[name="application-version"]')?.content || '32';
 const versionLabel = document.getElementById('footer-version');
 if (versionLabel) versionLabel.textContent = 'V' + APP_VERSION;
 
@@ -612,8 +746,8 @@ if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
   }, duration);
  };
  try {
-  if (sessionStorage.getItem('pk-v30-update-reloaded') === '1') {
-   sessionStorage.removeItem('pk-v30-update-reloaded');
+  if (sessionStorage.getItem('pk-v32-update-reloaded') === '1') {
+   sessionStorage.removeItem('pk-v32-update-reloaded');
    showNotice(900);
   }
  } catch (e) {}
@@ -623,7 +757,7 @@ if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
   if (hadController && !reloadScheduled) {
    reloadScheduled = true;
    showNotice();
-   try { sessionStorage.setItem('pk-v30-update-reloaded','1'); } catch (e) {}
+   try { sessionStorage.setItem('pk-v32-update-reloaded','1'); } catch (e) {}
    window.setTimeout(() => location.reload(), 450);
   }
  });

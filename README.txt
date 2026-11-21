@@ -99,3 +99,10 @@ V30 — Provocare nouă la nivelul întregului regat
 - Butonul principal „Provocare nouă” alege aleatoriu din toate categoriile, indiferent de categoria selectată anterior.
 - Butoanele individuale de categorie continuă să aleagă numai din categoria respectivă.
 - Provocările completate rămân excluse până la apăsarea „Joc nou”.
+
+
+V31 include selector de limbă pentru interfață (RO/EN), statistici locale fără cloud, ajustări responsive și randomizare îmbunătățită. Textele provocărilor rămân în limba română.
+
+
+V32 — Drawing Board
+A full-screen local drawing board is available during Desen challenges on devices with Canvas and Pointer Events support. Drawings are not uploaded. Use Download PNG to keep a copy on the device. Completing a challenge clears the in-game canvas and draft.

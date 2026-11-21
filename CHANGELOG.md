@@ -1,5 +1,22 @@
 # Princess Kingdom — Changelog
 
+## V33 — 2026-11-21
+- Equalized category-button hit-target heights and refined the selected orange frame so it remains inside the button bounds without an oversized outer glow.
+- Extended the journal progress track to align more closely with the counter area.
+- Expanded the „Ajutor pentru adult” and „Joc nou” hit areas to match the width of the category-progress card above.
+- Preserved the V32 drawing board, 600 challenges, bilingual interface, local-only statistics, and offline-first behavior.
+
+## V31 — 2026-11-21
+- Combined the planned V31–V34 improvements into one release.
+- Improved random selection using crypto.getRandomValues when available; unfinished challenges remain protected from repeats within the current shuffle cycle.
+- Added responsive refinements for narrow screens, landscape mode, safe areas and touch interaction.
+- Added a Romanian/English interface switch (Romanian default). Challenge-bank wording remains in its original Romanian text.
+- Added cumulative completion and remaining-challenge statistics stored only in localStorage on this device. No analytics or cloud transmission is added.
+- Hardened offline updates: the new worker precaches the full app shell before activation; failed installs do not replace the currently active worker.
+- Preserved the 600 challenge IDs, existing completion progress, artwork and PWA assets.
+
+# Princess Kingdom — Changelog
+
 ## V24 — 2026-11-20
 - Eliminated horizontal light/yellow artifacts from the lower embedded artwork.
 - Replaced the vertically stretched lower background with a naturally scaled repeating garden/paving extension.
@@ -67,3 +84,12 @@
 - Added expanded-state and controlled-panel semantics to „Ajutor pentru adult”.
 - Added accessible progress bars with current values for each category.
 - Preserved the original artwork, challenge bank, local progress and offline-first launch behavior.
+
+
+## V32 — 2026-11-21
+- Added an accessible full-screen drawing board for Desen challenges, shown only when canvas and Pointer Events are supported.
+- Added pen color/size, eraser, undo (maximum 10 snapshots), clear, Done and PNG download.
+- Added DPR-aware canvas rendering, pointer input for mouse/touch/stylus, pressure-based width and animation-frame stroke rendering.
+- Drawings and optional draft recovery remain local; no upload or sharing requests are made.
+- Completing a challenge closes the board and clears in-game/draft data; previously downloaded PNGs remain on the device.
+- Synchronized app version metadata and Service Worker cache to V32.

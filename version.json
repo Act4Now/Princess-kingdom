@@ -1,14 +1,13 @@
 {
-  "version": "30",
+  "version": "33",
   "name": "Princess Kingdom",
   "release_date": "2026-11-21",
-  "release_name": "Accesibilitate",
-  "previous_version": "29",
+  "release_name": "Ajustări de aliniere vizuală",
+  "previous_version": "32",
   "changes": [
-    "Added clear accessible names and button types to game controls.",
-    "Added visible keyboard focus indicators, including for the visually hidden Joc nou control.",
-    "Added expanded-state and controlled-panel semantics to Ajutor pentru adult.",
-    "Added accessible progressbar semantics and live values for each category.",
-    "Kept the original visual artwork, challenge bank, local progress and offline-first launch behavior."
+    "Equalized the four category hit-target heights and refined the active category frame to stay within the button bounds.",
+    "Aligned the kingdom progress track with the journal counter area.",
+    "Expanded the adult-help and new-game hit targets to match the golden progress card width.",
+    "Preserved the V32 drawing board, 600 challenges, bilingual interface, local-only statistics, and offline-first behavior."
   ]
 }
