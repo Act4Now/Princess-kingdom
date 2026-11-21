@@ -1,5 +1,18 @@
 # Princess Kingdom — Changelog
 
+## V36 — 2026-11-21
+- Layout rebuilt: one continuous illustrated background (scene.jpg) with category buttons and journal anchored to the artwork and everything below the frame in normal flow. No hit-areas are positioned over blurred or leftover artwork any more.
+- Category labels painted in the artwork were removed from the image and are now HTML text, so RO/EN labels sit exactly on the original buttons; the original crown/palette/masks/question-mark icons are kept.
+- Journal is one opaque pill (label, counter and bar share the same data); challenge text auto-fits inside the ornamental frame.
+- Primary action, "Desenează" board button, "Ajutor pentru adult" and "Joc nou" are a clean two-row grid; the board button only exists for Desen challenges.
+- Fixed: a JavaScript error at startup (`$('.drawing-toolbar')`) that stopped the script before the service worker, drawing board and version label were initialised.
+- Question challenges now show "Roagă un adult să citească întrebarea!" instead of an empty space; the question stays in the adult help.
+- "Joc nou" needs a second tap (3.5 s window) before it erases progress.
+- The active challenge and category survive a reload.
+- Performance: artwork and music moved out of index.html (3.8 MB → ~175 KB); music re-encoded to 96 kbps; scene.jpg and music.mp3 are precached for offline use; service worker answers Range requests so audio also plays offline on Safari.
+- "Online" chip is shown only when the device is offline.
+- Progress, statistics, drawing board, 600 challenges and IDs are unchanged.
+
 ## V33 — 2026-11-21
 - Equalized category-button hit-target heights and refined the selected orange frame so it remains inside the button bounds without an oversized outer glow.
 - Extended the journal progress track to align more closely with the counter area.
