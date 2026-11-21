@@ -1,3 +1,9 @@
+## V40 — 2026-11-21
+- Removed direct PNG download from the drawing board; retained Save to gallery and Done with unified styling and a purple Done button.
+- Moved the drawing gallery into the hamburger menu.
+- Added gallery multi-select, select all, in-app preview, delete selected, and export selected as individual PNG files.
+- Drawings remain local to the device.
+
 ## V38 — 2026-11-21
 
 ## V39 — 2026-11-21

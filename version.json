@@ -1,13 +1,13 @@
 {
-  "version": "39",
+  "version": "40",
   "name": "Princess Kingdom",
   "release_date": "2026-11-21",
-  "release_name": "Menu and challenge controls redesign",
-  "previous_version": "38",
+  "release_name": "Drawing gallery manager",
+  "previous_version": "39",
   "changes": [
-    "Added a hamburger menu containing language selection, music volume, progress export/import, statistics reset, and New Game.",
-    "Moved Read Challenge to a speaker-style shortcut below the music control.",
-    "Moved Another Challenge into the main action row, replacing New Game there.",
-    "Preserved the V38 visual theme, gameplay data, drawing board, local progress, and offline-first behavior."
+    "Removed direct PNG download from the drawing board; Save to gallery and Done remain with matching button styling, and Done is purple.",
+    "Moved the complete local drawing gallery into the hamburger menu.",
+    "Added multi-select, select-all, preview, delete selected and export selected drawings as individual PNG files.",
+    "Kept drawings local on the device; no gallery upload or network sharing was added."
   ]
 }

@@ -7,7 +7,7 @@ for(const c of bank){assert.ok(c.task&&c.taskEn);if(c.cat!=='Întrebare')assert.
 for(const id of ['read-aloud','skip-challenge','export-progress','import-progress','drawing-stamp','drawing-save','reset-stats'])assert.match(html,new RegExp('id="'+id+'"'));
 assert.match(html,/speechSynthesis/);assert.match(html,/beforeinstallprompt/);assert.match(html,/pk-drawing-gallery/);
 const manifest=JSON.parse(fs.readFileSync('manifest.webmanifest','utf8'));assert.equal(manifest.id,'./');assert.ok(manifest.icons.some(x=>x.purpose==='maskable'));
-const v=fs.readFileSync('VERSION','utf8').trim();assert.equal(v,'39');assert.match(html,new RegExp('application-version" content="'+v+'"'));
+const v=fs.readFileSync('VERSION','utf8').trim();assert.equal(v,'40');assert.match(html,new RegExp('application-version" content="'+v+'"'));
 console.log('Princess Kingdom source checks passed: 600 challenges, 200 per category, bilingual fields, feature hooks, PWA manifest and version.');
 
 assert.match(html,/id="menu-toggle"/);
@@ -17,3 +17,10 @@ assert.match(html,/class="btn" id="skip-challenge"/);
 assert.match(html,/id="reset-game"/);
 
 const ids=[...html.matchAll(/\\bid="([^"]+)"/g)].map(x=>x[1]);assert.equal(new Set(ids).size,ids.length,'duplicate HTML ids');
+
+assert.match(html,/id="gallery-select-all"/);
+assert.match(html,/id="gallery-export"/);
+assert.match(html,/id="gallery-delete"/);
+assert.match(html,/id="gallery-preview"/);
+assert.doesNotMatch(html,/id="drawing-download"/);
+assert.ok(html.indexOf('id="drawing-gallery"') < html.indexOf('id="drawing-modal"'));
