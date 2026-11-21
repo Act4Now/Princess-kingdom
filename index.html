@@ -641,21 +641,24 @@ function armStatsReset(){
 }
 $('export-progress').addEventListener('click',()=>{closeGameMenu();const payload={app:'Princess Kingdom',format:1,version:38,done:[...done],seen:[...seen],stats,language};const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='princess-kingdom-progress.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);});
 $('import-progress').addEventListener('change',async e=>{closeGameMenu();const file=e.target.files?.[0];if(!file)return;try{const data=JSON.parse(await file.text());const valid=new Set(BANK.map(c=>c.id));if(data.app!=='Princess Kingdom'||data.format!==1||!Array.isArray(data.done)||!Array.isArray(data.seen)||!data.done.every(x=>valid.has(x))||!data.seen.every(x=>valid.has(x)))throw new Error('invalid');if(!confirm(language==='ro'?'Importul va înlocui progresul și statisticile locale. Continui?':'Import will replace local progress and statistics. Continue?'))return;done=new Set(data.done);seen=new Set(data.seen);stats={completedEver:Math.max(0,Number(data.stats?.completedEver)||0),resets:Math.max(0,Number(data.stats?.resets)||0)};saveState();active=null;celebrating=false;poolComplete=false;updateProgress();refreshChallengeCopy();updateAction();}catch(err){alert(I18N[language].importError);}finally{e.target.value='';}});
+// V42: these controls use explicit confirmation dialogs; no undefined hold-state
+// variables or hidden long-press prerequisites.
 $('reset-stats').addEventListener('click',()=>{
-  if(!statsHoldReady){$('reset-stats').title=I18N[language].holdReset;return;}statsHoldReady=false;$('reset-stats').classList.remove('hold-ready');
   const t=I18N[language];
   if(!window.confirm(t.resetStatsConfirm))return;
   stats.completedEver=0;
   stats.resets=0;
   try{localStorage.setItem(STATS,JSON.stringify(stats));}catch(e){}
-  updateLocalStats();closeGameMenu();
+  updateLocalStats();
+  closeGameMenu();
 });
 $('reset-game').addEventListener('click',()=>{
-  if(!gameHoldReady){$('reset-game').title=I18N[language].holdReset;return;}gameHoldReady=false;$('reset-game').classList.remove('hold-ready');
-  const b=$('reset-game');
-  if(done.size===0||b.classList.contains('confirm')){clearResetConfirm();resetGame();closeGameMenu();return;}
-  b.classList.add('confirm');b.querySelector('.action-label').textContent=I18N[language].resetAsk;b.setAttribute('aria-label',I18N[language].resetAsk);
-  resetTimer=setTimeout(clearResetConfirm,3500);
+  const t=I18N[language];
+  if(done.size>0 && !window.confirm(language==='ro'
+    ? 'Începi un joc nou? Progresul provocărilor din jocul curent va fi resetat.'
+    : 'Start a new game? Progress in the current game will be reset.'))return;
+  resetGame();
+  closeGameMenu();
 });
 // V32: private, local-only drawing board for Desen challenges.
 const drawingCanvas=$('drawing-canvas');

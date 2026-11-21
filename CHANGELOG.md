@@ -1,3 +1,9 @@
+## V42 — 2026-11-21
+- Fixed **Joc nou**: the button now starts a fresh game; if there is completed progress, a confirmation dialog is shown first.
+- Fixed **Resetează statisticile**: the button now resets cumulative statistics after confirmation, without changing current game progress.
+- Removed the broken long-press gating that referenced undefined `gameHoldReady` and `statsHoldReady` variables.
+- Kept all application files directly in this single release folder.
+
 ## V41 — 2026-11-21
 - Repaired New Game and Reset Statistics with independent, reliable two-tap confirmations; each action now works without long-press timing.
 - Simplified the child-facing challenge card to show only the pictogram, category, and short name when available.

@@ -1,13 +1,13 @@
 {
-  "version": "41",
+  "version": "42",
   "name": "Princess Kingdom",
   "release_date": "2026-11-21",
-  "release_name": "Drawing gallery manager",
-  "previous_version": "39",
+  "release_name": "Reliable game and statistics reset controls",
+  "previous_version": "41",
   "changes": [
-    "Removed direct PNG download from the drawing board; Save to gallery and Done remain with matching button styling, and Done is purple.",
-    "Moved the complete local drawing gallery into the hamburger menu.",
-    "Added multi-select, select-all, preview, delete selected and export selected drawings as individual PNG files.",
-    "Kept drawings local on the device; no gallery upload or network sharing was added."
+    "Fixed New Game: starts a fresh game after confirmation when progress exists.",
+    "Fixed Reset Statistics: clears cumulative on-device statistics after confirmation without requiring a long press.",
+    "Removed broken references to undefined hold-state variables from both controls.",
+    "Kept all app assets and files directly in the release folder."
   ]
 }

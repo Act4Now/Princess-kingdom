@@ -1,4 +1,4 @@
-PRINCESS KINGDOM — PWA V41
+PRINCESS KINGDOM — PWA V42
 
 Toate fișierele aplicației se află direct în acest folder; arhiva nu conține subfoldere.
 Încarcă fișierele din acest folder în directorul GitHub Pages dorit.
