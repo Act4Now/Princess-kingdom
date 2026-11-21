@@ -1,14 +1,14 @@
 {
-  "version": "44",
+  "version": "45",
   "name": "Princess Kingdom",
   "release_date": "2026-11-21",
-  "release_name": "Princess Mode: illustrated storybook princess portraits",
-  "previous_version": "43",
+  "release_name": "Princess Mode: character-specific storybook portraits",
+  "previous_version": "44",
   "changes": [
-    "Replaced emoji pictograms on Princess Mode challenge cards with original inline SVG storybook-princess portrait illustrations.",
-    "Princess portraits use varied palettes and hair silhouettes while preserving each challenge name and category.",
-    "Classic Mode retains its original emoji pictograms and all 600 challenges.",
-    "Child-facing cards continue to show only the illustration, category, and name; instructions and answers remain in Adult Help.",
-    "Updated the offline service-worker cache for V44."
+    "Redesigned Princess Mode portraits with character-specific hair, costume colors, silhouettes and signature storybook accessories.",
+    "Added distinct visual treatments for the named Disney princesses and the original fairytale princess concepts in the challenge bank.",
+    "The same princess keeps the same portrait across drawing, mime and question categories.",
+    "Classic Mode keeps its original emoji pictograms and all 600 classic challenges.",
+    "Updated PWA metadata and offline cache to V45."
   ]
 }

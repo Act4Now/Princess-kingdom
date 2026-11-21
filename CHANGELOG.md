@@ -1,3 +1,10 @@
+## V45 — 2026-11-21
+- Redesigned Princess Mode portraits with character-specific hair, costume colors, silhouettes and signature storybook accessories.
+- Added distinct visual treatments for named Disney princesses and the original fairytale princess concepts in the challenge bank.
+- Reused each princess portrait consistently across drawing, mime and question categories.
+- Preserved Classic Mode emoji pictograms and all 600 classic challenges.
+- Updated PWA metadata and offline cache to V45.
+
 ## V44 — 2026-11-21
 - Replaced emoji pictograms on Princess Mode challenge cards with original inline SVG storybook-princess portrait illustrations.
 - Added varied illustration palettes and hair silhouettes to distinguish the princess portraits.
