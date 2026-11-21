@@ -103,3 +103,10 @@
 - The document `lang` attribute follows the selected language.
 - Pencil and Eraser now have distinct selected styling, mutually exclusive `aria-pressed` states and a live selected-tool label.
 - Preserved local progress, language preference, 600 challenge IDs, drawing-board behavior and offline-first update handling.
+
+
+## V35 — 2026-11-21
+- Fully opaque, symmetrically positioned HTML controls now cover the legacy adult-help/new-game artwork strip; only translated interactive controls remain visible.
+- Footer fallback and runtime version display synchronized to V35.
+- Synchronized application metadata, version files, Service Worker cache and update-reload key.
+- Preserved V34 translations, challenge bank, local statistics, drawing board and offline-first behavior.

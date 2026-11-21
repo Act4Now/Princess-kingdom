@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#f8e6f6">
-<meta name="application-version" content="34">
+<meta name="application-version" content="35">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -295,6 +295,31 @@ button:focus-visible{outline:3px solid #7a2192!important;outline-offset:3px!impo
 .drawing-toolbar button[aria-pressed="true"]{background:linear-gradient(180deg,#713b79,#9418a5)!important;color:#fff!important;border:2px solid #e8b34c!important;box-shadow:0 0 0 3px rgba(148,24,165,.18),inset 0 1px 0 rgba(255,255,255,.35);transform:translateY(-1px)}
 #drawing-tool-status{width:100%;text-align:center;font:700 13px/1.3 Arial,sans-serif;color:#713b79;padding:2px 4px}
 
+
+/* V35: fully cover the legacy action strip baked into the background artwork.
+   The interactive HTML controls are the only visible action buttons. */
+#game #adult, #game #reset-game {
+  left:auto; top:64.8%; width:47%; height:5.4%;
+  z-index:32; box-sizing:border-box;
+  display:flex; align-items:center; justify-content:center;
+  padding:0 8px; text-indent:0 !important;
+  color:#713b79 !important; font-size:clamp(11px,2.8vw,17px) !important;
+  line-height:1.1 !important;
+  border:2px solid #e5b85f; border-radius:999px;
+  background:linear-gradient(180deg,rgba(255,250,237,.995),rgba(248,225,242,.995)) !important;
+  box-shadow:inset 0 2px 0 rgba(255,255,255,.96),0 2px 4px rgba(80,30,90,.2);
+  opacity:1; mix-blend-mode:normal;
+}
+#game #adult { left:3%; }
+#game #reset-game { left:50%; }
+#game #reset-game .action-label {
+  display:inline; font:700 clamp(11px,2.8vw,17px)/1.1 Georgia,serif;
+}
+#game #adult:active, #game #reset-game:active {
+  background:linear-gradient(180deg,#fffaf0,#f8e7f4) !important;
+  transform:translateY(1px);
+}
+
 </style>
 </head>
 <body>
@@ -361,7 +386,7 @@ src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgICAgMCAgIDAwMD
 </div>
 <footer id="kingdom-footer" aria-label="Mesaj de final și versiunea jocului">
   <span>Creat cu magie pentru a fi jucat în familie</span>
-  <span class="footer-version" id="footer-version">V26</span>
+  <span class="footer-version" id="footer-version" data-version="35">V35</span>
 </footer>
 <div id="update-notice" role="status" aria-live="polite" aria-hidden="true">
   <div class="update-card">
@@ -681,9 +706,9 @@ updateProgress();
 if(getPool().length===0)showPoolComplete();else renderChallenge(null);
 layoutGameSections();
 // Version label is embedded so the installed game never waits for version.json.
-const APP_VERSION = document.querySelector('meta[name="application-version"]')?.content || '34';
+const APP_VERSION = document.querySelector('meta[name="application-version"]')?.content || '35';
 const versionLabel = document.getElementById('footer-version');
-if (versionLabel) versionLabel.textContent = 'V' + APP_VERSION;
+if (versionLabel) { versionLabel.textContent = 'V' + APP_VERSION; versionLabel.dataset.version = APP_VERSION; }
 
 // Offline-first startup: register immediately, check for updates later and only when online.
 if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
@@ -699,8 +724,8 @@ if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
   }, duration);
  };
  try {
-  if (sessionStorage.getItem('pk-v32-update-reloaded') === '1') {
-   sessionStorage.removeItem('pk-v32-update-reloaded');
+  if (sessionStorage.getItem('pk-v34-update-reloaded') === '1') {
+   sessionStorage.removeItem('pk-v34-update-reloaded');
    showNotice(900);
   }
  } catch (e) {}
@@ -710,7 +735,7 @@ if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
   if (hadController && !reloadScheduled) {
    reloadScheduled = true;
    showNotice();
-   try { sessionStorage.setItem('pk-v32-update-reloaded','1'); } catch (e) {}
+   try { sessionStorage.setItem('pk-v34-update-reloaded','1'); } catch (e) {}
    window.setTimeout(() => location.reload(), 450);
   }
  });

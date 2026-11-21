@@ -1,14 +1,12 @@
 {
-  "version": "34",
+  "version": "35",
   "name": "Princess Kingdom",
   "release_date": "2026-11-21",
-  "release_name": "Complete English translation and drawing tool indicator",
-  "previous_version": "33",
+  "release_name": "Clean legacy action artwork and version display",
+  "previous_version": "34",
   "changes": [
-    "Added complete English translations for all 600 challenge prompts, labels, questions and answers while preserving the Romanian source text.",
-    "Replaced artwork-baked Romanian category and action labels with live HTML labels that update immediately with the selected language.",
-    "Added a single localized statistics template and updated document language, progress labels, footer, adult help, celebration and update dialog text.",
-    "Added a clear selected visual state, aria-pressed state, and live selected-tool status for Pencil and Eraser.",
-    "Preserved local-only preferences and progress, the drawing board, and offline-first PWA behavior."
+    "Made the translated HTML Adult Help and New Game controls fully opaque, symmetric and correctly layered so legacy action labels and artwork cannot show through.",
+    "Synchronized the footer fallback, application-version metadata, runtime footer label, version.json, version.txt, Service Worker cache name and update-reload session key to V35.",
+    "Preserved V34 bilingual translations, 600 translated challenges, local statistics, drawing board, and offline-first cache behavior."
   ]
 }
