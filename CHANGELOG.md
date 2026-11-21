@@ -1,3 +1,16 @@
+## V47 — 2026-11-21
+- Added 15 supplied character illustration panels as optimized WebP assets for Princess Mode.
+- Replaced emoji/pictogram rendering with supplied illustrations for 14 named princesses and the flower-princess fairytale entry.
+- Other fairytale princess entries retain their individual illustrated SVG portraits.
+- Added all 15 image assets to offline precache.
+- Updated footer version, application-version metadata and PWA cache to V47.
+
+## V46 — 2026-11-21
+- Corrected the application-version meta tag used by the footer.
+- Updated the visible footer version and static fallback to V46.
+- Preserved V45 character-specific princess portraits and gameplay content.
+- Updated PWA metadata and offline cache to V46.
+
 ## V45 — 2026-11-21
 - Redesigned Princess Mode portraits with character-specific hair, costume colors, silhouettes and signature storybook accessories.
 - Added distinct visual treatments for named Disney princesses and the original fairytale princess concepts in the challenge bank.

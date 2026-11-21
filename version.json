@@ -1,14 +1,14 @@
 {
-  "version": "45",
+  "version": "47",
   "name": "Princess Kingdom",
   "release_date": "2026-11-21",
-  "release_name": "Princess Mode: character-specific storybook portraits",
-  "previous_version": "44",
+  "release_name": "Princess Mode: supplied character illustrations",
+  "previous_version": "46",
   "changes": [
-    "Redesigned Princess Mode portraits with character-specific hair, costume colors, silhouettes and signature storybook accessories.",
-    "Added distinct visual treatments for the named Disney princesses and the original fairytale princess concepts in the challenge bank.",
-    "The same princess keeps the same portrait across drawing, mime and question categories.",
-    "Classic Mode keeps its original emoji pictograms and all 600 classic challenges.",
-    "Updated PWA metadata and offline cache to V45."
+    "Added 15 supplied character illustration panels as optimized WebP assets for Princess Mode.",
+    "Replaced emoji/pictogram rendering with the supplied illustrations for 14 named princesses and the flower-princess fairytale entry.",
+    "Other fairytale princess entries retain their individual illustrated SVG portraits.",
+    "Added all 15 image assets to the offline service-worker precache.",
+    "Updated footer version, application-version metadata and PWA cache to V47."
   ]
 }

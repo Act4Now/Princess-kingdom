@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#f3a6dc">
-<meta name="application-version" content="43">
+<meta name="application-version" content="47">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -222,6 +222,8 @@ button:focus-visible{outline:3px solid #7a2192;outline-offset:3px}
 #emoji.princess-portrait{font-size:initial;padding:4px;display:flex;align-items:center;justify-content:center;}
 #emoji.princess-portrait svg{display:block;width:min(100%,260px);height:auto;max-height:100%;filter:drop-shadow(0 7px 9px rgba(65,42,85,.22));}
 #emoji.princess-portrait{background:transparent;}
+
+#emoji.princess-portrait img.princess-character-image{display:block;width:min(100%,280px);height:auto;max-height:100%;object-fit:contain;border-radius:16px;filter:drop-shadow(0 7px 10px rgba(65,42,85,.22));}
 </style>
 </head>
 <body>
@@ -289,7 +291,7 @@ button:focus-visible{outline:3px solid #7a2192;outline-offset:3px}
   <button id="install-app" type="button" hidden data-i18n="installApp">Instalează aplicația</button>
   
 </section>
-<footer id="kingdom-footer" aria-label="Mesaj de final și versiunea jocului"><span>Creat cu magie pentru a fi jucat în familie</span><span class="footer-version" id="footer-version" data-version="43">V43</span></footer>
+<footer id="kingdom-footer" aria-label="Mesaj de final și versiunea jocului"><span>Creat cu magie pentru a fi jucat în familie</span><span class="footer-version" id="footer-version" data-version="47">V47</span></footer>
 </div>
 </div>
 <div id="drawing-modal" class="drawing-modal" role="dialog" aria-modal="true" aria-label="Tabla de desen" aria-hidden="true" hidden>
@@ -464,6 +466,28 @@ function updateDrawingToolUI(){const t=I18N[language];$('drawing-pen').textConte
 function princessPortraitMarkup(person){
  const name=String(person?.label||person?.labelEn||'Princess');
  const lower=(name+' '+String(person?.labelEn||'')).toLocaleLowerCase('ro');
+ const photoMap=[
+  {keys:['cenuș','cinder','cinderella'],file:'princess-cinderella.webp'},
+  {keys:['albă-ca-zăpada','snow white'],file:'princess-snow-white.webp'},
+  {keys:['aurora'],file:'princess-aurora.webp'},
+  {keys:['ariel'],file:'princess-ariel.webp'},
+  {keys:['belle'],file:'princess-belle.webp'},
+  {keys:['jasmine'],file:'princess-jasmine.webp'},
+  {keys:['pocahontas'],file:'princess-pocahontas.webp'},
+  {keys:['mulan'],file:'princess-mulan.webp'},
+  {keys:['tiana'],file:'princess-tiana.webp'},
+  {keys:['rapunzel'],file:'princess-rapunzel.webp'},
+  {keys:['merida'],file:'princess-merida.webp'},
+  {keys:['moana'],file:'princess-moana.webp'},
+  {keys:['elsa'],file:'princess-elsa.webp'},
+  {keys:['anna'],file:'princess-anna.webp'},
+  {keys:['prințesa florilor','flower princess'],file:'princess-flower-tale.webp'}
+ ];
+ const photo=photoMap.find(item=>item.keys.some(key=>lower.includes(key)));
+ if(photo){
+  return `<img class="princess-character-image" src="${photo.file}" alt="${esc(name)}" loading="eager" decoding="async">`;
+ }
+
  const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  const profiles=[
   {k:['cenuș','cinder','cinderella'],skin:'#f1c5a5',hair:'#e9c36e',dress:'#78a9e5',accent:'#f6e9ff',style:'bun',prop:'shoe',neck:'#f4d9e9'},
