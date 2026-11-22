@@ -30,3 +30,8 @@ Run release checks:
   python tests/run_browser_smoke.py  (optional; requires Playwright + Chromium)
 
 For browser smoke tests, install Playwright for Python and Chromium. The test suite will skip browser-only checks if Playwright is unavailable.
+
+V51 UPDATE NOTES
+- Upload/replace index.html, v50-enhancements.js, sw.js, version.json, version.txt and CHANGELOG.md.
+- Princess artwork files are intentionally not included. Keep the existing princess-*.webp, princess-*.svg and princess-fallback.svg files from your V50 installation. The service worker continues to reference these existing files.
+- Existing profile IDs and saved data are preserved. Use the new delete button in the player menu to remove a profile and its saved progress.

@@ -19,3 +19,8 @@
 - All 50 Princess portraits, Princess Album and unlock rules.
 - Drawing canvas, stamps, gallery previews, music, Romanian/English UI, progress backup and offline PWA shell.
 - Existing V49 progress is retained and imported into the default local player profile on first V50 launch.
+
+## V51 — 2026-11-22
+- Added delete-selected-player control with confirmation; the final remaining player cannot be deleted. Deleting a player removes that profile's Classic and Princess progress snapshots.
+- Added a persistent active-player label on the gameplay screen.
+- Kept all existing princess artwork references intact; princess image files are intentionally omitted from this update ZIP because they are already present in the V50 installation.

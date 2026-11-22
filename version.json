@@ -1,20 +1,12 @@
 {
-  "version": "50",
+  "version": "51",
   "name": "Princess Kingdom",
-  "release_date": "2026-11-21",
-  "release_name": "Family Adventure, Learning and Accessibility Expansion",
-  "previous_version": "49",
+  "release_date": "2026-11-22",
+  "release_name": "Player management and active-player indicator",
+  "previous_version": "50",
   "changes": [
-    "Added individualized, age-appropriate Princess Mode reflection questions with three discussion choices and explanatory feedback; choices are exploratory, not marked right or wrong.",
-    "Added an optional 30, 60 or 90-second charades timer with pause and reset; timeout never auto-skips or penalizes a child.",
-    "Added 2–4 family teams, rotating turns and persistent scores.",
-    "Added up to four local player profiles with separate Classic and Princess progress snapshots.",
-    "Added a parent challenge editor to create, edit and delete custom Classic Mode challenges; custom challenge data is included in backup export/import.",
-    "Migrated the drawing gallery to IndexedDB, with localStorage migration/fallback, larger collections, titles, dates, search and sorting.",
-    "Added a five-region Kingdom Adventure Map driven by current profile and mode completion.",
-    "Added printable achievement certificates; browser Print can save them as PDF.",
-    "Added text scaling, high contrast, reduced motion and adjustable speech rate.",
-    "Added V50 browser smoke tests and expanded release integrity tests.",
-    "Preserved V49 challenge banks, Princess Album, artwork, drawing tools, offline PWA and existing saved progress."
+    "Added a safe delete-selected-player action, with confirmation, protection against deleting the final remaining profile, and removal of that player’s Classic and Princess progress snapshots.",
+    "Added a persistent in-game active-player indicator so families can see whose profile is currently playing, including when multiple player profiles exist.",
+    "Preserved existing profile IDs, saved progress, team mode, and existing Princess artwork files; artwork is not duplicated in this update archive."
   ]
 }

@@ -1,0 +1,31 @@
+PRINCESS KINGDOM V51 — UPDATE ONLY
+
+This is a small update package. It intentionally does NOT contain princess artwork.
+
+Replace these files in the existing V50 project/repository:
+- index.html
+- v50-enhancements.js
+- sw.js
+- version.json
+- version.txt
+- VERSION
+
+The CHANGELOG.md and README.txt files are updated release documentation.
+The tests/ folder contains release integrity tests.
+
+IMPORTANT — KEEP YOUR EXISTING PRINCESS ARTWORK
+Do not delete or replace the existing princess-*.webp, princess-*.svg,
+and princess-fallback.svg files from V50. V51 continues to reference and
+pre-cache those same artwork files. This archive omits them to avoid making
+you upload the same images again.
+
+WHAT CHANGED
+1. The player menu now has “Șterge jucătorul selectat / Delete selected player”.
+   It asks for confirmation, deletes that player's Classic and Princess progress
+   snapshots, and prevents deletion of the final remaining player.
+2. When at least two player profiles exist, a visible active-player label appears
+   on the gameplay screen, so the family can see whose turn/profile is in use.
+3. Existing profile IDs and all other players' saved progress are preserved.
+
+The update is not deployed automatically. After replacing the files, open the
+site online once so the V51 service worker can install, then refresh the app.
