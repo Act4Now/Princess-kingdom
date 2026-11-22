@@ -1,31 +1,27 @@
-PRINCESS KINGDOM V51 — UPDATE ONLY
+PRINCESS KINGDOM V52 — UPDATE ONLY
 
-This is a small update package. It intentionally does NOT contain princess artwork.
-
-Replace these files in the existing V50 project/repository:
+Replace these files in your existing V51 project:
 - index.html
 - v50-enhancements.js
 - sw.js
 - version.json
 - version.txt
 - VERSION
+- CHANGELOG.md
 
-The CHANGELOG.md and README.txt files are updated release documentation.
-The tests/ folder contains release integrity tests.
+Do NOT remove any other project files.
 
 IMPORTANT — KEEP YOUR EXISTING PRINCESS ARTWORK
-Do not delete or replace the existing princess-*.webp, princess-*.svg,
-and princess-fallback.svg files from V50. V51 continues to reference and
-pre-cache those same artwork files. This archive omits them to avoid making
-you upload the same images again.
+This update archive does not include princess image files. Keep all existing
+princess-*.webp, princess-*.svg and princess-fallback.svg files unchanged.
 
 WHAT CHANGED
-1. The player menu now has “Șterge jucătorul selectat / Delete selected player”.
-   It asks for confirmation, deletes that player's Classic and Princess progress
-   snapshots, and prevents deletion of the final remaining player.
-2. When at least two player profiles exist, a visible active-player label appears
-   on the gameplay screen, so the family can see whose turn/profile is in use.
-3. Existing profile IDs and all other players' saved progress are preserved.
+1. The active-player indicator moved into the scoreboard panel position. If
+   multiple profiles exist, the active profile is displayed there. In Team Mode,
+   it appears above the team scores.
+2. In Team Mode, “Altă provocare” changes to “Nu am reușit”. Pressing it moves
+   to the next team and next challenge without awarding a point to the team that
+   did not complete the challenge. The team score remains unchanged.
 
-The update is not deployed automatically. After replacing the files, open the
-site online once so the V51 service worker can install, then refresh the app.
+After replacing the files, open the site online once, wait for the V52 service
+worker to install, then refresh the app. The update is not deployed automatically.

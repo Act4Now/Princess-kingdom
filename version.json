@@ -1,12 +1,12 @@
 {
-  "version": "51",
+  "version": "52",
   "name": "Princess Kingdom",
   "release_date": "2026-11-22",
-  "release_name": "Player management and active-player indicator",
-  "previous_version": "50",
+  "release_name": "Active-player scoreboard and failed-team turn handoff",
+  "previous_version": "51",
   "changes": [
-    "Added a safe delete-selected-player action, with confirmation, protection against deleting the final remaining profile, and removal of that player’s Classic and Princess progress snapshots.",
-    "Added a persistent in-game active-player indicator so families can see whose profile is currently playing, including when multiple player profiles exist.",
-    "Preserved existing profile IDs, saved progress, team mode, and existing Princess artwork files; artwork is not duplicated in this update archive."
+    "Moved the active-player indicator into the existing scoreboard panel position. When multiple profiles exist, the active player is shown there; Team Mode keeps its team scores in the same panel and also shows the active profile.",
+    "In Team Mode, replaced the skip button label with “Nu am reușit”. Using it advances to the next team and next challenge without awarding a point to the team that could not complete the challenge.",
+    "Kept the existing V51 profile data, challenge banks, Princess artwork references, and saved progress. Princess artwork is intentionally omitted from this update archive."
   ]
 }

@@ -2,7 +2,7 @@
 (function(){
 'use strict';
 const el=id=>document.getElementById(id);
-const V50={version:51, profileKey:'pk-v50-profiles', activeProfileKey:'pk-v50-active-profile', teamKey:'pk-v50-teams', prefsKey:'pk-v50-accessibility', customKey:'pk-v50-custom-challenges'};
+const V50={version:52, profileKey:'pk-v50-profiles', activeProfileKey:'pk-v50-active-profile', teamKey:'pk-v50-teams', prefsKey:'pk-v50-accessibility', customKey:'pk-v50-custom-challenges'};
 const safeParse=(s,fallback)=>{try{return JSON.parse(s)||fallback}catch(e){return fallback}};
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const baseSetBankForStyle=setBankForStyle;
@@ -47,7 +47,8 @@ if(!teamData||!Array.isArray(teamData.teams)||teamData.teams.length<2)teamData={
 const profileSnapshotKey=(id,style)=>`pk-v50-profile-state:${id}:${style}`;
 function saveProfileSnapshot(style=gameStyle,id=activeProfileId){const snap={done:[...done],seen:[...seen],active:active?.id||null,mode,stats:{...stats}};try{localStorage.setItem(profileSnapshotKey(id,style),JSON.stringify(snap));}catch(e){}}
 const baseSaveState=saveState;saveState=function(){baseSaveState();saveProfileSnapshot();};
-function renderCurrentPlayer(){const badge=el('v51-current-player');if(!badge)return;const player=profiles.find(p=>p.id===activeProfileId);badge.textContent=player?(language==='ro'?'👤 Jucător activ: ':'👤 Playing as: ')+player.name:'';badge.hidden=!player||profiles.length<2;}
+function renderCurrentPlayer(){renderTeamScore();}
+
 function renderProfiles(){const s=el('v50-profile');s.innerHTML='';profiles.forEach(p=>{const o=document.createElement('option');o.value=p.id;o.textContent=p.name;s.appendChild(o);});s.value=activeProfileId;const del=el('v51-delete-profile');if(del)del.disabled=profiles.length<=1;renderCurrentPlayer();}
 function restoreProfile(id){if(!profiles.some(p=>p.id===id))return;saveProfileSnapshot(gameStyle,activeProfileId);activeProfileId=id;localStorage.setItem(V50.activeProfileKey,id);const snap=safeParse(localStorage.getItem(profileSnapshotKey(id,gameStyle)),null);const valid=new Set(BANK.map(c=>c.id));done=new Set((snap?.done||[]).filter(x=>valid.has(x)));seen=new Set((snap?.seen||[]).filter(x=>valid.has(x)));stats=snap?.stats?{completedEver:Number(snap.stats.completedEver)||0,resets:Number(snap.stats.resets)||0}:{completedEver:0,resets:0};mode=Object.prototype.hasOwnProperty.call(CAT,snap?.mode)?snap.mode:'all';active=snap?.active?BANK.find(c=>c.id===snap.active&&!done.has(c.id))||null:null;celebrating=false;poolComplete=false;updateProgress();refreshChallengeCopy();updateAction();renderQuiz();timerStop();timerPanel();renderTeamScore();renderCurrentPlayer();saveState();}
 el('v50-profile').addEventListener('change',e=>restoreProfile(e.target.value));
@@ -56,9 +57,34 @@ el('v50-add-profile').addEventListener('click',()=>{if(profiles.length>=4){alert
 el('v51-delete-profile').addEventListener('click',()=>{const player=profiles.find(p=>p.id===el('v50-profile').value);if(!player)return;if(profiles.length<=1){alert(language==='ro'?'Trebuie să păstrezi cel puțin un jucător.':'At least one player must remain.');return;}const ok=confirm(language==='ro'?`Ștergi profilul „${player.name}” și progresul salvat pentru acest jucător? Acțiunea nu poate fi anulată.`:`Delete “${player.name}” and this player's saved progress? This cannot be undone.`);if(!ok)return;const wasActive=activeProfileId===player.id;const nextProfile=profiles.find(p=>p.id!==player.id);if(wasActive)saveProfileSnapshot(gameStyle,player.id);for(const style of ['classic','princess'])localStorage.removeItem(profileSnapshotKey(player.id,style));profiles=profiles.filter(p=>p.id!==player.id);localStorage.setItem(V50.profileKey,JSON.stringify(profiles));if(wasActive){activeProfileId=nextProfile.id;localStorage.setItem(V50.activeProfileKey,activeProfileId);const snap=safeParse(localStorage.getItem(profileSnapshotKey(activeProfileId,gameStyle)),null);const valid=new Set(BANK.map(c=>c.id));done=new Set((snap?.done||[]).filter(x=>valid.has(x)));seen=new Set((snap?.seen||[]).filter(x=>valid.has(x)));stats=snap?.stats?{completedEver:Number(snap.stats.completedEver)||0,resets:Number(snap.stats.resets)||0}:{completedEver:0,resets:0};mode=Object.prototype.hasOwnProperty.call(CAT,snap?.mode)?snap.mode:'all';active=snap?.active?BANK.find(c=>c.id===snap.active&&!done.has(c.id))||null:null;celebrating=false;poolComplete=false;updateProgress();refreshChallengeCopy();updateAction();renderQuiz();timerStop();timerPanel();renderTeamScore();saveState();}renderProfiles();});
 renderProfiles();const initialProfileSnapshot=safeParse(localStorage.getItem(profileSnapshotKey(activeProfileId,gameStyle)),null);if(initialProfileSnapshot){const validInitial=new Set(BANK.map(c=>c.id));done=new Set((initialProfileSnapshot.done||[]).filter(x=>validInitial.has(x)));seen=new Set((initialProfileSnapshot.seen||[]).filter(x=>validInitial.has(x)));stats=initialProfileSnapshot.stats?{completedEver:Number(initialProfileSnapshot.stats.completedEver)||0,resets:Number(initialProfileSnapshot.stats.resets)||0}:{completedEver:0,resets:0};mode=Object.prototype.hasOwnProperty.call(CAT,initialProfileSnapshot.mode)?initialProfileSnapshot.mode:'all';active=initialProfileSnapshot.active?BANK.find(c=>c.id===initialProfileSnapshot.active&&!done.has(c.id))||null:null;updateProgress();refreshChallengeCopy();updateAction();}else saveProfileSnapshot();
 function saveTeamData(){localStorage.setItem(V50.teamKey,JSON.stringify(teamData));}
-function renderTeamScore(){let box=el('v50-team-scoreboard');if(!box)return;if(!teamData.enabled){box.hidden=true;return;}box.hidden=false;box.innerHTML=`<strong>${language==='ro'?'Scorul echipelor':'Team score'}</strong><div class="v50-team-grid">${teamData.teams.map((t,i)=>`<div class="v50-team-card"><span>${esc(t.name)}</span><div class="v50-team-score">⭐ ${Number(t.score)||0}</div>${i===teamData.turn?`<small>▶ ${language==='ro'?'La rând':'Playing now'}</small>`:''}</div>`).join('')}</div>`;}
+function renderTeamScore(){
+ let box=el('v50-team-scoreboard');if(!box)return;
+ const player=profiles.find(p=>p.id===activeProfileId);
+ const showPlayer=profiles.length>1&&Boolean(player);
+ const playerMarkup=showPlayer?`<div class="v51-current-player" role="status" aria-live="polite">👤 ${language==='ro'?'Jucător activ: ':'Playing as: '}${esc(player.name)}</div>`:'';
+ const skip=el('skip-challenge');
+ if(skip){
+  const label=teamData.enabled?(language==='ro'?'Nu am reușit':'I couldn’t do it'):(language==='ro'?'Altă provocare':'Another challenge');
+  skip.innerHTML=`↻ <span data-i18n="skip">${label}</span>`;
+  skip.setAttribute('aria-label',label);
+ }
+ if(!teamData.enabled){
+  box.hidden=!showPlayer;
+  box.innerHTML=playerMarkup;
+  return;
+ }
+ box.hidden=false;
+ box.innerHTML=`${playerMarkup}<strong>${language==='ro'?'Scorul echipelor':'Team score'}</strong><div class="v50-team-grid">${teamData.teams.map((t,i)=>`<div class="v50-team-card"><span>${esc(t.name)}</span><div class="v50-team-score">⭐ ${Number(t.score)||0}</div>${i===teamData.turn?`<small>▶ ${language==='ro'?'La rând':'Playing now'}</small>`:''}</div>`).join('')}</div>`;
+}
 function openTeamEditor(){openModal(language==='ro'?'Echipele familiei':'Family teams',`<p class="v50-note">${language==='ro'?'Activează jocul pe echipe și adaugă 2–4 echipe. Fiecare provocare finalizată aduce un punct echipei curente.':'Enable team play and add 2–4 teams. Each completed challenge awards one point to the current team.'}</p><form id="v50-team-form" class="v50-form"><label><span>${language==='ro'?'Activează modul echipe':'Enable team mode'}</span><input name="enabled" type="checkbox" ${teamData.enabled?'checked':''}></label><label>${language==='ro'?'Număr de echipe':'Number of teams'}<select name="count"><option value="2" ${teamData.teams.length===2?'selected':''}>2</option><option value="3" ${teamData.teams.length===3?'selected':''}>3</option><option value="4" ${teamData.teams.length===4?'selected':''}>4</option></select></label><div id="v50-team-names">${teamData.teams.map((t,i)=>`<label>${language==='ro'?'Numele echipei':'Team name'} ${i+1}<input name="team${i}" maxlength="24" value="${esc(t.name)}"></label>`).join('')}</div><div class="v50-actions"><button class="v50-primary" type="submit">${language==='ro'?'Salvează':'Save'}</button><button type="button" id="v50-team-reset">${language==='ro'?'Resetează scorul':'Reset scores'}</button></div></form>`);const form=el('v50-team-form');form.elements.count.addEventListener('change',()=>{const n=Number(form.elements.count.value);const prior=teamData.teams;el('v50-team-names').innerHTML=Array.from({length:n},(_,i)=>`<label>${language==='ro'?'Numele echipei':'Team name'} ${i+1}<input name="team${i}" maxlength="24" value="${esc(prior[i]?.name||((language==='ro'?'Echipa ':'Team ')+(i+1)))}"></label>`).join('');});form.addEventListener('submit',e=>{e.preventDefault();const n=Number(form.elements.count.value);teamData.enabled=form.elements.enabled.checked;teamData.teams=Array.from({length:n},(_,i)=>({name:(form.elements['team'+i].value||'Team '+(i+1)).trim().slice(0,24),score:Number(teamData.teams[i]?.score)||0}));teamData.turn=Math.min(teamData.turn,n-1);saveTeamData();renderTeamScore();closeModal();});el('v50-team-reset').onclick=()=>{teamData.teams.forEach(t=>t.score=0);teamData.turn=0;saveTeamData();renderTeamScore();};}
 el('v50-team-open').addEventListener('click',openTeamEditor);
+/* V52: failed team challenge rotates the turn without awarding a point. */
+el('skip-challenge').addEventListener('click',e=>{
+ if(!teamData.enabled||!active||poolComplete)return;
+ teamData.turn=(teamData.turn+1)%teamData.teams.length;
+ saveTeamData();
+ renderTeamScore();
+},true);
 document.addEventListener('click',e=>{if(e.target.closest('#adaptive-action')&&teamData.enabled&&active&&!celebrating){const team=teamData.teams[teamData.turn];if(team)team.score=(Number(team.score)||0)+1;teamData.turn=(teamData.turn+1)%teamData.teams.length;saveTeamData();setTimeout(renderTeamScore,0);}},true);
 
 /* 5. Parent challenge editor: custom entries are local and exportable. */

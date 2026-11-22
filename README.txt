@@ -1,37 +1,20 @@
-PRINCESS KINGDOM — PWA V50
+PRINCESS KINGDOM V52 — UPDATE ONLY
 
-The archive contains the complete deployable project at its root. Upload all files and folders to the same GitHub Pages directory; do not omit v50-enhancements.js.
+This is a compact update package. It intentionally does NOT contain princess artwork.
 
-V50 features:
-- 600 Classic + 150 Princess base challenges and all V49 portraits/album features.
-- Princess Mode reflection quiz with discussion choices.
-- Optional charades timer.
-- Family Team Mode (2–4 teams).
-- Up to four local player profiles with separate progress by game mode.
-- Parent Challenge Editor (custom challenges in Classic Mode).
-- IndexedDB drawing gallery with localStorage migration/fallback.
-- Five-region Adventure Map.
-- Printable achievement certificates (Print > Save as PDF).
-- Accessibility controls: text scale, high contrast, reduced motion and speech speed.
+Replace the existing files with the matching files in this archive:
+- index.html
+- v50-enhancements.js
+- sw.js
+- version.json
+- version.txt
+- VERSION
+- CHANGELOG.md
 
-Release files:
-- index.html — main app shell and original challenge banks.
-- v50-enhancements.js — V50 feature implementation.
-- sw.js — offline service worker; includes the V50 enhancement script in its cache.
-- VERSION — canonical release version.
-- version.json, version.txt — generated release metadata.
-- tests/ — release integrity and browser smoke tests.
+Keep all existing Princess artwork files and the rest of your V51 project unchanged.
 
-Publish over HTTPS. Service workers do not run from file://.
+V52 changes:
+1. The active-player indicator now appears in the scoreboard panel location, instead of below the progress bar. When Team Mode is active, the active profile is displayed above the team scores.
+2. In Team Mode, the skip button becomes “Nu am reușit” (English: “I couldn’t do it”). It advances the team turn and the challenge without awarding any point to the team that did not succeed.
 
-Run release checks:
-  python scripts/sync_version.py
-  python -m unittest discover -s tests -v
-  python tests/run_browser_smoke.py  (optional; requires Playwright + Chromium)
-
-For browser smoke tests, install Playwright for Python and Chromium. The test suite will skip browser-only checks if Playwright is unavailable.
-
-V51 UPDATE NOTES
-- Upload/replace index.html, v50-enhancements.js, sw.js, version.json, version.txt and CHANGELOG.md.
-- Princess artwork files are intentionally not included. Keep the existing princess-*.webp, princess-*.svg and princess-fallback.svg files from your V50 installation. The service worker continues to reference these existing files.
-- Existing profile IDs and saved data are preserved. Use the new delete button in the player menu to remove a profile and its saved progress.
+After replacing the files, open the site online once and refresh the app so the V52 service worker can install.
