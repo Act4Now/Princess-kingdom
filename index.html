@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#f3a6dc">
-<meta name="application-version" content="49">
+<meta name="application-version" content="50">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -31,7 +31,7 @@ button:focus-visible{outline:3px solid #7a2192;outline-offset:3px}
 
 /* One continuous illustrated background; every control is laid over it or flows beneath it. */
 #app{position:relative;width:var(--w);margin:0 auto;min-height:100vh;min-height:100dvh;
-  background:#f291d0 url(scene.jpg?v=49) center top/100% auto no-repeat;
+  background:#f291d0 url(scene.jpg?v=50) center top/100% auto no-repeat;
   padding-bottom:max(14px,env(safe-area-inset-bottom));display:flex;flex-direction:column}
 @media(min-width:721px){#app{box-shadow:0 0 40px rgba(111,22,136,.25)}}
 
@@ -248,6 +248,10 @@ button:focus-visible{outline:3px solid #7a2192;outline-offset:3px}
 .princess-album-card.unlocked{border-color:#d6b35b;background:linear-gradient(180deg,#fffdf1,#fff0cf)}
 .princess-album-card.unlocked img{background:#fff6df}
 @media(max-width:520px){.princess-album-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.princess-album{padding:11px}.princess-album-card{padding:4px 4px 7px}}
+
+/* V50 family expansion */
+.gallery-filters{display:grid;grid-template-columns:1fr 1fr;gap:7px}.gallery-filters input,.gallery-filters select{min-width:0;min-height:38px;border:1px solid #d9ad5d;border-radius:10px;padding:6px;background:#fff;color:#713b79;font:12px Arial,sans-serif}.v50-menu-tools{gap:9px}.v50-control,.v50-btn{width:100%;min-height:40px;border:1.5px solid #d9ad5d;border-radius:12px;background:#fff;color:#713b79;padding:8px 10px;font:700 14px Arial,sans-serif}.v50-profile-label{font:700 13px Arial,sans-serif}.v50-inline{display:flex;align-items:center;justify-content:space-between;gap:10px;font:700 13px Arial,sans-serif}.v50-inline input[type=checkbox]{width:20px;height:20px;accent-color:#9418a5}.v50-inline input[type=range]{width:46%;accent-color:#9418a5}.v50-quiz{padding:12px;border:2px solid var(--gold);border-radius:20px;background:linear-gradient(180deg,#fffaf0,#fbe3f4);box-shadow:var(--shadow)}.v50-quiz h3{margin:0 0 7px;font:700 17px Georgia,serif}.v50-quiz p{margin:0 0 9px;font:600 14px/1.35 Arial,sans-serif}.v50-choice-grid{display:grid;gap:7px}.v50-choice{min-height:42px;border:1.5px solid #d9ad5d;border-radius:13px;background:#fff;color:#713b79;padding:8px;font:700 13px/1.3 Arial,sans-serif;text-align:left}.v50-choice[aria-pressed=true]{background:#e6f7e9;border-color:#4baf68}.v50-feedback{margin-top:9px;padding:9px;border-radius:12px;background:#f1e7ff;font:600 13px/1.35 Arial,sans-serif}.v50-timer{display:flex;align-items:center;justify-content:center;gap:10px;padding:8px;border-radius:14px;background:#fff4dc;font:800 16px Arial,sans-serif}.v50-timer button{border:1px solid #d9ad5d;border-radius:99px;padding:6px 12px;background:white;color:#713b79}.v50-modal-backdrop{position:fixed;inset:0;z-index:4000;display:flex;align-items:center;justify-content:center;padding:12px;background:rgba(42,18,52,.68)}.v50-modal-backdrop[hidden]{display:none!important}.v50-modal{width:min(96vw,720px);max-height:94dvh;overflow:auto;padding:14px;border:3px solid var(--gold);border-radius:22px;background:linear-gradient(180deg,#fffaf0,#fbe7f5);color:#713b79;box-shadow:0 12px 40px #30113d66}.v50-modal>header{display:flex;align-items:center;justify-content:space-between;gap:8px;border-bottom:1px solid #e8cadd;padding-bottom:8px}.v50-modal h2{margin:0;font:700 21px Georgia,serif}.v50-modal>header button{width:36px;height:36px;border:1px solid var(--gold);border-radius:50%;background:#fff;color:#713b79;font-size:18px}.v50-modal-content{padding-top:10px}.v50-form{display:grid;gap:9px}.v50-form label{display:grid;gap:4px;font:700 13px Arial,sans-serif}.v50-form input,.v50-form textarea,.v50-form select{width:100%;min-height:40px;padding:8px;border:1px solid #d9ad5d;border-radius:10px;background:white;color:#713b79;font:14px Arial,sans-serif}.v50-form textarea{min-height:75px;resize:vertical}.v50-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.v50-actions button,.v50-action{min-height:42px;padding:8px 13px;border:1.5px solid #d9ad5d;border-radius:999px;background:#fff;color:#713b79;font:700 13px Arial,sans-serif}.v50-primary{background:#713b79!important;color:#fff!important}.v50-team-grid,.v50-map-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.v50-team-card,.v50-map-card{padding:10px;border:1px solid #e0bfd8;border-radius:14px;background:#fff9}.v50-map-card.locked{opacity:.55;filter:grayscale(.8)}.v50-map-card strong{display:block;font:700 15px Georgia,serif}.v50-map-card small{display:block;margin-top:5px;font:12px Arial,sans-serif}.v50-progress{height:8px;margin-top:7px;border-radius:99px;background:#ead8e8;overflow:hidden}.v50-progress span{display:block;height:100%;background:linear-gradient(90deg,#8e35a2,#e6a0d1)}.v50-team-score{font:800 23px Georgia,serif;color:#8b3998}.v50-note{font:12px/1.4 Arial,sans-serif;color:#80508a}.v50-certificate{padding:24px;border:8px double #d8a84f;border-radius:12px;text-align:center;background:#fffaf0;color:#713b79}.v50-certificate h3{font:700 27px Georgia,serif}.v50-certificate .cert-name{font:700 24px Georgia,serif;border-bottom:1px solid #d8a84f;padding:10px}.v50-high-contrast{--ink:#32103d;--plum:#3c0752;filter:contrast(1.12)}.v50-reduced-motion *, .v50-reduced-motion *:before,.v50-reduced-motion *:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}body.v50-high-contrast{background:#fff!important;color:#111!important}body.v50-high-contrast .btn,body.v50-high-contrast .v50-modal{background:#fff!important;color:#111!important;border:2px solid #111!important}body.v50-large-text{zoom:var(--v50-text-scale,1)}@media(max-width:420px){.v50-team-grid,.v50-map-grid{grid-template-columns:1fr}.v50-modal{padding:10px}.v50-quiz h3{font-size:15px}}@media print{body.v50-print-certificate *{visibility:hidden!important}body.v50-print-certificate #v50-print-area,body.v50-print-certificate #v50-print-area *{visibility:visible!important}body.v50-print-certificate #v50-print-area{position:absolute;inset:0;margin:0;padding:25mm 15mm;width:100%;min-height:100vh;background:#fff}body.v50-print-certificate #v50-print-area .v50-certificate{border:8px double #b8862b;min-height:220mm;display:flex;flex-direction:column;justify-content:center;gap:18px}}
+
 </style>
 </head>
 <body>
@@ -282,10 +286,26 @@ button:focus-visible{outline:3px solid #7a2192;outline-offset:3px}
   <header class="menu-header"><h2 id="menu-title" data-i18n="menuTitle">Meniul regatului</h2><button id="menu-close" type="button" aria-label="Închide meniul">✕</button></header>
   <div class="menu-section"><button id="princess-mode-toggle" type="button" class="menu-new-game" aria-pressed="false">👑 Mod Prințesă</button></div>
   <div class="menu-section"><button id="princess-album-open" type="button" class="menu-new-game" hidden>📖 Albumul Prințeselor</button></div>
+
+  <div class="menu-section v50-menu-tools"><div class="menu-section-label">✨ Aventură și familie / Family play</div>
+   <label class="v50-profile-label" for="v50-profile">👧 Profil / Player</label><select id="v50-profile" class="v50-control"></select><button type="button" id="v50-add-profile" class="v50-btn">＋ Adaugă profil / Add player</button>
+   <button type="button" id="v50-team-open" class="v50-btn">👨‍👩‍👧‍👦 Echipe / Team mode</button>
+   <label class="v50-inline"><input type="checkbox" id="v50-timer-enabled"> ⏱ Cronometru Mimă / Charades timer</label>
+   <label class="v50-inline">Durată / Duration <select id="v50-timer-duration" class="v50-control"><option value="30">30 sec</option><option value="60" selected>60 sec</option><option value="90">90 sec</option></select></label>
+   <button type="button" id="v50-adventure-open" class="v50-btn">🗺 Harta Regatului / Adventure map</button>
+   <button type="button" id="v50-editor-open" class="v50-btn">✏️ Creează provocare / Challenge editor</button>
+   <button type="button" id="v50-certificate-open" class="v50-btn">🏅 Diplomă / Certificate</button>
+  </div>
+  <div class="menu-section v50-menu-tools"><div class="menu-section-label">♿ Accesibilitate / Accessibility</div>
+   <label class="v50-inline">Text <input id="v50-text-size" type="range" min="90" max="125" step="5" value="100"></label>
+   <label class="v50-inline"><input id="v50-contrast" type="checkbox"> Contrast ridicat / High contrast</label>
+   <label class="v50-inline"><input id="v50-reduced-motion" type="checkbox"> Animații reduse / Reduce motion</label>
+   <label class="v50-inline">Citire / Speech <input id="v50-speech-rate" type="range" min="70" max="110" step="5" value="88"></label>
+  </div>
   <div class="menu-section"><div class="menu-section-label" data-i18n="languageLabel">Selectează limba</div><button id="language-toggle" type="button" aria-label="Schimbă limba în engleză" title="Limbă">RO</button></div>
   <div class="menu-section"><label id="music-volume-wrap" title="Volum muzică"><span aria-hidden="true">🔊</span><span data-i18n="volumeLabel">Volum muzică</span><input id="music-volume" type="range" min="0" max="100" value="8" aria-label="Volum muzică"></label></div>
   <div class="menu-section"><div class="menu-section-label" data-i18n="progressTools">Progresul meu</div><div id="backup-controls"><button id="export-progress" type="button" data-i18n="exportProgress">Exportă progresul</button><label class="file-import"><span data-i18n="importProgress">Importă progresul</span><input id="import-progress" type="file" accept="application/json,.json"></label></div></div>
-  <section id="drawing-gallery" class="menu-section" aria-label="Galeria desenelor"><h3 data-i18n="galleryTitle">Galeria mea</h3><div class="gallery-actions"><button type="button" id="gallery-select-all" data-i18n="gallerySelectAll">Selectează tot</button><button type="button" id="gallery-export" data-i18n="galleryExport">Exportă selecția</button><button type="button" id="gallery-delete" data-i18n="galleryDelete">Șterge selecția</button></div><p id="gallery-empty" data-i18n="galleryEmpty">Nu ai desene salvate încă.</p><div id="drawing-gallery-items"></div></section>
+  <section id="drawing-gallery" class="menu-section" aria-label="Galeria desenelor"><h3 data-i18n="galleryTitle">Galeria mea</h3><div class="gallery-filters"><input id="v50-gallery-search" type="search" placeholder="Caută desene / Search drawings" aria-label="Caută desene"><select id="v50-gallery-sort" aria-label="Sortează desenele"><option value="newest">Cele mai noi / Newest</option><option value="oldest">Cele mai vechi / Oldest</option><option value="title">Titlu / Title</option></select></div><div class="gallery-actions"><button type="button" id="gallery-select-all" data-i18n="gallerySelectAll">Selectează tot</button><button type="button" id="gallery-export" data-i18n="galleryExport">Exportă selecția</button><button type="button" id="gallery-delete" data-i18n="galleryDelete">Șterge selecția</button></div><p id="gallery-empty" data-i18n="galleryEmpty">Nu ai desene salvate încă.</p><div id="drawing-gallery-items"></div></section>
   <div class="menu-section menu-actions"><div class="menu-section-label" data-i18n="parentTools">Opțiuni pentru adult</div>
    
    <button id="reset-stats" type="button" class="reset-stats-btn" data-i18n="resetStats">Resetează statisticile</button>
@@ -302,6 +322,9 @@ button:focus-visible{outline:3px solid #7a2192;outline-offset:3px}
 <button class="btn" id="adult" type="button" aria-label="Ajutor pentru adult" aria-expanded="false" aria-controls="adult-message">💡 <span class="action-label" data-i18n="adult">Ajutor pentru adult</span></button>
 <button class="btn" id="skip-challenge" type="button" aria-label="Altă provocare">↻ <span data-i18n="skip">Altă provocare</span></button>
 </div>
+<section id="v50-timer-panel" class="v50-quiz" hidden aria-live="polite"></section>
+<section id="v50-team-scoreboard" class="v50-quiz" hidden aria-live="polite"></section>
+<section id="v50-quiz" class="v50-quiz" hidden aria-live="polite"></section>
 <section id="adult-message" role="status" aria-live="polite" aria-atomic="true" aria-label="Indiciu pentru adult"></section>
 <section id="category-progress" aria-label="Progres pe categorii">
   <div class="category-card"><div class="category-top"><span><span aria-hidden="true">🎨 </span><span data-i18n="draw">Desen</span></span><span class="category-count" id="draw-count">0 / 200</span></div>
@@ -316,7 +339,7 @@ button:focus-visible{outline:3px solid #7a2192;outline-offset:3px}
   <button id="install-app" type="button" hidden data-i18n="installApp">Instalează aplicația</button>
   
 </section>
-<footer id="kingdom-footer" aria-label="Mesaj de final și versiunea jocului"><span>Creat cu magie pentru a fi jucat în familie</span><span class="footer-version" id="footer-version" data-version="49">V49</span></footer>
+<footer id="kingdom-footer" aria-label="Mesaj de final și versiunea jocului"><span>Creat cu magie pentru a fi jucat în familie</span><span class="footer-version" id="footer-version" data-version="50">V50</span></footer>
 </div>
 </div>
 <div id="drawing-modal" class="drawing-modal" role="dialog" aria-modal="true" aria-label="Tabla de desen" aria-hidden="true" hidden>
@@ -362,6 +385,13 @@ button:focus-visible{outline:3px solid #7a2192;outline-offset:3px}
   <div id="princess-album-grid" class="princess-album-grid"></div>
  </section>
 </div>
+
+<div id="v50-modal-backdrop" class="v50-modal-backdrop" hidden>
+ <section id="v50-modal" class="v50-modal" role="dialog" aria-modal="true" aria-labelledby="v50-modal-title" tabindex="-1">
+  <header><h2 id="v50-modal-title">Princess Kingdom</h2><button type="button" id="v50-modal-close" aria-label="Close">✕</button></header>
+  <div id="v50-modal-content"></div>
+ </section>
+</div>
 <script>
 'use strict';
 const $=id=>document.getElementById(id);
@@ -394,7 +424,7 @@ function setBankForStyle(style){gameStyle=style==='princess'?'princess':'classic
 const CAT={all:null,draw:'Desen',mime:'Mimă',questions:'Întrebare'};
 /* Muzică MFCC inclusă local; volum subtil și pornire după gestul utilizatorului. */
 const Soundscape=(()=>{
- const audio=new Audio('music.mp3?v=49');
+ const audio=new Audio('music.mp3?v=50');
  audio.loop=true;
  audio.preload='none';
  audio.volume=0.08;
@@ -867,7 +897,7 @@ if(restored){mode=restoredMode||'all';renderChallenge(restored);}
 else if(getPool().length===0)showPoolComplete();else renderChallenge(null);
 layoutGameSections();
 // Version label is embedded so the installed game never waits for version.json.
-const APP_VERSION = document.querySelector('meta[name="application-version"]')?.content || '49';
+const APP_VERSION = document.querySelector('meta[name="application-version"]')?.content || '50';
 const UPDATE_SESSION_KEY = 'pk-v' + APP_VERSION + '-update-reloaded';
 const versionLabel = document.getElementById('footer-version');
 if (versionLabel) { versionLabel.textContent = 'V' + APP_VERSION; versionLabel.dataset.version = APP_VERSION; }
@@ -931,5 +961,6 @@ if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
 // Fail loudly during development if the content inventory is incomplete.
 if(![600,150].includes(BANK.length) || new Set(BANK.map(c=>c.id)).size!==BANK.length) console.error('Inventarul de provocări este invalid.');
 </script>
+<script src="./v50-enhancements.js" defer></script>
 </body>
 </html>

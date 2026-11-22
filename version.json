@@ -1,17 +1,20 @@
 {
-  "version": "49",
+  "version": "50",
   "name": "Princess Kingdom",
   "release_date": "2026-11-21",
-  "release_name": "Complete Princess Mode and Princess Album enhancement",
-  "previous_version": "48",
+  "release_name": "Family Adventure, Learning and Accessibility Expansion",
+  "previous_version": "49",
   "changes": [
-    "Added 35 original princess portraits to complete the 50-subject image set; every challenge now stores an explicit image path.",
-    "Added a resilient local fallback portrait for image load failures.",
-    "Redesigned Princess Mode challenge cards with larger hero artwork, readable headings, and the princess name below the portrait.",
-    "Added the Princess Album with 50 collectible cards; each princess unlocks after all three of her category challenges are completed.",
-    "Added the album portrait and unlock-state rendering to the Princess Mode experience.",
-    "Added automated release tests for all 150 Princess Mode challenges, unique IDs, all 50 image paths, fallback assets, mode-specific progress keys, and version consistency.",
-    "Centralized the release version in VERSION and synchronized app metadata, progress export, footer, and PWA cache.",
-    "Added CREDITS.md with asset-by-asset artwork provenance notes."
+    "Added individualized, age-appropriate Princess Mode reflection questions with three discussion choices and explanatory feedback; choices are exploratory, not marked right or wrong.",
+    "Added an optional 30, 60 or 90-second charades timer with pause and reset; timeout never auto-skips or penalizes a child.",
+    "Added 2–4 family teams, rotating turns and persistent scores.",
+    "Added up to four local player profiles with separate Classic and Princess progress snapshots.",
+    "Added a parent challenge editor to create, edit and delete custom Classic Mode challenges; custom challenge data is included in backup export/import.",
+    "Migrated the drawing gallery to IndexedDB, with localStorage migration/fallback, larger collections, titles, dates, search and sorting.",
+    "Added a five-region Kingdom Adventure Map driven by current profile and mode completion.",
+    "Added printable achievement certificates; browser Print can save them as PDF.",
+    "Added text scaling, high contrast, reduced motion and adjustable speech rate.",
+    "Added V50 browser smoke tests and expanded release integrity tests.",
+    "Preserved V49 challenge banks, Princess Album, artwork, drawing tools, offline PWA and existing saved progress."
   ]
 }

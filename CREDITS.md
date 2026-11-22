@@ -1,4 +1,4 @@
-# Princess Kingdom — Artwork Credits (V49)
+# Princess Kingdom — Artwork Credits (V50; artwork carried forward from V49)
 
 ## Princess Mode portrait inventory
 
@@ -73,3 +73,8 @@ Thirty-four portraits were generated as original fantasy-princess artwork for th
 - Every challenge stores its own exact `image` filename; runtime matching by substring in a princess name is not used.
 - All 50 subject portraits and the fallback are listed in `sw.js` for offline availability.
 - This file records the provenance known from the supplied archive and the V49 creation process. It does not replace a formal license review of previously supplied assets.
+
+
+## V50 artwork note
+
+V50 adds no new external artwork files. The 50 dedicated Princess Mode portraits, fallback SVG, background scene and PWA icons are carried forward from the supplied V49 archive. The V50 family features use native HTML/CSS/JavaScript controls and do not add third-party image or font dependencies.

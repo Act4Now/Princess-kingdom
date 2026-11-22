@@ -1,26 +1,32 @@
-PRINCESS KINGDOM — PWA V49
+PRINCESS KINGDOM — PWA V50
 
-All application files are in this folder; the archive contains no nested project folder.
-Upload the contents of this folder to the desired GitHub Pages directory.
+The archive contains the complete deployable project at its root. Upload all files and folders to the same GitHub Pages directory; do not omit v50-enhancements.js.
 
-Main files:
-- index.html — app and challenge banks (600 Classic + 150 Princess)
-- princess-*.webp / princess-*.svg — 50 dedicated Princess Mode portraits plus a fallback
-- scene.jpg, music.mp3 — background artwork and music
-- sw.js — offline cache and service worker
-- manifest.webmanifest and icon-*.png — PWA installation assets
-- VERSION — canonical release version; scripts/sync_version.py synchronizes generated version metadata
-- version.json, version.txt — release metadata
-- CHANGELOG.md — release history
-- CREDITS.md — artwork provenance and licensing notes
-- tests/test_release.py — automated release integrity tests
+V50 features:
+- 600 Classic + 150 Princess base challenges and all V49 portraits/album features.
+- Princess Mode reflection quiz with discussion choices.
+- Optional charades timer.
+- Family Team Mode (2–4 teams).
+- Up to four local player profiles with separate progress by game mode.
+- Parent Challenge Editor (custom challenges in Classic Mode).
+- IndexedDB drawing gallery with localStorage migration/fallback.
+- Five-region Adventure Map.
+- Printable achievement certificates (Print > Save as PDF).
+- Accessibility controls: text scale, high contrast, reduced motion and speech speed.
 
-Publish through HTTPS. The service worker does not run through file://.
-Game progress is stored locally and separately for Classic and Princess modes.
+Release files:
+- index.html — main app shell and original challenge banks.
+- v50-enhancements.js — V50 feature implementation.
+- sw.js — offline service worker; includes the V50 enhancement script in its cache.
+- VERSION — canonical release version.
+- version.json, version.txt — generated release metadata.
+- tests/ — release integrity and browser smoke tests.
 
-V43 introduced Princess Mode (150 challenges) and separate mode progress.
-V49 completes the 50-subject Princess Mode image set, adds the Princess Album and automated release checks.
+Publish over HTTPS. Service workers do not run from file://.
 
-Release maintenance:
-- Run `python scripts/sync_version.py` after changing VERSION to synchronize generated version references.
-- Run `python -m unittest discover -s tests -v` to execute the release integrity suite.
+Run release checks:
+  python scripts/sync_version.py
+  python -m unittest discover -s tests -v
+  python tests/run_browser_smoke.py  (optional; requires Playwright + Chromium)
+
+For browser smoke tests, install Playwright for Python and Chromium. The test suite will skip browser-only checks if Playwright is unavailable.
