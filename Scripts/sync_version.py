@@ -23,6 +23,9 @@ html, count = re.subn(
 )
 if count != 1:
     raise SystemExit("Could not locate application-version meta tag.")
+html = re.sub(r"(scene[.]jpg[?]v=)[0-9]+", lambda m: m.group(1) + VERSION, html)
+html = re.sub(r"(music[.]mp3[?]v=)[0-9]+", lambda m: m.group(1) + VERSION, html)
+html = re.sub(r"(\|\| ')[0-9]+(')", lambda m: m.group(1) + VERSION + m.group(2), html, count=1)
 html, count = re.subn(
     r'(id="footer-version" data-version=")[0-9]+(">V)[0-9]+(</span>)',
     lambda m: m.group(1) + VERSION + m.group(2) + VERSION + m.group(3), html, count=1
